@@ -9,6 +9,9 @@ using System.Configuration;
 
 namespace AutomationFramework
 {
+    using System.IO;
+    using System.Reflection;
+
     public class FrameworkCore
     {
         // Set the driver
@@ -30,7 +33,7 @@ namespace AutomationFramework
             // Runs test for Chrome 
             if (browser == "chrome")
             {
-                driver = new ChromeDriver(System.IO.Directory.GetCurrentDirectory() + "\\Support");
+                driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetAssembly(typeof(FrameworkCore)).Location) + "\\Support");
             }
 
             // Runs test for Firefox
