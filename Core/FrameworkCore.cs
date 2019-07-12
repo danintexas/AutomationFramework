@@ -62,6 +62,7 @@ namespace AutomationFramework
         {
             // Close the webdriver
             driver.Close();
+            driver.Quit();
 
             // These are seperate for now for future features
             if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
