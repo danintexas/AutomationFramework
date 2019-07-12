@@ -15,8 +15,6 @@ namespace AutomationFramework.Tests
 
             Assert.AreEqual(driver.Url, testEnv);
             Assert.AreEqual(driver.Title, "Welcome to RumbleOn Classifieds Motorcycle Listing Site");
-
-            //var reporter = new ExtentHtmlReporter("path/to/directory/");
         }
  
         [TestCase(Category = "Demo", TestName = "2 - Validate HomePage - Firefox")]
@@ -29,8 +27,6 @@ namespace AutomationFramework.Tests
 
             Assert.AreEqual(driver.Url, testEnv);
             Assert.AreEqual(driver.Title, "Welcome to RumbleOn Classifieds Motorcycle Listing Site");
-
-            //var reporter = new ExtentHtmlReporter("path/to/directory/");
         }
 
         [TestCase(Category = "Demo", TestName = "3 - Validate HomePage - Edge")]
@@ -43,19 +39,17 @@ namespace AutomationFramework.Tests
 
             Assert.AreEqual(driver.Url, testEnv);
             Assert.AreEqual(driver.Title, "Welcome to RumbleOn Classifieds Motorcycle Listing Site");
-
-            //var reporter = new ExtentHtmlReporter("path/to/directory/");
         }
 
         [TestCase(Category = "Negative Test", TestName = "Validate Homepage - Chrome - Negative Test")]
-        [Order(1)]
+        [Order(4)]
         public void homepageChromeNeg()
         {
             SetBrowser("chrome");
 
             driver.Url = testEnv;
 
-            Assert.AreEqual(driver.Url, "Fail");
+            Assert.AreNotEqual(driver.Url, "Fail");
             Assert.AreEqual(driver.Title, "Welcome to RumbleOn Classifieds Motorcycle Listing Site");
 
             var reporter = new ExtentHtmlReporter("path/to/directory/");

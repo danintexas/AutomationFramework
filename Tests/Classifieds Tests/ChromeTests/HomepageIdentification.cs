@@ -14,8 +14,6 @@ namespace AutomationFramework.Tests.ChromeTests
 
             Assert.AreEqual(driver.Url, testEnv);
             Assert.AreEqual(driver.Title, "Welcome to RumbleOn Classifieds Motorcycle Listing Site");
-
-            //var reporter = new ExtentHtmlReporter("path/to/directory/");
         }
     }
 }
