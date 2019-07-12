@@ -18,7 +18,7 @@ namespace AutomationFramework
         public IWebDriver driver;
 
         public string testEnv = "https://" + ConfigurationManager.AppSettings.Get("Env") + ".rumbleonclassifieds.com/";
-        
+
         // Print out results of the test
         public void resultPrint()
         {
@@ -30,22 +30,24 @@ namespace AutomationFramework
         // Method to set the current browser to test
         public void SetBrowser(String browser)
         {
+            var homeDirectory = Path.GetDirectoryName(Assembly.GetAssembly(typeof(FrameworkCore)).Location);
+
             // Runs test for Chrome 
             if (browser == "chrome")
             {
-                driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetAssembly(typeof(FrameworkCore)).Location) + "\\Support");
+                driver = new ChromeDriver($"{homeDirectory}\\Support");
             }
 
             // Runs test for Firefox
             if (browser == "firefox")
             {
-                driver = new FirefoxDriver(System.IO.Directory.GetCurrentDirectory() + "\\Support");
+                driver = new FirefoxDriver($"{homeDirectory}\\Support");
             }
 
             // Runs test for Edge
             if (browser == "edge")
             {
-                driver = new EdgeDriver(System.IO.Directory.GetCurrentDirectory() + "\\Support");
+                driver = new EdgeDriver($"{homeDirectory}\\Support");
             }
 
 
