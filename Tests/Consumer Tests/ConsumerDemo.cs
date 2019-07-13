@@ -1,7 +1,6 @@
 ﻿using AutomationFramework.Pages.Consumer;
 using NUnit.Framework;
 using Selenium;
-using System;
 
 namespace AutomationFramework.Tests
 {
