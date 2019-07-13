@@ -1,62 +1,27 @@
 ﻿using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Edge;
+using Selenium;
 using System;
-using System.Configuration;
 
 namespace AutomationFramework
 {
-    using System.IO;
-    using System.Reflection;
-
     public class FrameworkCore
     {
-        // Set the driver
-        public IWebDriver driver;
-
-        public string testEnv = "https://" + ConfigurationManager.AppSettings.Get("Env") + ".rumbleonclassifieds.com/";
+        // Prep the Selenium driver for usage
+        public static IWebDriver driver;
 
         // Print out results of the test
-        public void resultPrint()
+        public void ResultPrint()
         {
             Console.WriteLine(TestContext.CurrentContext.Test.Name);
             Console.WriteLine(TestContext.CurrentContext.Result.Outcome.Status);
             Console.WriteLine(TestContext.CurrentContext.Result.Message);
         }
 
-        // Method to set the current browser to test
-        public void SetBrowser(String browser)
-        {
-            var homeDirectory = Path.GetDirectoryName(Assembly.GetAssembly(typeof(FrameworkCore)).Location);
-
-            // Runs test for Chrome 
-            if (browser == "chrome")
-            {
-                driver = new ChromeDriver($"{homeDirectory}\\Support");
-            }
-
-            // Runs test for Firefox
-            if (browser == "firefox")
-            {
-                driver = new FirefoxDriver($"{homeDirectory}\\Support");
-            }
-
-            // Runs test for Edge
-            if (browser == "edge")
-            {
-                driver = new EdgeDriver($"{homeDirectory}\\Support");
-            }
-
-
-            driver.Manage().Window.Maximize();
-        }
-
         // Place holder in case I need this to run before every test
         [SetUp]
-        public void setUp()
+        public void SetUp()
         {
 
         }
@@ -65,24 +30,22 @@ namespace AutomationFramework
         [TearDown]
         public void TearDown()
         {
-            // Close the webdriver
-            driver.Close();
-            driver.Quit();
+            SeleniumCommands.closeQuitBrowsers();
 
             // These are seperate for now for future features
             if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
             {
-                resultPrint();          
+                ResultPrint();          
             }
 
             else if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed)
             {
-                resultPrint();
+                ResultPrint();
             }
 
             else
             {
-                resultPrint();
+                ResultPrint();
             }
         }
     }

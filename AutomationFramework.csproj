@@ -8,8 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1EDF832F-31E3-4BC4-80A1-D86239C99E7C}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>ClassifiedsFramework</RootNamespace>
-    <AssemblyName>ClassifiedsFramework</AssemblyName>
+    <RootNamespace>AutomationFramework</RootNamespace>
+    <AssemblyName>AutomationFramework</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -76,6 +76,7 @@
       <HintPath>packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
     </Reference>
@@ -92,10 +93,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\FrameworkCore.cs" />
-    <Compile Include="Pages\Classifieds.cs" />
+    <Compile Include="Core\Selenium.cs" />
+    <Compile Include="Pages\Classifieds\Classifieds.cs" />
+    <Compile Include="Pages\Consumer\Consumer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\Classifieds Tests\ChromeTests\HomepageIdentification.cs" />
-    <Compile Include="Tests\DemoTests.cs" />
+    <Compile Include="Tests\Consumer Tests\ConsumerDemo.cs" />
+    <Compile Include="Tests\Demo Tests\DemoTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

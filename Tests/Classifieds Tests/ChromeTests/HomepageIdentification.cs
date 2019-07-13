@@ -1,19 +1,20 @@
-﻿using AventStack.ExtentReports.Reporter;
+﻿using AutomationFramework.Pages.Classifieds;
 using NUnit.Framework;
+using Selenium;
 
-namespace AutomationFramework.Tests.ChromeTests 
+namespace AutomationFramework.Tests
 {
     class HomepageIdentification : FrameworkCore
     {
         [TestCase(Category = "Classifieds (Chrome)", TestName = "Validate Homepage")]
         public void homepageChrome()
         {
-            SetBrowser("chrome");
+            SeleniumCommands.SetBrowser("chrome");
+            SeleniumCommands.maximizeBrowser();
+            driver.Url = Classifieds.Homepage.homePageURL;
 
-            driver.Url = testEnv;
-
-            Assert.AreEqual(driver.Url, testEnv);
-            Assert.AreEqual(driver.Title, "Welcome to RumbleOn Classifieds Motorcycle Listing Site");
+            Assert.AreEqual(driver.Url, Classifieds.Homepage.homePageURL);
+            Assert.AreEqual(driver.Title, Classifieds.Homepage.homePageTitle);
         }
     }
 }
