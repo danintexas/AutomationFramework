@@ -16,6 +16,9 @@ namespace AutomationFramework.Tests.Demo_Tests
 
             driver.Url = Classifieds.Homepage.homePageURL;
 
+            SeleniumCommands.ForcedWait(2);
+            SeleniumCommands.ScreenShot("Dual Test - Classifieds");
+
             Assert.AreEqual(driver.Url, Classifieds.Homepage.homePageURL);
         }
 
@@ -24,6 +27,9 @@ namespace AutomationFramework.Tests.Demo_Tests
         public void googleHomePage()
         {
             driver.Url = "https://www.google.com";
+
+            SeleniumCommands.ForcedWait(2);
+            SeleniumCommands.ScreenShot("Dual Test - Google");
 
             Assert.AreEqual(driver.Url, Google.Homepage.homePageURL);
 

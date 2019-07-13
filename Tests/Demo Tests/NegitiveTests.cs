@@ -19,6 +19,9 @@ namespace AutomationFramework.Tests.Demo_Tests
             Assert.AreNotEqual(driver.Url, "This will fail");
             Assert.AreEqual(driver.Title, Classifieds.Homepage.homePageTitle);
 
+            SeleniumCommands.ForcedWait(2);
+            SeleniumCommands.ScreenShot("Homepage Negative Test");
+
             SeleniumCommands.closeQuitBrowsers();
         }
     }

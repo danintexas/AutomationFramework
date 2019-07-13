@@ -14,6 +14,7 @@ namespace AutomationFramework.Tests
             driver.Url = Consumer.Homepage.homePageURL;
             
             SeleniumCommands.ForcedWait(2);
+            SeleniumCommands.ScreenShot("Consumer Homepage - Chrome");
 
             Assert.AreEqual(driver.Url, Consumer.Homepage.homePageURL);
             Assert.AreEqual(driver.Title, Consumer.Homepage.homePageTitle);

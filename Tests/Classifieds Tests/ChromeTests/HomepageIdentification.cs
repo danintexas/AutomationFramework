@@ -13,6 +13,9 @@ namespace AutomationFramework.Tests
             SeleniumCommands.maximizeBrowser();
             driver.Url = Classifieds.Homepage.homePageURL;
 
+            SeleniumCommands.ForcedWait(2);
+            SeleniumCommands.ScreenShot("Classifieds Homepage - Chrome");
+
             Assert.AreEqual(driver.Url, Classifieds.Homepage.homePageURL);
             Assert.AreEqual(driver.Title, Classifieds.Homepage.homePageTitle);
 

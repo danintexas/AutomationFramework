@@ -15,6 +15,9 @@ namespace AutomationFramework.Tests
 
             driver.Url = Classifieds.Homepage.homePageURL;
 
+            SeleniumCommands.ForcedWait(2);
+            SeleniumCommands.ScreenShot("Chrome - Homepage");
+
             Assert.AreEqual(driver.Url, Classifieds.Homepage.homePageURL);
             Assert.AreEqual(driver.Title, Classifieds.Homepage.homePageTitle);
 
@@ -29,6 +32,9 @@ namespace AutomationFramework.Tests
 
             driver.Url = Classifieds.Homepage.homePageURL;
 
+            SeleniumCommands.ForcedWait(2);
+            SeleniumCommands.ScreenShot("Firefox - Homepage");
+
             Assert.AreEqual(driver.Url, Classifieds.Homepage.homePageURL);
             Assert.AreEqual(driver.Title, Classifieds.Homepage.homePageTitle);
 
@@ -42,6 +48,9 @@ namespace AutomationFramework.Tests
             SeleniumCommands.maximizeBrowser();
 
             driver.Url = Classifieds.Homepage.homePageURL;
+
+            SeleniumCommands.ForcedWait(2);
+            SeleniumCommands.ScreenShot("Edge - Homepage");
 
             Assert.AreEqual(driver.Url, Classifieds.Homepage.homePageURL);
             Assert.AreEqual(driver.Title, Classifieds.Homepage.homePageTitle);

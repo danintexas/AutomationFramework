@@ -1,4 +1,6 @@
 ﻿using AutomationFramework;
+using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
@@ -67,6 +69,23 @@ namespace Selenium
         {
             wait = wait * 1000; // Converts from milliseconds to seconds
             Thread.Sleep(wait);
+        }
+
+        // Method to take a screen cap of the current browser state
+        public static void ScreenShot (String name)
+        {
+            DateTime date = DateTime.Today;               
+            string logLocation = @"c:\Automation Logs\Screenshots\" + date.ToString("MM.dd.yyyy");
+
+            if (!Directory.Exists(logLocation))
+            {
+                Directory.CreateDirectory(logLocation);
+            }
+
+            Screenshot image = ((ITakesScreenshot)driver).GetScreenshot();
+            DateTime timeStamp = DateTime.Now;
+
+            image.SaveAsFile(logLocation + "\\" + name + " - " + timeStamp.ToString("h.mm tt") + ".png");
         }
     }
 }
