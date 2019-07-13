@@ -1,6 +1,7 @@
 ﻿using AutomationFramework.Pages.Consumer;
 using NUnit.Framework;
 using Selenium;
+using System;
 
 namespace AutomationFramework.Tests
 {
@@ -12,9 +13,13 @@ namespace AutomationFramework.Tests
             SeleniumCommands.SetBrowser("chrome");
             SeleniumCommands.maximizeBrowser();
             driver.Url = Consumer.Homepage.homePageURL;
+            
+            SeleniumCommands.ForcedWait(2);
 
             Assert.AreEqual(driver.Url, Consumer.Homepage.homePageURL);
             Assert.AreEqual(driver.Title, Consumer.Homepage.homePageTitle);
+
+            SeleniumCommands.closeQuitBrowsers();
         }
     }
 }

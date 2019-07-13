@@ -5,6 +5,7 @@ using OpenQA.Selenium.Firefox;
 using System;
 using System.IO;
 using System.Reflection;
+using System.Threading;
 
 namespace Selenium
 {
@@ -59,6 +60,13 @@ namespace Selenium
             {
                 driver = new EdgeDriver($"{homeDirectory}\\Support");
             }
+        }
+
+        // Implicit Wait Method - Expects input in seconds
+        public static void ForcedWait (int wait)
+        {
+            wait = wait * 1000; // Converts from milliseconds to seconds
+            Thread.Sleep(wait);
         }
     }
 }
