@@ -2,18 +2,21 @@
 using NUnit.Framework;
 using Selenium;
 
-namespace AutomationFramework.Tests
+namespace AutomationFramework.Tests.Demo_Tests
 {
-    class HomepageIdentification : FrameworkCore
+    class NegitiveTests : FrameworkCore
     {
-        [TestCase(Category = "Classifieds (Chrome)", TestName = "Validate Homepage")]
-        public void homepageChrome()
+
+        [TestCase(Category = "Negative Test", TestName = "Validate Homepage - Chrome - Negative Test")]
+        [Order(1)]
+        public void homepageChromeNeg()
         {
             SeleniumCommands.SetBrowser("chrome");
             SeleniumCommands.maximizeBrowser();
+
             driver.Url = Classifieds.Homepage.homePageURL;
 
-            Assert.AreEqual(driver.Url, Classifieds.Homepage.homePageURL);
+            Assert.AreNotEqual(driver.Url, "This will fail");
             Assert.AreEqual(driver.Title, Classifieds.Homepage.homePageTitle);
 
             SeleniumCommands.closeQuitBrowsers();

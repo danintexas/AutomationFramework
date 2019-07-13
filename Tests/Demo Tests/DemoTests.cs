@@ -17,6 +17,8 @@ namespace AutomationFramework.Tests
 
             Assert.AreEqual(driver.Url, Classifieds.Homepage.homePageURL);
             Assert.AreEqual(driver.Title, Classifieds.Homepage.homePageTitle);
+
+            SeleniumCommands.closeQuitBrowsers();
         }
  
         [TestCase(Category = "Demo", TestName = "2 - Validate HomePage - Firefox")][Order(2)]
@@ -29,6 +31,8 @@ namespace AutomationFramework.Tests
 
             Assert.AreEqual(driver.Url, Classifieds.Homepage.homePageURL);
             Assert.AreEqual(driver.Title, Classifieds.Homepage.homePageTitle);
+
+            SeleniumCommands.closeQuitBrowsers();
         }
 
         [TestCase(Category = "Demo", TestName = "3 - Validate HomePage - Edge")][Order(3)]
@@ -41,18 +45,8 @@ namespace AutomationFramework.Tests
 
             Assert.AreEqual(driver.Url, Classifieds.Homepage.homePageURL);
             Assert.AreEqual(driver.Title, Classifieds.Homepage.homePageTitle);
-        }
 
-        [TestCase(Category = "Negative Test", TestName = "Validate Homepage - Chrome - Negative Test")][Order(4)]
-        public void homepageChromeNeg()
-        {
-            SeleniumCommands.SetBrowser("chrome");
-            SeleniumCommands.maximizeBrowser();
-
-            driver.Url = Classifieds.Homepage.homePageURL;
-
-            Assert.AreNotEqual(driver.Url, "This will fail");
-            Assert.AreEqual(driver.Title, Classifieds.Homepage.homePageTitle);
+            SeleniumCommands.closeQuitBrowsers();
         }
     }
 }

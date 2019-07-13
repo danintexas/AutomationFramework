@@ -30,8 +30,6 @@ namespace AutomationFramework
         [TearDown]
         public void TearDown()
         {
-            SeleniumCommands.closeQuitBrowsers();
-
             // These are seperate for now for future features
             if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
             {

@@ -96,10 +96,13 @@
     <Compile Include="Core\Selenium.cs" />
     <Compile Include="Pages\Classifieds\Classifieds.cs" />
     <Compile Include="Pages\Consumer\Consumer.cs" />
+    <Compile Include="Pages\Google\Google.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\Classifieds Tests\ChromeTests\HomepageIdentification.cs" />
     <Compile Include="Tests\Consumer Tests\ConsumerDemo.cs" />
     <Compile Include="Tests\Demo Tests\DemoTests.cs" />
+    <Compile Include="Tests\Demo Tests\DualTest.cs" />
+    <Compile Include="Tests\Demo Tests\NegitiveTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
