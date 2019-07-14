@@ -6,7 +6,7 @@ namespace AutomationFramework.Tests
 {
     class DemoTests : FrameworkCore
     {
-        [TestCase (Category = "Demo", TestName = "1 - Validate Homepage - Chrome")][Order(1)]
+        [TestCase (Category = "Demo", TestName = "Validate Homepage - Chrome")][Order(1)]
 
         public void homepageChrome()
         {
@@ -24,7 +24,7 @@ namespace AutomationFramework.Tests
             SeleniumCommands.closeQuitBrowsers();
         }
  
-        [TestCase(Category = "Demo", TestName = "2 - Validate HomePage - Firefox")][Order(2)]
+        [TestCase(Category = "Demo", TestName = "Validate HomePage - Firefox")][Order(2)]
         public void homepageFirefox()
         {
             SeleniumCommands.SetBrowser("firefox");
@@ -41,7 +41,7 @@ namespace AutomationFramework.Tests
             SeleniumCommands.closeQuitBrowsers();
         }
 
-        [TestCase(Category = "Demo", TestName = "3 - Validate HomePage - Edge")][Order(3)]
+        [TestCase(Category = "Demo", TestName = "Validate HomePage - Edge")][Order(3)]
         public void homepageEdge()
         {
             SeleniumCommands.SetBrowser("edge");
