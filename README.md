@@ -2,13 +2,20 @@
 
 Building an alternative automation framework for RumbleOn.
 
+-----------------------------------------------------------------
+
 Tech Used:
+
 C#
+
 NUnit
+
 Extent Reports
+
 Selenium
 
-Core at this point is about done. Features I will be adding:
+-----------------------------------------------------------------
+Core at this point is about done. Features I will be adding the following features:
 
 VIN generator module for listing vehicles.
 
