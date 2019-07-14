@@ -26,7 +26,7 @@ namespace AutomationFramework.Tests.Demo_Tests
         [Order(2)]
         public void googleHomePage()
         {
-            driver.Url = "https://www.google.com";
+            driver.Url = Google.Homepage.homePageURL;
 
             SeleniumCommands.ForcedWait(2);
             SeleniumCommands.ScreenShot("Dual Test - Google");
