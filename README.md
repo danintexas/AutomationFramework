@@ -10,7 +10,7 @@ This automation framework is build from the ground up as an alternative framewor
 - Extent Reports
 - Selenium
 
-# Supports the following browsers:
+## Supports the following browsers:
 - Chrome
 - Firefox
 - Edge
