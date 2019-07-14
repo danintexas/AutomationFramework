@@ -1,4 +1,4 @@
-# AutomationFramework - Kindergarten 
+# Kindergarten - A simple to use and maintain automation framework for web testing
 
 Building an alternative automation framework for RumbleOn.
 
