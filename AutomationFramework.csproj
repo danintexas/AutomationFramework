@@ -103,6 +103,7 @@
     <Compile Include="Tests\Demo Tests\DemoTests.cs" />
     <Compile Include="Tests\Demo Tests\DualTest.cs" />
     <Compile Include="Tests\Demo Tests\NegitiveTests.cs" />
+    <Compile Include="Tests\Demo Tests\QuickTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
