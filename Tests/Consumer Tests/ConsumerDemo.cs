@@ -6,7 +6,7 @@ namespace AutomationFramework.Tests
 {
     class ConsumerDemo : FrameworkCore
     {
-        [TestCase(Category = "Consumer (Chrome)", TestName = "Validate Homepage")]
+        [TestCase(Category = "Consumer (Chrome)", TestName = "Validate Consumer Homepage")]
         public void homepageChrome()
         {
             SeleniumCommands.SetBrowser("chrome");
