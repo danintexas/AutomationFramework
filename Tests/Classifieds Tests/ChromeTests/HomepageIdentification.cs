@@ -6,8 +6,8 @@ namespace AutomationFramework.Tests
 {
     class HomepageIdentification : FrameworkCore
     {
-        [TestCase(Category = "Classifieds (Chrome)", TestName = "Validate Homepage")]
-        public void homepageChrome()
+        [TestCase(Category = "Classifieds (Chrome)", TestName = "Validate Classifieds Homepage")]
+        public void homepage()
         {
             SeleniumCommands.SetBrowser("chrome");
             SeleniumCommands.maximizeBrowser();
