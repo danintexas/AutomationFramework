@@ -1,27 +1,48 @@
 # Kindergarten
------------------------------------------------------------------
-# A simple to use and maintain automation framework for web testing
 
 
-Building an alternative automation framework for RumbleOn.
+## A simple to use and maintain automation framework for web testing
 
------------------------------------------------------------------
 
-Tech Used:
 
-C#
 
-NUnit
+This automation framework is build from the ground up as an alternative framework for RumbleOn.
 
-Extent Reports
 
-Selenium
 
------------------------------------------------------------------
-Core at this point is about done. Features I will be adding the following features:
 
-VIN generator module for listing vehicles.
+## Tech Used:
 
-Direct checks on entered data in the database that is entered during testing. 
 
-Built in API endpoint testing. 
+- C#
+
+
+- NUnit
+
+
+- Extent Reports
+
+
+- Selenium
+
+
+- Supports the following browsers:
+- Chrome
+- Firefox
+- Edge
+
+
+Core at this point is about done. 
+
+## Planned future features:
+
+
+- VIN generator module for listing vehicles.
+
+
+- Direct checks on entered data in the database that is entered during testing. 
+
+
+- Built in API endpoint testing. 
+
+- Built in API stress testing.
