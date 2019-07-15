@@ -4,7 +4,7 @@ using Selenium;
 
 namespace AutomationFramework.Tests
 {
-    class HomepageIdentification : FrameworkCore
+    class ClassifiedsDemo : FrameworkCore
     {
         [TestCase(Category = "Classifieds (Chrome)", TestName = "Validate Classifieds Homepage")]
         public void Homepage()

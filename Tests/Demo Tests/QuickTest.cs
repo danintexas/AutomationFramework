@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using Selenium;
 
-namespace AutomationFramework.Tests
+namespace AutomationFramework.Tests.Demo
 {
     class QuickTest : FrameworkCore
     {

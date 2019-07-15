@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using Selenium;
 
-namespace AutomationFramework.Tests.Demo_Tests
+namespace AutomationFramework.Tests.Demo
 {
     class NegitiveTests : FrameworkCore
     {

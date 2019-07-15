@@ -3,7 +3,7 @@ using AutomationFramework.Pages.Google;
 using NUnit.Framework;
 using Selenium;
 
-namespace AutomationFramework.Tests.Demo_Tests
+namespace AutomationFramework.Tests.Demo
 {
     class DualTest : FrameworkCore
     {
