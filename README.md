@@ -17,6 +17,7 @@ This automation framework is build from the ground up as an alternative framewor
 
 ## Planned future features:
 - Logging
+- Ability to run multiple browsers from a single test
 - VIN generator module for listing vehicles.
 - Direct checks on entered data in the database that is entered during testing. 
 - Built in API endpoint testing. 
