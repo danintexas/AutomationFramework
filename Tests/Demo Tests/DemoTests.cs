@@ -8,54 +8,54 @@ namespace AutomationFramework.Tests
     {
         [TestCase (Category = "Demo", TestName = "Validate Homepage - Chrome")][Order(1)]
 
-        public void homepageChrome()
+        public void HomepageChrome()
         {
             SeleniumCommands.SetBrowser("chrome");
-            SeleniumCommands.maximizeBrowser();
+            SeleniumCommands.MaximizeBrowser();
 
-            driver.Url = Classifieds.Homepage.homePageURL;
+            seleniumDriver.Url = Classifieds.Homepage.homePageURL;
 
             SeleniumCommands.ForcedWait(2);
             SeleniumCommands.ScreenShot("Chrome - Homepage");
 
-            Assert.AreEqual(driver.Url, Classifieds.Homepage.homePageURL);
-            Assert.AreEqual(driver.Title, Classifieds.Homepage.homePageTitle);
+            SeleniumCommands.AssertEqual(seleniumDriver.Url, Classifieds.Homepage.homePageURL);
+            SeleniumCommands.AssertEqual(seleniumDriver.Title, Classifieds.Homepage.homePageTitle);
 
-            SeleniumCommands.closeQuitBrowsers();
+            SeleniumCommands.CloseQuitBrowsers();
         }
  
         [TestCase(Category = "Demo", TestName = "Validate HomePage - Firefox")][Order(2)]
         public void homepageFirefox()
         {
             SeleniumCommands.SetBrowser("firefox");
-            SeleniumCommands.maximizeBrowser();
+            SeleniumCommands.MaximizeBrowser();
 
-            driver.Url = Classifieds.Homepage.homePageURL;
+            seleniumDriver.Url = Classifieds.Homepage.homePageURL;
 
             SeleniumCommands.ForcedWait(2);
             SeleniumCommands.ScreenShot("Firefox - Homepage");
 
-            Assert.AreEqual(driver.Url, Classifieds.Homepage.homePageURL);
-            Assert.AreEqual(driver.Title, Classifieds.Homepage.homePageTitle);
+            SeleniumCommands.AssertEqual(seleniumDriver.Url, Classifieds.Homepage.homePageURL);
+            SeleniumCommands.AssertEqual(seleniumDriver.Title, Classifieds.Homepage.homePageTitle);
 
-            SeleniumCommands.closeQuitBrowsers();
+            SeleniumCommands.CloseQuitBrowsers();
         }
 
         [TestCase(Category = "Demo", TestName = "Validate HomePage - Edge")][Order(3)]
         public void homepageEdge()
         {
             SeleniumCommands.SetBrowser("edge");
-            SeleniumCommands.maximizeBrowser();
+            SeleniumCommands.MaximizeBrowser();
 
-            driver.Url = Classifieds.Homepage.homePageURL;
+            seleniumDriver.Url = Classifieds.Homepage.homePageURL;
 
             SeleniumCommands.ForcedWait(2);
             SeleniumCommands.ScreenShot("Edge - Homepage");
 
-            Assert.AreEqual(driver.Url, Classifieds.Homepage.homePageURL);
-            Assert.AreEqual(driver.Title, Classifieds.Homepage.homePageTitle);
+            SeleniumCommands.AssertEqual(seleniumDriver.Url, Classifieds.Homepage.homePageURL);
+            SeleniumCommands.AssertEqual(seleniumDriver.Title, Classifieds.Homepage.homePageTitle);
 
-            SeleniumCommands.closeQuitBrowsers();
+            SeleniumCommands.CloseQuitBrowsers();
         }
     }
 }

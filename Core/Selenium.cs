@@ -1,4 +1,5 @@
 ﻿using AutomationFramework;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
@@ -13,36 +14,104 @@ namespace Selenium
     public class SeleniumCommands : FrameworkCore
     {
         /// <summary>
-        /// Maximizes the browser window
+        /// Asserts two values are the same. 
         /// </summary>
-        public static void maximizeBrowser()
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        public static void AssertEqual(string a, string b)
         {
-            driver.Manage().Window.Maximize();
+            try
+            {
+                Assert.AreEqual(a, b);
+            }
+            catch
+            {
+                // I need to work on getting this catch into extent reports
+            }
+        }
+
+        /// <summary>
+        /// Asserts two values are not the same. 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        public static void AssertNotEqual(string a, string b)
+        {
+            try
+            {
+                Assert.AreNotEqual(a, b);
+            }
+            catch
+            {
+                // I need to work on getting this catch into extent reports
+            }
         }
 
         /// <summary>
         /// Closes active Selenium controlled browser
         /// </summary>
-        public static void closeBrowser()
+        public static void CloseBrowser()
         {
-            driver.Close();
-        }
-
-        /// <summary>
-        /// Quits all Selenium controlled browser processes 
-        /// </summary>
-        public static void quitBrowsers()
-        {
-            driver.Quit();
+            seleniumDriver.Close();
         }
 
         /// <summary>
         /// Closes active Selenum controlled browser then ends all Selenium controlled browser processes
         /// </summary>
-        public static void closeQuitBrowsers()
+        public static void CloseQuitBrowsers()
         {
-            driver.Close();
-            driver.Quit();
+            seleniumDriver.Close();
+            seleniumDriver.Quit();
+        }
+
+        /// <summary>
+        /// Forced Wait: Forces Selenium to wait a certain amound of seconds before doing anything &#8211; 
+        /// Expects input in seconds
+        /// </summary>
+        /// <param name="wait"></param>
+        public static void ForcedWait(int wait)
+        {
+            wait = wait * 1000; // Converts from milliseconds to seconds
+            Thread.Sleep(wait);
+        }
+
+        /// <summary>
+        /// Method that will rename the core log folder if it exists for archival purposes
+        /// </summary>
+        public static void LogCleaner()
+        {
+            DateTime date = DateTime.Today;
+            var logLocation = @"c:\Automation Logs\" + date.ToString("MM.dd.yyyy");
+            string newLocation = logLocation;
+
+            if (Directory.Exists(logLocation))
+            {
+                int counter = 1;
+
+                while (Directory.Exists(newLocation))
+                {
+                    newLocation = logLocation + " - " + "Archive " + counter;
+                    counter++;
+                }
+
+                Directory.Move(logLocation, newLocation);
+            }
+        }
+
+        /// <summary>
+        /// Maximizes the browser window
+        /// </summary>
+        public static void MaximizeBrowser()
+        {
+            seleniumDriver.Manage().Window.Maximize();
+        }
+
+        /// <summary>
+        /// Quits all Selenium controlled browser processes 
+        /// </summary>
+        public static void QuitBrowsers()
+        {
+            seleniumDriver.Quit();
         }
 
         /// <summary>
@@ -59,40 +128,29 @@ namespace Selenium
             // Sets Selenium to use Chrome
             if (browser == "chrome")
             {
-                driver = new ChromeDriver($"{homeDirectory}\\Support");
+                seleniumDriver = new ChromeDriver($"{homeDirectory}\\Support");
             }
 
             // Sets Selenium to use Firefox
             if (browser == "firefox")
             {
-                driver = new FirefoxDriver($"{homeDirectory}\\Support");
+                seleniumDriver = new FirefoxDriver($"{homeDirectory}\\Support");
             }
 
             // Sets Selenium to use Edge
             if (browser == "edge")
             {
-                driver = new EdgeDriver($"{homeDirectory}\\Support");
+                seleniumDriver = new EdgeDriver($"{homeDirectory}\\Support");
             }
         }
-
-        /// <summary>
-        /// Forced Wait: Forces Selenium to wait a certain amound of seconds before doing anything &#8211; 
-        /// Expects input in seconds
-        /// </summary>
-        /// <param name="wait"></param>
-        public static void ForcedWait (int wait)
-        {
-            wait = wait * 1000; // Converts from milliseconds to seconds
-            Thread.Sleep(wait);
-        }
-
+        
         /// <summary>
         /// Method to take a screen cap of the current browser state
         /// </summary>
         /// <param name="name"></param>
-        public static void ScreenShot (string name)
+        public static void ScreenShot(string name)
         {
-            DateTime date = DateTime.Today;               
+            DateTime date = DateTime.Today;
             var logLocation = @"c:\Automation Logs\" + date.ToString("MM.dd.yyyy") + @"\Screenshots";
 
             if (!Directory.Exists(logLocation))
@@ -100,7 +158,7 @@ namespace Selenium
                 Directory.CreateDirectory(logLocation);
             }
 
-            Screenshot image = ((ITakesScreenshot)driver).GetScreenshot();
+            Screenshot image = ((ITakesScreenshot)seleniumDriver).GetScreenshot();
             DateTime timeStamp = DateTime.Now;
 
             var filename = logLocation + "\\" + name + ".png";
@@ -113,26 +171,6 @@ namespace Selenium
             }
 
             image.SaveAsFile(filename);
-        }
-
-        public static void LogCleaner()
-        {
-            DateTime date = DateTime.Today;
-            var logLocation = @"c:\Automation Logs\" + date.ToString("MM.dd.yyyy");
-            string newLocation = logLocation;
-
-            if (Directory.Exists(logLocation))
-            {
-                int counter = 1;
-                
-                while (Directory.Exists(newLocation))
-                {
-                    newLocation = logLocation + " - " + "Archive " + counter;
-                    counter++;
-                }
-
-                Directory.Move(logLocation, newLocation);
-            }
         }
     }
 }

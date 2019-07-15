@@ -9,16 +9,14 @@ using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using Selenium;
 using System;
-using System.Collections;
 using System.IO;
 
 namespace AutomationFramework
 {
     public class FrameworkCore
     {
-
         // Prep the Selenium driver for usage
-        public static IWebDriver driver;
+        public static IWebDriver seleniumDriver;
 
         // Needed for reporting
         protected ExtentReports _extent;

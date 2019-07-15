@@ -9,20 +9,20 @@ namespace AutomationFramework.Tests.Demo_Tests
 
         [TestCase(Category = "Negative Test", TestName = "Validate Homepage - Chrome - Negative Test")]
         [Order(1)]
-        public void homepageChromeNeg()
+        public void HomepageChromeNeg()
         {
             SeleniumCommands.SetBrowser("chrome");
-            SeleniumCommands.maximizeBrowser();
+            SeleniumCommands.MaximizeBrowser();
 
-            driver.Url = Classifieds.Homepage.homePageURL;
+            seleniumDriver.Url = Classifieds.Homepage.homePageURL;
 
-            Assert.AreNotEqual(driver.Url, "This will fail");
-            Assert.AreEqual(driver.Title, Classifieds.Homepage.homePageTitle);
+            SeleniumCommands.AssertNotEqual(seleniumDriver.Url, "This will fail");
+            SeleniumCommands.AssertEqual(seleniumDriver.Title, Classifieds.Homepage.homePageTitle);
 
             SeleniumCommands.ForcedWait(2);
             SeleniumCommands.ScreenShot("Homepage Negative Test");
 
-            SeleniumCommands.closeQuitBrowsers();
+            SeleniumCommands.CloseQuitBrowsers();
         }
     }
 }

@@ -12,10 +12,10 @@ namespace AutomationFramework.Tests
         public void homepageChrome()
         {
             SeleniumCommands.SetBrowser("chrome");
-            SeleniumCommands.maximizeBrowser();
-            driver.Url = Google.Homepage.homePageURL;
+            SeleniumCommands.MaximizeBrowser();
+            seleniumDriver.Url = Google.Homepage.homePageURL;
             SeleniumCommands.ScreenShot("Chrome - Homepage");
-            SeleniumCommands.closeQuitBrowsers();
+            SeleniumCommands.CloseQuitBrowsers();
         }
     }
 }

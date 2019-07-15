@@ -12,28 +12,28 @@ namespace AutomationFramework.Tests.Demo_Tests
         public void classifiedsHomePage()
         {
             SeleniumCommands.SetBrowser("chrome");
-            SeleniumCommands.maximizeBrowser();
+            SeleniumCommands.MaximizeBrowser();
 
-            driver.Url = Classifieds.Homepage.homePageURL;
+            seleniumDriver.Url = Classifieds.Homepage.homePageURL;
 
             SeleniumCommands.ForcedWait(2);
             SeleniumCommands.ScreenShot("Dual Test - Classifieds");
 
-            Assert.AreEqual(driver.Url, Classifieds.Homepage.homePageURL);
+            SeleniumCommands.AssertEqual(seleniumDriver.Url, Classifieds.Homepage.homePageURL);
         }
 
         [TestCase(Category = "Dual Test", TestName = "Validate Google Homepage - Chrome")]
         [Order(2)]
         public void googleHomePage()
         {
-            driver.Url = Google.Homepage.homePageURL;
+            seleniumDriver.Url = Google.Homepage.homePageURL;
 
             SeleniumCommands.ForcedWait(2);
             SeleniumCommands.ScreenShot("Dual Test - Google");
 
-            Assert.AreEqual(driver.Url, Google.Homepage.homePageURL);
+            SeleniumCommands.AssertEqual(seleniumDriver.Url, Google.Homepage.homePageURL);
 
-            SeleniumCommands.closeQuitBrowsers();
+            SeleniumCommands.CloseQuitBrowsers();
         }
 
     }
