@@ -2,7 +2,7 @@
 
 ## A simple to use and maintain automation framework for web testing
 
-This automation framework is build from the ground up as an alternative framework for RumbleOn.
+This automation framework is build from the ground up as an simple to use and maintain solution.
 
 ## Tech Used:
 - C#
@@ -18,7 +18,7 @@ This automation framework is build from the ground up as an alternative framewor
 ## Planned future features:
 - Logging
 - Ability to run multiple browsers from a single test
-- VIN generator module for listing vehicles.
+- Ability to run CI/CD in headless mode
 - Direct checks on entered data in the database that is entered during testing. 
 - Built in API endpoint testing. 
 - Built in API stress testing.
