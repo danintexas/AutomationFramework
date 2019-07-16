@@ -1,4 +1,4 @@
-﻿using AutomationFramework.Pages.Classifieds;
+﻿using AutomationFramework.Pages.Google;
 using NUnit.Framework;
 using Selenium;
 
@@ -7,17 +7,16 @@ namespace AutomationFramework.Tests.Demo
     class NegitiveTests : FrameworkCore
     {
 
-        [TestCase(Category = "Negative Test", TestName = "Validate Homepage - Chrome - Negative Test")]
+        [TestCase(Category = "Negative Test", TestName = "Validate Google Homepage - Chrome - Negative Test")]
         [Order(1)]
         public void HomepageChromeNeg()
         {
             SeleniumCommands.SetBrowser("chrome");
             SeleniumCommands.MaximizeBrowser();
 
-            seleniumDriver.Url = Classifieds.Homepage.homePageURL;
+            seleniumDriver.Url = Google.Homepage.homePageURL;
 
             SeleniumCommands.AssertNotEqual(seleniumDriver.Url, "This will fail");
-            SeleniumCommands.AssertEqual(seleniumDriver.Title, Classifieds.Homepage.homePageTitle);
 
             SeleniumCommands.ForcedWait(2);
             SeleniumCommands.ScreenShot("Homepage Negative Test");

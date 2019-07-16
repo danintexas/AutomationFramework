@@ -1,8 +1,8 @@
 ﻿using System.Configuration;
 
-namespace AutomationFramework.Pages.Classifieds
+namespace AutomationFramework.Pages.RumbleOnClassifieds
 {
-    public class Classifieds
+    public class RumbleOnClassifieds
     {
         public class Homepage
         {

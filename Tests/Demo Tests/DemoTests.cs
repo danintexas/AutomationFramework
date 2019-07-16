@@ -1,4 +1,4 @@
-﻿using AutomationFramework.Pages.Classifieds;
+﻿using AutomationFramework.Pages.RumbleOnClassifieds;
 using NUnit.Framework;
 using Selenium;
 
@@ -13,13 +13,13 @@ namespace AutomationFramework.Tests.Demo
             SeleniumCommands.SetBrowser("chrome");
             SeleniumCommands.MaximizeBrowser();
 
-            seleniumDriver.Url = Classifieds.Homepage.homePageURL;
+            seleniumDriver.Url = RumbleOnClassifieds.Homepage.homePageURL;
 
             SeleniumCommands.ForcedWait(2);
             SeleniumCommands.ScreenShot("Chrome - Homepage");
 
-            SeleniumCommands.AssertEqual(seleniumDriver.Url, Classifieds.Homepage.homePageURL);
-            SeleniumCommands.AssertEqual(seleniumDriver.Title, Classifieds.Homepage.homePageTitle);
+            SeleniumCommands.AssertEqual(seleniumDriver.Url, RumbleOnClassifieds.Homepage.homePageURL);
+            SeleniumCommands.AssertEqual(seleniumDriver.Title, RumbleOnClassifieds.Homepage.homePageTitle);
 
             SeleniumCommands.CloseQuitBrowsers();
         }
@@ -30,13 +30,13 @@ namespace AutomationFramework.Tests.Demo
             SeleniumCommands.SetBrowser("firefox");
             SeleniumCommands.MaximizeBrowser();
 
-            seleniumDriver.Url = Classifieds.Homepage.homePageURL;
+            seleniumDriver.Url = RumbleOnClassifieds.Homepage.homePageURL;
 
             SeleniumCommands.ForcedWait(2);
             SeleniumCommands.ScreenShot("Firefox - Homepage");
 
-            SeleniumCommands.AssertEqual(seleniumDriver.Url, Classifieds.Homepage.homePageURL);
-            SeleniumCommands.AssertEqual(seleniumDriver.Title, Classifieds.Homepage.homePageTitle);
+            SeleniumCommands.AssertEqual(seleniumDriver.Url, RumbleOnClassifieds.Homepage.homePageURL);
+            SeleniumCommands.AssertEqual(seleniumDriver.Title, RumbleOnClassifieds.Homepage.homePageTitle);
 
             SeleniumCommands.CloseQuitBrowsers();
         }
@@ -47,13 +47,13 @@ namespace AutomationFramework.Tests.Demo
             SeleniumCommands.SetBrowser("edge");
             SeleniumCommands.MaximizeBrowser();
 
-            seleniumDriver.Url = Classifieds.Homepage.homePageURL;
+            seleniumDriver.Url = RumbleOnClassifieds.Homepage.homePageURL;
 
             SeleniumCommands.ForcedWait(2);
             SeleniumCommands.ScreenShot("Edge - Homepage");
 
-            SeleniumCommands.AssertEqual(seleniumDriver.Url, Classifieds.Homepage.homePageURL);
-            SeleniumCommands.AssertEqual(seleniumDriver.Title, Classifieds.Homepage.homePageTitle);
+            SeleniumCommands.AssertEqual(seleniumDriver.Url, RumbleOnClassifieds.Homepage.homePageURL);
+            SeleniumCommands.AssertEqual(seleniumDriver.Title, RumbleOnClassifieds.Homepage.homePageTitle);
 
             SeleniumCommands.CloseQuitBrowsers();
         }

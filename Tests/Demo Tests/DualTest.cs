@@ -1,4 +1,4 @@
-﻿using AutomationFramework.Pages.Classifieds;
+﻿using AutomationFramework.Pages.RumbleOnClassifieds;
 using AutomationFramework.Pages.Google;
 using NUnit.Framework;
 using Selenium;
@@ -14,12 +14,12 @@ namespace AutomationFramework.Tests.Demo
             SeleniumCommands.SetBrowser("chrome");
             SeleniumCommands.MaximizeBrowser();
 
-            seleniumDriver.Url = Classifieds.Homepage.homePageURL;
+            seleniumDriver.Url = RumbleOnClassifieds.Homepage.homePageURL;
 
             SeleniumCommands.ForcedWait(2);
             SeleniumCommands.ScreenShot("Dual Test - Classifieds");
 
-            SeleniumCommands.AssertEqual(seleniumDriver.Url, Classifieds.Homepage.homePageURL);
+            SeleniumCommands.AssertEqual(seleniumDriver.Url, RumbleOnClassifieds.Homepage.homePageURL);
         }
 
         [TestCase(Category = "Dual Test", TestName = "Validate Google Homepage - Chrome")]
