@@ -1,25 +1,23 @@
-﻿using AutomationFramework.Pages.RumbleOnConsumer;
-using NUnit.Framework;
-using Selenium;
-
-namespace AutomationFramework.Tests
+﻿namespace AutomationFramework.Tests
 {
-    class ConsumerDemo : FrameworkCore
+    using Core;
+    using NUnit.Framework;
+    using Pages.RumbleOnConsumer;
+
+    class ConsumerDemo : BaseTest
     {
         [TestCase(Category = "RumbleOn Consumer (Chrome)", TestName = "Validate Consumer Homepage")]
         public void HomepageChrome()
         {
-            SeleniumCommands.SetBrowser("chrome");
-            SeleniumCommands.MaximizeBrowser();
-            seleniumDriver.Url = RumbleOnConsumer.Homepage.homePageURL;
-            
-            SeleniumCommands.ForcedWait(2);
-            SeleniumCommands.ScreenShot("Consumer Homepage - Chrome");
+            UseChrome();
+            MaximizeBrowser();
+            Url = RumbleOnConsumer.Homepage.homePageURL;
 
-            SeleniumCommands.AssertEqual(seleniumDriver.Url, RumbleOnConsumer.Homepage.homePageURL);
-            SeleniumCommands.AssertEqual(seleniumDriver.Title, RumbleOnConsumer.Homepage.homePageTitle);
+            Wait(2);
+            ScreenShot("Consumer Homepage - Chrome");
 
-            SeleniumCommands.CloseQuitBrowsers();
+            Url.ShouldBe(RumbleOnConsumer.Homepage.homePageURL);
+            Title.ShouldBe(RumbleOnConsumer.Homepage.homePageTitle);
         }
     }
 }

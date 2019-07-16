@@ -1,25 +1,23 @@
-﻿using AutomationFramework.Pages.RumbleOnClassifieds;
-using NUnit.Framework;
-using Selenium;
-
-namespace AutomationFramework.Tests
+﻿namespace AutomationFramework.Tests
 {
-    class RumbleOnClassifiedsDemo : FrameworkCore
+    using Core;
+    using NUnit.Framework;
+    using Pages.RumbleOnClassifieds;
+
+    class RumbleOnClassifiedsDemo : BaseTest
     {
         [TestCase(Category = "RumbleOn Classifieds (Chrome)", TestName = "Validate Classifieds Homepage")]
         public void Homepage()
         {
-            SeleniumCommands.SetBrowser("chrome");
-            SeleniumCommands.MaximizeBrowser();
-            seleniumDriver.Url = RumbleOnClassifieds.Homepage.homePageURL;
-            
-            SeleniumCommands.ForcedWait(2);
-            SeleniumCommands.ScreenShot("Classifieds Homepage - Chrome");
+            UseChrome();
+            MaximizeBrowser();
+            Url = RumbleOnClassifieds.Homepage.homePageURL;
 
-            SeleniumCommands.AssertEqual(seleniumDriver.Url, RumbleOnClassifieds.Homepage.homePageURL);
-            SeleniumCommands.AssertEqual(seleniumDriver.Title, RumbleOnClassifieds.Homepage.homePageTitle);
+            Wait(2);
+            ScreenShot("Classifieds Homepage - Chrome");
 
-            SeleniumCommands.CloseQuitBrowsers();
+            Url.ShouldBe(RumbleOnClassifieds.Homepage.homePageURL);
+            Title.ShouldBe(RumbleOnClassifieds.Homepage.homePageTitle);
         }
     }
 }
