@@ -1,40 +1,37 @@
-﻿using AutomationFramework.Pages.RumbleOnClassifieds;
-using AutomationFramework.Pages.Google;
-using NUnit.Framework;
-using Selenium;
-
-namespace AutomationFramework.Tests.Demo
+﻿namespace AutomationFramework.Tests.Demo
 {
-    class DualTest : FrameworkCore
+    using Core;
+    using NUnit.Framework;
+    using Pages.Google;
+    using Pages.RumbleOnClassifieds;
+
+    class DualTest : BaseTest
     {
         [TestCase(Category = "Dual Test", TestName = "Validate Classifieds Homepage - Chrome")]
         [Order(1)]
         public void classifiedsHomePage()
         {
-            SeleniumCommands.SetBrowser("chrome");
-            SeleniumCommands.MaximizeBrowser();
+            UseChrome();
+            MaximizeBrowser();
 
-            seleniumDriver.Url = RumbleOnClassifieds.Homepage.homePageURL;
+            Url = RumbleOnClassifieds.Homepage.homePageURL;
 
-            SeleniumCommands.ForcedWait(2);
-            SeleniumCommands.ScreenShot("Dual Test - Classifieds");
+            Wait(2);
+            ScreenShot("Dual Test - Classifieds");
 
-            SeleniumCommands.AssertEqual(seleniumDriver.Url, RumbleOnClassifieds.Homepage.homePageURL);
+            Url.ShouldBe(RumbleOnClassifieds.Homepage.homePageURL);
         }
 
         [TestCase(Category = "Dual Test", TestName = "Validate Google Homepage - Chrome")]
         [Order(2)]
         public void googleHomePage()
         {
-            seleniumDriver.Url = Google.Homepage.homePageURL;
+            Url = Google.Homepage.homePageURL;
 
-            SeleniumCommands.ForcedWait(2);
-            SeleniumCommands.ScreenShot("Dual Test - Google");
+            Wait(2);
+            ScreenShot("Dual Test - Google");
 
-            SeleniumCommands.AssertEqual(seleniumDriver.Url, Google.Homepage.homePageURL);
-
-            SeleniumCommands.CloseQuitBrowsers();
+            Url.ShouldBe(Google.Homepage.homePageURL);
         }
-
     }
 }
