@@ -108,6 +108,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Support\Kill All Selenium Instances.bat" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
