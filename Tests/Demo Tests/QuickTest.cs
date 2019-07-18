@@ -5,14 +5,13 @@
 
     class QuickTest : BaseTest
     {
-        [TestCase(Category = "Debug Test", TestName = "Empty Debug Test")]
-        [Order(1)]
-        public void homepageChrome()
+        [TestCase("chrome", Category = "Debug Test", TestName = "Empty Debug Test")] [Order(1)]
+        public void HomepageChrome(string browser)
         {
-            UseChrome();
+            UseBrowser(browser);
             MaximizeBrowser();
             Url = Google.Homepage.homePageURL;
-            ScreenShot("Chrome - Homepage");
+            ScreenShot("Homepage - " + browser);
         }
     }
 }

@@ -6,15 +6,17 @@
 
     class RumbleOnClassifiedsDemo : BaseTest
     {
-        [TestCase(Category = "RumbleOn Classifieds (Chrome)", TestName = "Validate Classifieds Homepage")]
-        public void Homepage()
+        [TestCase("chrome", Category = "RumbleOn Classifieds", TestName = "Validate Classifieds Homepage - Chrome")] [Order(1)]
+        [TestCase("firefox", Category = "RumbleOn Classifieds", TestName = "Validate Classifieds Homepage - Firefox")]
+        [TestCase("edge", Category = "RumbleOn Classifieds", TestName = "Validate Classifieds Homepage - Edge")]
+        public void Homepage(string browser)
         {
-            UseChrome();
+            UseBrowser(browser);
             MaximizeBrowser();
             Url = RumbleOnClassifieds.Homepage.homePageURL;
 
-            Wait(2);
-            ScreenShot("Classifieds Homepage - Chrome");
+            Wait(1);
+            ScreenShot("Classifieds Homepage - " + browser);
 
             Url.ShouldBe(RumbleOnClassifieds.Homepage.homePageURL);
             Title.ShouldBe(RumbleOnClassifieds.Homepage.homePageTitle);

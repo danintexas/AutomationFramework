@@ -9,9 +9,9 @@
     {
         [TestCase(Category = "Dual Test", TestName = "Validate Classifieds Homepage - Chrome")]
         [Order(1)]
-        public void classifiedsHomePage()
+        public void ClassifiedsHomePage()
         {
-            UseChrome();
+            UseBrowser("chrome");
             MaximizeBrowser();
 
             Url = RumbleOnClassifieds.Homepage.homePageURL;
@@ -24,7 +24,7 @@
 
         [TestCase(Category = "Dual Test", TestName = "Validate Google Homepage - Chrome")]
         [Order(2)]
-        public void googleHomePage()
+        public void GoogleHomePage()
         {
             Url = Google.Homepage.homePageURL;
 
