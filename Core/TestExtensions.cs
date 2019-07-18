@@ -17,7 +17,7 @@
             {
                 Assert.AreEqual(a, b);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // I need to work on getting this catch into extent reports
             }
