@@ -104,22 +104,29 @@
             _extent.Flush();
         }
 
-        protected void UseChrome()
+        protected void UseBrowser(string browserType)
         {
-            CloseQuitBrowsers();
-            _driver = new ChromeDriver($"{_homeDirectory}\\Support");
-        }
+            switch (browserType)
+            {
+                case "chrome":
+                    CloseQuitBrowsers();
+                    _driver = new ChromeDriver($"{_homeDirectory}\\Support");
+                    break;
 
-        protected void UseFirefox()
-        {
-            CloseQuitBrowsers();
-            _driver = new FirefoxDriver($"{_homeDirectory}\\Support");
-        }
+                case "firefox":
+                    CloseQuitBrowsers();
+                    _driver = new FirefoxDriver($"{_homeDirectory}\\Support");
+                    break;
 
-        protected void UseEdge()
-        {
-            CloseQuitBrowsers();
-            _driver = new EdgeDriver($"{_homeDirectory}\\Support");
+                case "edge":
+                    CloseQuitBrowsers();
+                    _driver = new EdgeDriver($"{_homeDirectory}\\Support");
+                    break;
+
+                default:
+                    Assert.Fail("Browser type passed is not supported on test");
+                    break;
+            }
         }
 
 
