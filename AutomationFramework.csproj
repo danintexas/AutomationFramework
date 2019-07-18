@@ -98,11 +98,10 @@
     <Compile Include="Pages\Google\Google.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\BaseTest.cs" />
+    <Compile Include="Tests\Demo Tests\BrowserSupportDemo.cs" />
     <Compile Include="Tests\RumbleOn Classifieds Tests\RumbleOnClassifiedsDemo.cs" />
     <Compile Include="Tests\RumbleOn Consumer\RumbleOnConsumerDemo.cs" />
-    <Compile Include="Tests\Demo Tests\DemoTests.cs" />
     <Compile Include="Tests\Demo Tests\DualTest.cs" />
-    <Compile Include="Tests\Demo Tests\NegativeTests.cs" />
     <Compile Include="Tests\Demo Tests\QuickTest.cs" />
   </ItemGroup>
   <ItemGroup>
