@@ -6,9 +6,9 @@
 
     class RumbleOnClassifiedsDemo : BaseTest
     {
-        [TestCase("chrome", Category = "RumbleOn Classifieds", TestName = "Validate Classifieds Homepage - Chrome")] [Order(1)]
-        [TestCase("firefox", Category = "RumbleOn Classifieds", TestName = "Validate Classifieds Homepage - Firefox")]
-        [TestCase("edge", Category = "RumbleOn Classifieds", TestName = "Validate Classifieds Homepage - Edge")]
+        [TestCase(Chrome, Category = "RumbleOn Classifieds", TestName = "Validate Classifieds Homepage - Chrome")] [Order(1)]
+        [TestCase(Firefox, Category = "RumbleOn Classifieds", TestName = "Validate Classifieds Homepage - Firefox")]
+        [TestCase(Edge, Category = "RumbleOn Classifieds", TestName = "Validate Classifieds Homepage - Edge")]
         public void Homepage(string browser)
         {
             UseBrowser(browser);

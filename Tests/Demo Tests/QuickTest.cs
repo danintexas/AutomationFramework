@@ -5,7 +5,7 @@
 
     class QuickTest : BaseTest
     {
-        [TestCase("chrome", Category = "Debug Test", TestName = "Empty Debug Test")] [Order(1)]
+        [TestCase(Chrome, Category = "Debug Test", TestName = "Empty Debug Test")] [Order(1)]
         public void HomepageChrome(string browser)
         {
             UseBrowser(browser);

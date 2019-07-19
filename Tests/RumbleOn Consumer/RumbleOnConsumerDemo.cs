@@ -6,9 +6,9 @@
 
     class ConsumerDemo : BaseTest
     {
-        [TestCase("chrome", Category = "RumbleOn Consumer", TestName = "Validate Consumer Homepage - Chrome")]
-        [TestCase("firefox", Category = "RumbleOn Consumer", TestName = "Validate Consumer Homepage - Firefox")]
-        [TestCase("edge", Category = "RumbleOn Consumer", TestName = "Validate Consumer Homepage - Edge")]
+        [TestCase(Chrome, Category = "RumbleOn Consumer", TestName = "Validate Consumer Homepage - Chrome")]
+        [TestCase(Firefox, Category = "RumbleOn Consumer", TestName = "Validate Consumer Homepage - Firefox")]
+        [TestCase(Edge, Category = "RumbleOn Consumer", TestName = "Validate Consumer Homepage - Edge")]
         public void HomepageChrome(string browser)
         {
             UseBrowser(browser);

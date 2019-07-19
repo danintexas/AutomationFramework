@@ -7,11 +7,11 @@
 
     class DualTest : BaseTest
     {
-        [TestCase(Category = "Dual Test", TestName = "Validate Classifieds Homepage - Chrome")]
+        [TestCase(Chrome, Category = "Dual Test", TestName = "Validate Classifieds Homepage - Chrome")]
         [Order(1)]
-        public void ClassifiedsHomePage()
+        public void ClassifiedsHomePage(string browser)
         {
-            UseBrowser("chrome");
+            UseBrowser(browser);
             MaximizeBrowser();
 
             Url = RumbleOnClassifieds.Homepage.homePageURL;

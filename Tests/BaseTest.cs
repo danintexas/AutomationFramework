@@ -24,6 +24,11 @@
 
         private readonly string _homeDirectory;
 
+        public const string Chrome = "chrome";
+        public const string Firefox = "firefox";
+        public const string Edge = "edge";
+
+
         protected BaseTest()
         {
             _homeDirectory = Path.GetDirectoryName(Assembly.GetAssembly(typeof(BaseTest)).Location);
@@ -106,20 +111,19 @@
 
         protected void UseBrowser(string browserType)
         {
+            CloseQuitBrowsers();
+
             switch (browserType)
             {
                 case "chrome":
-                    CloseQuitBrowsers();
                     _driver = new ChromeDriver($"{_homeDirectory}\\Support");
                     break;
 
                 case "firefox":
-                    CloseQuitBrowsers();
                     _driver = new FirefoxDriver($"{_homeDirectory}\\Support");
                     break;
 
                 case "edge":
-                    CloseQuitBrowsers();
                     _driver = new EdgeDriver($"{_homeDirectory}\\Support");
                     break;
 
