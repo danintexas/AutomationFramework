@@ -1,6 +1,7 @@
 ﻿namespace AutomationFramework.Core
 {
     using System;
+    using System.Collections;
     using System.IO;
     using NUnit.Framework;
 
@@ -51,15 +52,10 @@
 
             if (Directory.Exists(logLocation))
             {
-                int counter = 1;
-
-                while (Directory.Exists(newLocation))
-                {
-                    newLocation = logLocation + " - " + "Archive " + counter;
-                    counter++;
-                }
-
-                Directory.Move(logLocation, newLocation);
+                DateTime dt = Directory.GetCreationTime(logLocation);
+                Console.WriteLine(dt);
+                newLocation = logLocation + " - " + dt.ToString("hh.mm.ss tt");
+                Directory.Move(logLocation, newLocation);                
             }
         }
     }
