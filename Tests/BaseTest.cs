@@ -1,7 +1,7 @@
 ﻿namespace AutomationFramework.Tests
 {
     using System;
-    using System.Collections;
+    using System.Configuration;
     using System.IO;
     using System.Reflection;
     using System.Threading;
@@ -22,6 +22,7 @@
         // Needed for reporting
         protected ExtentReports _extent;
         protected ExtentTest _test;
+        Status logstatus;
 
         private readonly string _homeDirectory;
 
@@ -32,7 +33,7 @@
 
         protected BaseTest()
         {
-            _homeDirectory = Path.GetDirectoryName(Assembly.GetAssembly(typeof(BaseTest)).Location);
+            _homeDirectory = Path.GetDirectoryName(Assembly.GetAssembly(typeof(BaseTest)).Location);            
         }
 
         protected string Url
@@ -59,7 +60,7 @@
         {
             var status = TestContext.CurrentContext.Result.Outcome.Status;
             var stacktrace = string.IsNullOrEmpty(TestContext.CurrentContext.Result.StackTrace) ? "" : string.Format("{0}", TestContext.CurrentContext.Result.StackTrace);
-            Status logstatus;
+            
 
             switch (status)
             {
@@ -100,6 +101,10 @@
 
             _extent = new ExtentReports();
             _extent.AttachReporter(htmlReporter);
+            _extent.AddSystemInfo("Tester", ConfigurationManager.AppSettings.Get("TesterName"));
+            _extent.AddSystemInfo("Project", ConfigurationManager.AppSettings.Get("Project"));
+            _extent.AddSystemInfo("Environment", ConfigurationManager.AppSettings.Get("Environment"));
+            _extent.AddSystemInfo("Build", ConfigurationManager.AppSettings.Get("Build"));
         }
 
         // Run after every suite
@@ -118,18 +123,26 @@
             {
                 case "chrome":
                     _driver = new ChromeDriver($"{_homeDirectory}\\Support");
+                    logstatus = Status.Pass;
+                    _test.Log(logstatus, "Chrome started");
                     break;
 
                 case "firefox":
                     _driver = new FirefoxDriver($"{_homeDirectory}\\Support");
+                    logstatus = Status.Pass;
+                    _test.Log(logstatus, "Firefox started");
                     break;
 
                 case "edge":
                     _driver = new EdgeDriver($"{_homeDirectory}\\Support");
+                    logstatus = Status.Pass;
+                    _test.Log(logstatus, "Edge started");
                     break;
 
                 default:
                     Assert.Fail("Browser type passed is not supported on test");
+                    logstatus = Status.Fail;
+                    _test.Log(logstatus, "Browser type passed is not supported on test");
                     break;
             }
         }
@@ -161,6 +174,9 @@
         {
             wait = wait * 1000; // Converts from milliseconds to seconds
             Thread.Sleep(wait);
+            
+            logstatus = Status.Info;
+            _test.Log(logstatus, "Waited " + (wait/1000) + " seconds");
         }
   
         /// <summary>
@@ -169,6 +185,9 @@
         protected void MaximizeBrowser()
         {
             _driver.Manage().Window.Maximize();
+
+            logstatus = Status.Info;
+            _test.Log(logstatus, "Maximized controlled browser");
         }
 
 
@@ -208,6 +227,9 @@
             }
 
             image.SaveAsFile(filename);
+
+            logstatus = Status.Info;
+            _test.Log(logstatus, "Screenshot saved as: " + filename);
         }
     }
 }

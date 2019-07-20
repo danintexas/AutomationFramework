@@ -1,7 +1,6 @@
 ﻿namespace AutomationFramework.Core
 {
     using System;
-    using System.Collections;
     using System.IO;
     using NUnit.Framework;
 
