@@ -26,10 +26,9 @@
 
         private readonly string _homeDirectory;
 
-        public const string Chrome = "chrome", Firefox = "firefox", Edge = "edge";
-        public const string Info = "info", Pass = "pass", Fail = "fail";
-
-
+        public const string Chrome = "chrome", Firefox = "firefox", Edge = "edge"; // Const Keywords for UseBrowser
+        public const string Info = "info", Pass = "pass", Fail = "fail"; // Const Keywords for Logger
+        
         protected BaseTest()
         {
             _homeDirectory = Path.GetDirectoryName(Assembly.GetAssembly(typeof(BaseTest)).Location);            
@@ -44,40 +43,6 @@
         protected string Title
         {
             get => _driver.Title;
-        }
-
-        // Run before every test
-        [SetUp]
-        public void SetUp()
-        {
-            _test = _extent.CreateTest(TestContext.CurrentContext.Test.Name);
-        }
-
-        // Run after every test
-        [TearDown]
-        public void TearDown()
-        {
-            var status = TestContext.CurrentContext.Result.Outcome.Status;
-            var stacktrace = string.IsNullOrEmpty(TestContext.CurrentContext.Result.StackTrace) ? "" : string.Format("{0}", TestContext.CurrentContext.Result.StackTrace);
-            
-            switch (status)
-            {
-                case TestStatus.Failed:
-                    logstatus = Status.Fail;
-                    break;
-                case TestStatus.Inconclusive:
-                    logstatus = Status.Warning;
-                    break;
-                case TestStatus.Skipped:
-                    logstatus = Status.Skip;
-                    break;
-                default:
-                    logstatus = Status.Pass;
-                    break;
-            }
-
-            _test.Log(logstatus, "Test ended with " + logstatus + stacktrace);
-            _extent.Flush();
         }
 
         // Run before every suite
@@ -113,37 +78,39 @@
             _extent.Flush();
         }
 
-        protected void UseBrowser(string browserType)
+        // Run before every test
+        [SetUp]
+        public void SetUp()
         {
-            CloseQuitBrowsers();
-
-            switch (browserType)
-            {
-                case "chrome":
-                    _driver = new ChromeDriver($"{_homeDirectory}\\Support");
-                    Logger(Pass, "Chrome started");
-                    break;
-
-                case "firefox":
-                    _driver = new FirefoxDriver($"{_homeDirectory}\\Support");
-                    logstatus = Status.Pass;
-                    Logger(Pass, "Firefox started");
-                    break;
-
-                case "edge":
-                    _driver = new EdgeDriver($"{_homeDirectory}\\Support");
-                    logstatus = Status.Pass;
-                    Logger(Pass, "Edge started");
-                    break;
-
-                default:
-                    Assert.Fail("Browser type passed is not supported on test");
-                    logstatus = Status.Fail;
-                    Logger(Fail, "Browser type passed is not supported on test");
-                    break;
-            }
+            _test = _extent.CreateTest(TestContext.CurrentContext.Test.Name);
         }
 
+        // Run after every test
+        [TearDown]
+        public void TearDown()
+        {
+            var status = TestContext.CurrentContext.Result.Outcome.Status;
+            var stacktrace = string.IsNullOrEmpty(TestContext.CurrentContext.Result.StackTrace) ? "" : string.Format("{0}", TestContext.CurrentContext.Result.StackTrace);
+
+            switch (status)
+            {
+                case TestStatus.Failed:
+                    logstatus = Status.Fail;
+                    break;
+                case TestStatus.Inconclusive:
+                    logstatus = Status.Warning;
+                    break;
+                case TestStatus.Skipped:
+                    logstatus = Status.Skip;
+                    break;
+                default:
+                    logstatus = Status.Pass;
+                    break;
+            }
+
+            _test.Log(logstatus, "Test ended with " + logstatus + stacktrace);
+            _extent.Flush();
+        }
 
         /// <summary>
         /// Closes active Selenium controlled browser
@@ -151,6 +118,7 @@
         protected void CloseBrowser()
         {
             _driver.Close();
+            Logger(Info, "Closing active Selenium controlled browser");
         }
 
         /// <summary>
@@ -160,18 +128,7 @@
         {
             _driver?.Close();
             _driver?.Quit();
-        }
-
-        /// <summary>
-        /// Forced Wait: Forces Selenium to wait a certain amound of seconds before doing anything &#8211; 
-        /// Expects input in seconds
-        /// </summary>
-        /// <param name="wait"></param>
-        protected void Wait(int wait)
-        {
-            wait = wait * 1000; // Converts from milliseconds to seconds
-            Thread.Sleep(wait);
-            Logger(Info, "Waited " + (wait/1000) + " seconds");
+            Logger(Info, "Closing and quitting all active Selenium controlled browsers");
         }
 
         /// <summary>
@@ -206,17 +163,16 @@
             _driver.Manage().Window.Maximize();
             Logger(Info, "Maximized controlled browser");
         }
-
-
+        
         /// <summary>
         /// Quits all Selenium controlled browser processes 
         /// </summary>
         protected void QuitBrowsers()
         {
             _driver.Quit();
+            Logger(Info, "Quitting all active Selenium controlled browsers");
         }
-
-
+        
         /// <summary>
         /// Method to take a screen cap of the current browser state
         /// </summary>
@@ -245,6 +201,53 @@
 
             image.SaveAsFile(filename);
             Logger(Info, "Screenshot saved as: " + filename);
+        }
+
+        /// <summary>
+        /// Method to start up the Selenium driver
+        /// </summary>
+        /// <param name="browserType"></param>
+        protected void UseBrowser(string browserType)
+        {
+            CloseQuitBrowsers();
+
+            switch (browserType)
+            {
+                case "chrome":
+                    _driver = new ChromeDriver($"{_homeDirectory}\\Support");
+                    Logger(Pass, "Chrome started");
+                    break;
+
+                case "firefox":
+                    _driver = new FirefoxDriver($"{_homeDirectory}\\Support");
+                    logstatus = Status.Pass;
+                    Logger(Pass, "Firefox started");
+                    break;
+
+                case "edge":
+                    _driver = new EdgeDriver($"{_homeDirectory}\\Support");
+                    logstatus = Status.Pass;
+                    Logger(Pass, "Edge started");
+                    break;
+
+                default:
+                    Assert.Fail("Browser type passed is not supported on test");
+                    logstatus = Status.Fail;
+                    Logger(Fail, "Browser type passed is not supported on test");
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Forced Wait: Forces Selenium to wait a certain amound of seconds before doing anything &#8211; 
+        /// Expects input in seconds
+        /// </summary>
+        /// <param name="wait"></param>
+        protected void Wait(int wait)
+        {
+            wait = wait * 1000; // Converts from milliseconds to seconds
+            Thread.Sleep(wait);
+            Logger(Info, "Waited " + (wait / 1000) + " seconds");
         }
     }
 }

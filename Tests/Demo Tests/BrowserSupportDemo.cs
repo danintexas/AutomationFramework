@@ -1,5 +1,6 @@
 ﻿namespace AutomationFramework.Tests.Demo_Tests
 {
+    using Core;
     using NUnit.Framework;
     using Pages.Google;
 
@@ -13,6 +14,7 @@
             UseBrowser(browser);
             MaximizeBrowser();
             Url = Google.Homepage.homePageURL;
+            Url.ShouldBe(Google.Homepage.homePageURL);
             Wait(1);
             ScreenShot("Homepage - " + browser);
         }
