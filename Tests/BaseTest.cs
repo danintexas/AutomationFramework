@@ -26,9 +26,8 @@
 
         private readonly string _homeDirectory;
 
-        public const string Chrome = "chrome";
-        public const string Firefox = "firefox";
-        public const string Edge = "edge";
+        public const string Chrome = "chrome", Firefox = "firefox", Edge = "edge";
+        public const string Info = "info", Pass = "pass", Fail = "fail";
 
 
         protected BaseTest()
@@ -61,7 +60,6 @@
             var status = TestContext.CurrentContext.Result.Outcome.Status;
             var stacktrace = string.IsNullOrEmpty(TestContext.CurrentContext.Result.StackTrace) ? "" : string.Format("{0}", TestContext.CurrentContext.Result.StackTrace);
             
-
             switch (status)
             {
                 case TestStatus.Failed:
@@ -123,26 +121,25 @@
             {
                 case "chrome":
                     _driver = new ChromeDriver($"{_homeDirectory}\\Support");
-                    logstatus = Status.Pass;
-                    _test.Log(logstatus, "Chrome started");
+                    Logger(Pass, "Chrome started");
                     break;
 
                 case "firefox":
                     _driver = new FirefoxDriver($"{_homeDirectory}\\Support");
                     logstatus = Status.Pass;
-                    _test.Log(logstatus, "Firefox started");
+                    Logger(Pass, "Firefox started");
                     break;
 
                 case "edge":
                     _driver = new EdgeDriver($"{_homeDirectory}\\Support");
                     logstatus = Status.Pass;
-                    _test.Log(logstatus, "Edge started");
+                    Logger(Pass, "Edge started");
                     break;
 
                 default:
                     Assert.Fail("Browser type passed is not supported on test");
                     logstatus = Status.Fail;
-                    _test.Log(logstatus, "Browser type passed is not supported on test");
+                    Logger(Fail, "Browser type passed is not supported on test");
                     break;
             }
         }
@@ -174,9 +171,31 @@
         {
             wait = wait * 1000; // Converts from milliseconds to seconds
             Thread.Sleep(wait);
-            
-            logstatus = Status.Info;
-            _test.Log(logstatus, "Waited " + (wait/1000) + " seconds");
+            Logger(Info, "Waited " + (wait/1000) + " seconds");
+        }
+
+        /// <summary>
+        /// Method determines what gets written to the extent logs. 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="text"></param>
+        protected void Logger(string type, string text)
+        {
+            switch (type)
+            {
+                case "info":
+                    logstatus = Status.Info;
+                    break;
+                case "pass":
+                    logstatus = Status.Pass;
+                    break;
+                case "fail":
+                    logstatus = Status.Fail;
+                    break;
+                default:
+                    break;
+            }
+            _test.Log(logstatus, text);
         }
   
         /// <summary>
@@ -185,9 +204,7 @@
         protected void MaximizeBrowser()
         {
             _driver.Manage().Window.Maximize();
-
-            logstatus = Status.Info;
-            _test.Log(logstatus, "Maximized controlled browser");
+            Logger(Info, "Maximized controlled browser");
         }
 
 
@@ -227,9 +244,7 @@
             }
 
             image.SaveAsFile(filename);
-
-            logstatus = Status.Info;
-            _test.Log(logstatus, "Screenshot saved as: " + filename);
+            Logger(Info, "Screenshot saved as: " + filename);
         }
     }
 }
