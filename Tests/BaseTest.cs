@@ -1,6 +1,7 @@
 ﻿namespace AutomationFramework.Tests
 {
     using System;
+    using System.Collections;
     using System.IO;
     using System.Reflection;
     using System.Threading;
@@ -160,29 +161,6 @@
         {
             wait = wait * 1000; // Converts from milliseconds to seconds
             Thread.Sleep(wait);
-        }
-
-        /// <summary>
-        /// Method that will rename the core log folder if it exists for archival purposes
-        /// </summary>
-        protected void LogCleaner()
-        {
-            DateTime date = DateTime.Today;
-            var logLocation = @"c:\Automation Logs\" + date.ToString("MM.dd.yyyy");
-            string newLocation = logLocation;
-
-            if (Directory.Exists(logLocation))
-            {
-                int counter = 1;
-
-                while (Directory.Exists(newLocation))
-                {
-                    newLocation = logLocation + " - " + "Archive " + counter;
-                    counter++;
-                }
-
-                Directory.Move(logLocation, newLocation);
-            }
         }
   
         /// <summary>
