@@ -16,6 +16,7 @@ This automation framework is build from the ground up as an simple to use and ma
 - Edge
 
 ## Planned future features:
+- Change to .Net Core
 - Better Extent Reporting 
 - Debug Logging
 - Check POP3 email account for required email
