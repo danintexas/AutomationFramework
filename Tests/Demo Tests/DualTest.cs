@@ -1,9 +1,9 @@
 ﻿namespace AutomationFramework.Tests.Demo
 {
+    using AutomationFramework.Pages.RumbleOn.Classifieds;
     using Core;
     using NUnit.Framework;
     using Pages.Google;
-    using Pages.RumbleOnClassifieds;
 
     class DualTest : BaseTest
     {

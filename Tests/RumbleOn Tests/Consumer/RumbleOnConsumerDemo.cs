@@ -1,8 +1,8 @@
 ﻿namespace AutomationFramework.Tests
 {
+    using AutomationFramework.Pages.RumbleOn.Consumer;
     using Core;
     using NUnit.Framework;
-    using Pages.RumbleOnConsumer;
 
     class ConsumerDemo : BaseTest
     {

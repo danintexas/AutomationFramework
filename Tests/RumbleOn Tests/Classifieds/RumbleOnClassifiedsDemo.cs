@@ -1,12 +1,13 @@
 ﻿namespace AutomationFramework.Tests
 {
+    using AutomationFramework.Pages.RumbleOn.Classifieds;
     using Core;
     using NUnit.Framework;
-    using Pages.RumbleOnClassifieds;
 
     class RumbleOnClassifiedsDemo : BaseTest
     {
-        [TestCase(Chrome, Category = "RumbleOn Classifieds", TestName = "Validate Classifieds Homepage - Chrome")] [Order(1)]
+        [TestCase(Chrome, Category = "RumbleOn Classifieds", TestName = "Validate Classifieds Homepage - Chrome")]
+        [Order(1)]
         [TestCase(Firefox, Category = "RumbleOn Classifieds", TestName = "Validate Classifieds Homepage - Firefox")]
         [TestCase(Edge, Category = "RumbleOn Classifieds", TestName = "Validate Classifieds Homepage - Edge")]
         public void Homepage(string browser)

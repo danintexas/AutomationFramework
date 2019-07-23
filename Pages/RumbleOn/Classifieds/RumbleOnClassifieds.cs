@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace AutomationFramework.Pages.RumbleOnClassifieds
+namespace AutomationFramework.Pages.RumbleOn.Classifieds
 {
     public class RumbleOnClassifieds
     {
@@ -8,6 +8,6 @@ namespace AutomationFramework.Pages.RumbleOnClassifieds
         {
             public static string homePageURL = "https://" + ConfigurationManager.AppSettings.Get("Env") + ".rumbleonclassifieds.com/";
             public static string homePageTitle = "Welcome to RumbleOn Classifieds Motorcycle Listing Site";
-        }        
+        }
     }
 }

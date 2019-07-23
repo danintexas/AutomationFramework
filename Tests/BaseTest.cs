@@ -28,10 +28,10 @@
 
         public const string Chrome = "chrome", Firefox = "firefox", Edge = "edge"; // Const Keywords for UseBrowser
         public const string Info = "info", Pass = "pass", Fail = "fail"; // Const Keywords for Logger
-        
+
         protected BaseTest()
         {
-            _homeDirectory = Path.GetDirectoryName(Assembly.GetAssembly(typeof(BaseTest)).Location);            
+            _homeDirectory = Path.GetDirectoryName(Assembly.GetAssembly(typeof(BaseTest)).Location);
         }
 
         protected string Url
@@ -154,7 +154,7 @@
             }
             _test.Log(logstatus, text);
         }
-  
+
         /// <summary>
         /// Maximizes the browser window
         /// </summary>
@@ -163,7 +163,7 @@
             _driver.Manage().Window.Maximize();
             Logger(Info, "Maximized controlled browser");
         }
-        
+
         /// <summary>
         /// Quits all Selenium controlled browser processes 
         /// </summary>
@@ -172,7 +172,7 @@
             _driver.Quit();
             Logger(Info, "Quitting all active Selenium controlled browsers");
         }
-        
+
         /// <summary>
         /// Method to take a screen cap of the current browser state
         /// </summary>

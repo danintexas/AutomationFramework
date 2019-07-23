@@ -6,8 +6,6 @@
 
     public static class TestExtensions
     {
-
-
         /// <summary>
         /// Asserts two values are the same. 
         /// </summary>
@@ -56,7 +54,7 @@
                 DateTime dt = Directory.GetCreationTime(logLocation);
                 Console.WriteLine(dt);
                 newLocation = logLocation + " - " + dt.ToString("hh.mm.ss tt");
-                Directory.Move(logLocation, newLocation);                
+                Directory.Move(logLocation, newLocation);
             }
         }
     }

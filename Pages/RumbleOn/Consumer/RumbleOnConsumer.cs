@@ -1,8 +1,8 @@
 ﻿using System.Configuration;
 
-namespace AutomationFramework.Pages.RumbleOnConsumer
+namespace AutomationFramework.Pages.RumbleOn.Consumer
 {
-    public class RumbleOnConsumer
+    class RumbleOnConsumer
     {
         public class Homepage
         {

@@ -1,0 +1,13 @@
+{
+  "MyConfig": {
+    "Env": "qa",
+    "TesterName": "Daniel Gail",
+    "Project": "Framework Demo",
+    "Environment": "QA",
+    "Build":  "123"
+  },
+  "exclude": [
+    "node_modules",
+    "wwwroot"
+  ]
+}
