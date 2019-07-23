@@ -8,6 +8,7 @@
     using AventStack.ExtentReports;
     using AventStack.ExtentReports.Reporter;
     using Core;
+    using Microsoft.Extensions.Configuration;
     using NUnit.Framework;
     using NUnit.Framework.Interfaces;
     using OpenQA.Selenium;
@@ -18,6 +19,7 @@
     public abstract class BaseTest
     {
         protected IWebDriver _driver;
+        protected IConfiguration _config;
 
         // Needed for reporting
         protected ExtentReports _extent;
@@ -32,6 +34,11 @@
         protected BaseTest()
         {
             _homeDirectory = Path.GetDirectoryName(Assembly.GetAssembly(typeof(BaseTest)).Location);
+
+            var configBuilder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", false, true) // load base settings
+                .AddJsonFile("appsettings.local.json", true, true); // load local settings
+
+            _config = configBuilder.Build();
         }
 
         protected string Url

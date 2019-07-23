@@ -1,6 +1,5 @@
 ﻿namespace AutomationFramework.Tests
 {
-    using AutomationFramework.Pages.RumbleOn.Consumer;
     using Core;
     using NUnit.Framework;
 
@@ -13,13 +12,13 @@
         {
             UseBrowser(browser);
             MaximizeBrowser();
-            Url = RumbleOnConsumer.Homepage.homePageURL;
+            Url = _config["RumbleOnConsumer:Homepage:Url"];
 
             Wait(2);
             ScreenShot("Consumer Homepage - " + browser);
 
-            Url.ShouldBe(RumbleOnConsumer.Homepage.homePageURL);
-            Title.ShouldBe(RumbleOnConsumer.Homepage.homePageTitle);
+            Url.ShouldBe(_config["RumbleOnConsumer:Homepage:Url"]);
+            Title.ShouldBe(_config["RumbleOnConsumer:Homepage:Title"]);
         }
     }
 }
