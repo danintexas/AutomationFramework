@@ -56,7 +56,7 @@
         [OneTimeSetUp]
         protected void Setup()
         {
-            TestExtensions.LogCleaner();
+            LogCleaner();
 
             DateTime date = DateTime.Today;
             var dir = $@"c:\Automation Logs\{date:MM.dd.yyyy}\Reports\";
@@ -136,6 +136,24 @@
             _driver?.Close();
             _driver?.Quit();
             Logger(Info, "Closing and quitting all active Selenium controlled browsers");
+        }
+
+        /// <summary>
+        /// Method that will rename the core log folder if it exists for archival purposes
+        /// </summary>
+        public static void LogCleaner()
+        {
+            DateTime date = DateTime.Today;
+            var logLocation = @"c:\Automation Logs\" + date.ToString("MM.dd.yyyy");
+            string newLocation = logLocation;
+
+            if (Directory.Exists(logLocation))
+            {
+                DateTime dt = Directory.GetCreationTime(logLocation);
+                Console.WriteLine(dt);
+                newLocation = logLocation + " - " + dt.ToString("hh.mm.ss tt");
+                Directory.Move(logLocation, newLocation);
+            }
         }
 
         /// <summary>

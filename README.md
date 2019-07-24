@@ -2,7 +2,7 @@
 
 ## A simple to use and maintain automation framework for web testing
 
-This automation framework is build from the ground up as an simple to use and maintain solution.
+This automation framework is build from the ground up as an simple to use and maintain solution. Pages and all locators are kept in the appsettings.json file that can be changed per environment or application
 
 ## Tech Used:
 - .NET Core

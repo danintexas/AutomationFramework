@@ -1,6 +1,5 @@
 ﻿namespace AutomationFramework.Tests
 {
-    using AutomationFramework.Pages.RumbleOn.Classifieds;
     using Core;
     using NUnit.Framework;
 
@@ -14,13 +13,13 @@
         {
             UseBrowser(browser);
             MaximizeBrowser();
-            Url = RumbleOnClassifieds.Homepage.homePageURL;
+            Url = _config["RumbleOnClassifieds:Homepage:Url"];
 
             Wait(1);
             ScreenShot("Classifieds Homepage - " + browser);
 
-            Url.ShouldBe(RumbleOnClassifieds.Homepage.homePageURL);
-            Title.ShouldBe(RumbleOnClassifieds.Homepage.homePageTitle);
+            Url.ShouldBe(_config["RumbleOnClassifieds:Homepage:Url"]);
+            Title.ShouldBe(_config["RumbleOnClassifieds:Homepage:Title"]);
         }
     }
 }
