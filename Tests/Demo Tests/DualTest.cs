@@ -3,7 +3,6 @@
     using Core;
     using NUnit.Framework;
     using Pages.Google;
-    using Pages.RumbleOnClassifieds;
 
     class DualTest : BaseTest
     {
@@ -14,12 +13,12 @@
             UseBrowser(browser);
             MaximizeBrowser();
 
-            Url = RumbleOnClassifieds.Homepage.homePageURL;
+            Url = _config["RumbleOnClassifieds:Homepage:Url"];
 
             Wait(2);
             ScreenShot("Dual Test - Classifieds");
 
-            Url.ShouldBe(RumbleOnClassifieds.Homepage.homePageURL);
+            Url.ShouldBe(_config["RumbleOnClassifieds:Homepage:Url"]);
         }
 
         [TestCase(Category = "Dual Test", TestName = "Validate Google Homepage - Chrome")]

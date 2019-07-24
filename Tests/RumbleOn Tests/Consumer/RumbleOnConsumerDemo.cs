@@ -2,7 +2,6 @@
 {
     using Core;
     using NUnit.Framework;
-    using Pages.RumbleOnConsumer;
 
     class ConsumerDemo : BaseTest
     {
@@ -13,13 +12,13 @@
         {
             UseBrowser(browser);
             MaximizeBrowser();
-            Url = RumbleOnConsumer.Homepage.homePageURL;
+            Url = _config["RumbleOnConsumer:Homepage:Url"];
 
             Wait(2);
             ScreenShot("Consumer Homepage - " + browser);
 
-            Url.ShouldBe(RumbleOnConsumer.Homepage.homePageURL);
-            Title.ShouldBe(RumbleOnConsumer.Homepage.homePageTitle);
+            Url.ShouldBe(_config["RumbleOnConsumer:Homepage:Url"]);
+            Title.ShouldBe(_config["RumbleOnConsumer:Homepage:Title"]);
         }
     }
 }

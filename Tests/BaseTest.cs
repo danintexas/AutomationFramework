@@ -8,6 +8,7 @@
     using AventStack.ExtentReports;
     using AventStack.ExtentReports.Reporter;
     using Core;
+    using Microsoft.Extensions.Configuration;
     using NUnit.Framework;
     using NUnit.Framework.Interfaces;
     using OpenQA.Selenium;
@@ -18,6 +19,7 @@
     public abstract class BaseTest
     {
         protected IWebDriver _driver;
+        protected IConfiguration _config;
 
         // Needed for reporting
         protected ExtentReports _extent;
@@ -28,10 +30,15 @@
 
         public const string Chrome = "chrome", Firefox = "firefox", Edge = "edge"; // Const Keywords for UseBrowser
         public const string Info = "info", Pass = "pass", Fail = "fail"; // Const Keywords for Logger
-        
+
         protected BaseTest()
         {
-            _homeDirectory = Path.GetDirectoryName(Assembly.GetAssembly(typeof(BaseTest)).Location);            
+            _homeDirectory = Path.GetDirectoryName(Assembly.GetAssembly(typeof(BaseTest)).Location);
+
+            var configBuilder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", false, true) // load base settings
+                .AddJsonFile("appsettings.local.json", true, true); // load local settings
+
+            _config = configBuilder.Build();
         }
 
         protected string Url
@@ -49,7 +56,7 @@
         [OneTimeSetUp]
         protected void Setup()
         {
-            TestExtensions.LogCleaner();
+            LogCleaner();
 
             DateTime date = DateTime.Today;
             var dir = $@"c:\Automation Logs\{date:MM.dd.yyyy}\Reports\";
@@ -132,6 +139,24 @@
         }
 
         /// <summary>
+        /// Method that will rename the core log folder if it exists for archival purposes
+        /// </summary>
+        public static void LogCleaner()
+        {
+            DateTime date = DateTime.Today;
+            var logLocation = @"c:\Automation Logs\" + date.ToString("MM.dd.yyyy");
+            string newLocation = logLocation;
+
+            if (Directory.Exists(logLocation))
+            {
+                DateTime dt = Directory.GetCreationTime(logLocation);
+                Console.WriteLine(dt);
+                newLocation = logLocation + " - " + dt.ToString("hh.mm.ss tt");
+                Directory.Move(logLocation, newLocation);
+            }
+        }
+
+        /// <summary>
         /// Method determines what gets written to the extent logs. 
         /// </summary>
         /// <param name="type"></param>
@@ -154,7 +179,7 @@
             }
             _test.Log(logstatus, text);
         }
-  
+
         /// <summary>
         /// Maximizes the browser window
         /// </summary>
@@ -163,7 +188,7 @@
             _driver.Manage().Window.Maximize();
             Logger(Info, "Maximized controlled browser");
         }
-        
+
         /// <summary>
         /// Quits all Selenium controlled browser processes 
         /// </summary>
@@ -172,7 +197,7 @@
             _driver.Quit();
             Logger(Info, "Quitting all active Selenium controlled browsers");
         }
-        
+
         /// <summary>
         /// Method to take a screen cap of the current browser state
         /// </summary>
