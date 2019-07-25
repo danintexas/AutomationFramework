@@ -15,9 +15,10 @@ This automation framework is build from the ground up as an simple to use and ma
 - Firefox
 - Edge
 
-## Planned future features:
-- Better Extent Reporting 
-- Debug Logging
+## Planned ToDo List:
+- Fix LogCleaner if a file is locked
+- Smoke Test for RumbleOn -> Classifieds
+- Shouldly implementation 
 - Check POP3 email account for required email
 - Direct checks on entered data in the database that is entered during testing. 
 - Built in API endpoint testing. 
