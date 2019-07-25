@@ -1,6 +1,7 @@
 ﻿namespace AutomationFramework.Tests
 {
     using System;
+    using System.Diagnostics;
     using System.IO;
     using System.Reflection;
     using System.Threading;
@@ -143,7 +144,7 @@
         {
             DateTime date = DateTime.Today;
             var logLocation = @"c:\Automation Logs\" + date.ToString("MM.dd.yyyy");
-            string newLocation = logLocation;
+            string newLocation;
 
             if (Directory.Exists(logLocation))
             {
@@ -156,9 +157,8 @@
                 }
                 catch
                 {
-                    // This does not work - Will need to fix this
-                    Console.WriteLine($@"Please ensure no file located in c:\Automation Logs\{date.ToString("MM.dd.yyyy")} is open!!");
-                    Thread.CurrentThread.Abort();
+                    Assert.Fail($@"Please ensure no file located in c:\Automation Logs\{date.ToString("MM.dd.yyyy")} is open!!");
+                    Environment.Exit(1);
                 }
             }
         }
