@@ -9,6 +9,7 @@ namespace AutomationFramework.Pages.Google
         public class Homepage
         {
             public static string homePageURL = "https://www.google.com/";
+            public static string homePageTitle = "Google";
         }
     }
 }

@@ -1,10 +1,9 @@
 ﻿namespace AutomationFramework.Tests.Demo_Tests
 {
-    using Core;
     using NUnit.Framework;
     using Pages.Google;
 
-    class BrowserSupportDemo : BaseTest
+    class BrowserSupportDemo : Core
     {
         [TestCase(Chrome, Category = "Multiple Browser Demo", TestName = "Chrome Test")]
         [TestCase(Edge, Category = "Multiple Browser Demo", TestName = "Edge Test")]
@@ -13,9 +12,13 @@
         {
             UseBrowser(browser);
             MaximizeBrowser();
-            Url = Google.Homepage.homePageURL;
-            Url.ShouldBe(Google.Homepage.homePageURL);
+            SetUrl = Google.Homepage.homePageURL;
+
+            ShouldBe(SetUrl, Google.Homepage.homePageURL);
+            ShouldBe(Title, Google.Homepage.homePageTitle);
+
             Wait(1);
+
             ScreenShot("Homepage - " + browser);
         }
     }

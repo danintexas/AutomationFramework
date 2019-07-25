@@ -3,7 +3,7 @@
     using NUnit.Framework;
     using Pages.Google;
 
-    class QuickTest : BaseTest
+    class QuickTest : Core
     {
         [TestCase(Chrome, Category = "Debug Test", TestName = "Empty Debug Test")]
         [Order(1)]
@@ -11,7 +11,7 @@
         {
             UseBrowser(browser);
             MaximizeBrowser();
-            Url = Google.Homepage.homePageURL;
+            SetUrl = Google.Homepage.homePageURL;
             ScreenShot("Homepage - " + browser);
         }
     }

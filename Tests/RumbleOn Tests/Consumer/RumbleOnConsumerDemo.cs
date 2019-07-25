@@ -1,9 +1,8 @@
 ﻿namespace AutomationFramework.Tests
 {
-    using Core;
     using NUnit.Framework;
 
-    class ConsumerDemo : BaseTest
+    class ConsumerDemo : Core
     {
         [TestCase(Chrome, Category = "RumbleOn Consumer", TestName = "Validate Consumer Homepage - Chrome")]
         [TestCase(Firefox, Category = "RumbleOn Consumer", TestName = "Validate Consumer Homepage - Firefox")]
@@ -12,13 +11,13 @@
         {
             UseBrowser(browser);
             MaximizeBrowser();
-            Url = _config["RumbleOnConsumer:Homepage:Url"];
+            SetUrl = _config["RumbleOnConsumer:Homepage:Url"];
 
             Wait(2);
             ScreenShot("Consumer Homepage - " + browser);
 
-            Url.ShouldBe(_config["RumbleOnConsumer:Homepage:Url"]);
-            Title.ShouldBe(_config["RumbleOnConsumer:Homepage:Title"]);
+            ShouldBe(SetUrl, _config["RumbleOnConsumer:Homepage:Url"]);
+            ShouldBe(Title, _config["RumbleOnConsumer:Homepage:Title"]);
         }
     }
 }

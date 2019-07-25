@@ -1,13 +1,11 @@
 ﻿namespace AutomationFramework.Tests
 {
     using System;
-    using System.Configuration;
     using System.IO;
     using System.Reflection;
     using System.Threading;
     using AventStack.ExtentReports;
     using AventStack.ExtentReports.Reporter;
-    using Core;
     using Microsoft.Extensions.Configuration;
     using NUnit.Framework;
     using NUnit.Framework.Interfaces;
@@ -16,7 +14,7 @@
     using OpenQA.Selenium.Edge;
     using OpenQA.Selenium.Firefox;
 
-    public abstract class BaseTest
+    public abstract class Core
     {
         protected IWebDriver _driver;
         protected IConfiguration _config;
@@ -31,9 +29,9 @@
         public const string Chrome = "chrome", Firefox = "firefox", Edge = "edge"; // Const Keywords for UseBrowser
         public const string Info = "info", Pass = "pass", Fail = "fail"; // Const Keywords for Logger
 
-        protected BaseTest()
+        protected Core()
         {
-            _homeDirectory = Path.GetDirectoryName(Assembly.GetAssembly(typeof(BaseTest)).Location);
+            _homeDirectory = Path.GetDirectoryName(Assembly.GetAssembly(typeof(Core)).Location);
 
             var configBuilder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", false, true) // load base settings
                 .AddJsonFile("appsettings.local.json", true, true); // load local settings
@@ -41,7 +39,7 @@
             _config = configBuilder.Build();
         }
 
-        protected string Url
+        protected string SetUrl
         {
             get => _driver.Url;
             set => _driver.Url = value;
@@ -71,10 +69,10 @@
 
             _extent = new ExtentReports();
             _extent.AttachReporter(htmlReporter);
-            _extent.AddSystemInfo("Tester", ConfigurationManager.AppSettings.Get("TesterName"));
-            _extent.AddSystemInfo("Project", ConfigurationManager.AppSettings.Get("Project"));
-            _extent.AddSystemInfo("Environment", ConfigurationManager.AppSettings.Get("Environment"));
-            _extent.AddSystemInfo("Build", ConfigurationManager.AppSettings.Get("Build"));
+            _extent.AddSystemInfo("Tester: ", _config["ReportInformation:TesterName"]);
+            _extent.AddSystemInfo("Project", _config["ReportInformation:Project"]);
+            _extent.AddSystemInfo("Environment", _config["ReportInformation:Environment"]);
+            _extent.AddSystemInfo("Build", _config["ReportInformation:Build"]);
         }
 
         // Run after every suite
@@ -150,9 +148,18 @@
             if (Directory.Exists(logLocation))
             {
                 DateTime dt = Directory.GetCreationTime(logLocation);
-                Console.WriteLine(dt);
                 newLocation = logLocation + " - " + dt.ToString("hh.mm.ss tt");
-                Directory.Move(logLocation, newLocation);
+
+                try
+                {
+                    Directory.Move(logLocation, newLocation);
+                }
+                catch
+                {
+                    // This does not work - Will need to fix this
+                    Console.WriteLine($@"Please ensure no file located in c:\Automation Logs\{date.ToString("MM.dd.yyyy")} is open!!");
+                    Thread.CurrentThread.Abort();
+                }
             }
         }
 
@@ -225,7 +232,43 @@
             }
 
             image.SaveAsFile(filename);
-            Logger(Info, "Screenshot saved as: " + filename);
+            Logger(Info, "Screenshot saved at: " + filename);
+        }
+
+        /// <summary>
+        /// Asserts two values are the same. 
+        /// </summary>
+        /// <param name="valueOne"></param>
+        /// <param name="valueTwo"></param>
+        protected void ShouldBe(string valueOne, string valueTwo)
+        {
+            try
+            {
+                Assert.AreEqual(valueOne, valueTwo);
+                Logger(Info, "Verified the two values were the same: '" + valueOne + "' and '" + valueTwo + "'");
+            }
+            catch (Exception)
+            {
+                Logger(Fail, "Two values asked to be the same were not: '" + valueOne + "' and '" + valueTwo + "'");
+            }
+        }
+
+        /// <summary>
+        /// Asserts two values are not the same. 
+        /// </summary>
+        /// <param name="valueOne"></param>
+        /// <param name="valueTwo"></param>
+        protected void ShouldNotBe(string valueOne, string valueTwo)
+        {
+            try
+            {
+                Assert.AreNotEqual(valueOne, valueTwo);
+                Logger(Info, "Verified the two values were not the same: '" + valueOne + "' and '" + valueTwo + "'");
+            }
+            catch
+            {
+                Logger(Fail, "Two values asked to be the different were the same: '" + valueOne + "' and '" + valueTwo + "'");
+            }
         }
 
         /// <summary>
@@ -240,19 +283,19 @@
             {
                 case "chrome":
                     _driver = new ChromeDriver($"{_homeDirectory}\\Support");
-                    Logger(Pass, "Chrome started");
+                    Logger(Info, "Chrome started");
                     break;
 
                 case "firefox":
                     _driver = new FirefoxDriver($"{_homeDirectory}\\Support");
                     logstatus = Status.Pass;
-                    Logger(Pass, "Firefox started");
+                    Logger(Info, "Firefox started");
                     break;
 
                 case "edge":
                     _driver = new EdgeDriver($"{_homeDirectory}\\Support");
                     logstatus = Status.Pass;
-                    Logger(Pass, "Edge started");
+                    Logger(Info, "Edge started");
                     break;
 
                 default:
