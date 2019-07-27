@@ -4,8 +4,10 @@
 
 This automation framework is build from the ground up as an simple to use and maintain solution. Pages and all locators are kept in the appsettings.json file that can be changed per environment or application
 
+All you need is Visual Studio 17 or 19 along with installing .NET Core 2.2!
+
 ## Tech Used:
-- .NET Core
+- .NET Core 2.2
 - NUnit
 - Extent Reports
 - Selenium
@@ -16,13 +18,11 @@ This automation framework is build from the ground up as an simple to use and ma
 - Edge
 
 ## Planned ToDo List:
-- Fix LogCleaner if a file is locked
 - Smoke Test for RumbleOn -> Classifieds
 - Shouldly implementation 
 - Check POP3 email account for required email
 - Direct checks on entered data in the database that is entered during testing. 
 - Built in API endpoint testing. 
 - Built in API stress testing.
-- Ability to run CI/CD in headless mode
 
 Special shout out to David for mentoring me through this and providing great feedback!
