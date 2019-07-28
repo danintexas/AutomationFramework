@@ -13,7 +13,7 @@
         {
             UseBrowser(browser);
             MaximizeBrowser();
-            SetUrl = _config["RumbleOnClassifieds:Homepage:Url"];
+            SetUrl = JsonCall("RumbleOnClassifieds:Homepage:Url");
 
             Wait(1);
             ScreenShot("Classifieds Homepage - " + browser);
