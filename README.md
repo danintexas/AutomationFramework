@@ -8,7 +8,7 @@ All you need is Visual Studio 17 or 19 along with installing .NET Core 2.2!
 
 To run an individual test through command line use the following in the solution folder:
 
-'dotnet test -- filter AutomationFramework.Tests.FrameworkDemo'
+'dotnet test -- filter FrameworkDemo'
 
 This will run the test with the namespace of 'AutomationFramework.Tests.FrameworkDemo'
 

@@ -13,12 +13,13 @@
     using OpenQA.Selenium.Chrome;
     using OpenQA.Selenium.Edge;
     using OpenQA.Selenium.Firefox;
+    using OpenQA.Selenium.Support.UI;
 
     public abstract class Core
     {
         protected IWebDriver _driver;
         protected IConfiguration _config;
-
+        
         // Needed for reporting
         protected ExtentReports _extent;
         protected ExtentTest _test;
@@ -28,6 +29,7 @@
 
         public const string Chrome = "chrome", Firefox = "firefox", Edge = "edge"; // Const Keywords for UseBrowser
         public const string Info = "info", Pass = "pass", Fail = "fail"; // Const Keywords for Logger
+        public const string XPath = "xpath"; // Const Keywords for Selenium Locators
 
         protected Core()
         {
@@ -115,6 +117,39 @@
 
             _test.Log(logstatus, "Test ended with " + logstatus + stacktrace);
             _extent.Flush();
+        }
+
+        /// <summary>
+        /// Uses Selenium to click on an element on the page
+        /// </summary>
+        /// <param name="type">Supported: XPath</param>
+        /// <param name="element">Locator path to the item to click</param>
+        protected void ClickButton(string type, string element)
+        {
+            try
+            {
+                switch (type)
+                {
+                    case XPath:
+                        _driver.FindElement(By.XPath(element)).Click();
+                        break;
+                    default:
+                        Logger(Info, "Unsupported element type passed to ClickButton. Please report to framework owner.");
+                        Logger(Fail, "Used " + type + " to click on element: " + element);
+                        Assert.Fail($@"Something happened with ClickButton method. Please report to framework owner.");
+                        Environment.Exit(1);
+                        break;
+                }
+
+                Logger(Info, "Used " + type + " to click on element: " + element);
+            }
+
+            catch
+            {
+                Logger(Fail, "Used " + type + " to click on element: " + element);
+                Assert.Fail($@"Something happened with ClickButton method. Please report to framework owner.");
+                Environment.Exit(1);
+            }
         }
 
         /// <summary>
@@ -235,6 +270,42 @@
         }
 
         /// <summary>
+        /// SendKeys sends text to a specific element
+        /// </summary>
+        /// <param name="type">Supported: XPath</param>
+        /// <param name="element">Locator path to the item to click</param>
+        /// <param name="text">Text to send to the element</param>
+        protected void SendKeys(string type, string element, string text)
+        {
+            IWebElement textbox = _driver.FindElement(By.XPath(element)); ;
+            try
+            {
+                switch (type)
+                {
+                    case XPath:
+                        break;
+                    default:
+                        Logger(Info, "Unsupported element type passed to SendKeys. Please report to framework owner.");
+                        Logger(Fail, "Used " + type + " to send: '" + text + "' to element: " + element);
+                        Assert.Fail($@"Something happened with SendKeys method. Please report to framework owner.");
+                        Environment.Exit(1);
+                        break;
+                }
+
+                textbox.SendKeys(text);
+                Logger(Info, "Sent the following: '" + text + "'" + " to the element: '" + element + "'");
+            }
+
+            catch
+            {
+                Logger(Info, "Possible bad element sent to SendKeys.");
+                Logger(Fail, "Used " + type + " to send: '" + text + "' to element: " + element);
+                Assert.Fail($@"Something happened with SendKeys method. Please report to framework owner.");
+                Environment.Exit(1);
+            }
+        }
+
+        /// <summary>
         /// Asserts two values are the same. 
         /// </summary>
         /// <param name="valueOne"></param>
@@ -298,9 +369,9 @@
                     break;
 
                 default:
-                    Assert.Fail("Browser type passed is not supported on test");
                     logstatus = Status.Fail;
                     Logger(Fail, "Browser type passed is not supported on test");
+                    Assert.Fail("Browser type passed is not supported on test");
                     break;
             }
         }
@@ -315,6 +386,40 @@
             wait = wait * 1000; // Converts from milliseconds to seconds
             Thread.Sleep(wait);
             Logger(Info, "Waited " + (wait / 1000) + " seconds");
+        }
+
+        /// <summary>
+        /// Waits for an element to exist for 30 seconds
+        /// </summary>
+        /// <param name="type">Supported: XPath</param>
+        /// <param name="element">Locator path to the item to wait for</param>
+        protected void WaitForElement(string type, string element)
+        {
+            var wait = new WebDriverWait(_driver, new TimeSpan(0, 0, 30));
+            try
+            {
+                switch (type)
+                {
+                    case XPath:
+                        wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(element)));
+                        break;
+                    default:
+                        Logger(Info, "Unsupported element type passed to WaitForElement. Please report to framework owner.");
+                        Logger(Fail, "Used " + type + " to wait on element: " + element);
+                        Assert.Fail($@"Something happened with WaitForElement method. Please report to framework owner.");
+                        Environment.Exit(1);
+                        break;
+                }
+
+                Logger(Info, "Used " + type + " to wait on element: " + element);
+            }
+
+            catch
+            {
+                Logger(Fail, "Used " + type + " to wait on element: " + element);
+                Assert.Fail($@"Something happened with WaitForElement method. Please report to framework owner.");
+                Environment.Exit(1);
+            }
         }
     }
 }
