@@ -6,6 +6,12 @@ This automation framework is build from the ground up as an simple to use and ma
 
 All you need is Visual Studio 17 or 19 along with installing .NET Core 2.2!
 
+To run an individual test through command line use the following in the solution folder:
+
+'dotnet test -- filter AutomationFramework.Tests.FrameworkDemo'
+
+This will run the test with the namespace of 'AutomationFramework.Tests.FrameworkDemo'
+
 ## Tech Used:
 - .NET Core 2.2
 - NUnit

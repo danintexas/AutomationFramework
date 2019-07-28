@@ -1,11 +1,12 @@
-﻿namespace AutomationFramework.Tests.Demo
+﻿namespace AutomationFramework.Tests.DualTestDemo
 {
     using NUnit.Framework;
     using Pages.Google;
 
+    [Category("Dual Test")]
     class DualTest : Core
     {
-        [TestCase(Chrome, Category = "Dual Test", TestName = "Validate Classifieds Homepage - Chrome")]
+        [TestCase(Chrome, TestName = "Validate Classifieds Homepage - Chrome")]
         [Order(1)]
         public void ClassifiedsHomePage(string browser)
         {
@@ -20,7 +21,7 @@
             ShouldBe(SetUrl, _config["RumbleOnClassifieds:Homepage:Url"]);
         }
 
-        [TestCase(Category = "Dual Test", TestName = "Validate Google Homepage - Chrome")]
+        [TestCase(TestName = "Validate Google Homepage - Chrome")]
         [Order(2)]
         public void GoogleHomePage()
         {

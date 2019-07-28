@@ -1,12 +1,14 @@
-﻿namespace AutomationFramework.Tests
+﻿namespace AutomationFramework.Tests.Consumer.Demo
 {
     using NUnit.Framework;
 
+    [Category("RumbleOn Consumer")]
     class ConsumerDemo : Core
     {
-        [TestCase(Chrome, Category = "RumbleOn Consumer", TestName = "Validate Consumer Homepage - Chrome")]
-        [TestCase(Firefox, Category = "RumbleOn Consumer", TestName = "Validate Consumer Homepage - Firefox")]
-        [TestCase(Edge, Category = "RumbleOn Consumer", TestName = "Validate Consumer Homepage - Edge")]
+        [TestCase(Chrome, TestName = "Validate Consumer Homepage - Chrome")]
+        [TestCase(Firefox, TestName = "Validate Consumer Homepage - Firefox")]
+        [TestCase(Edge, TestName = "Validate Consumer Homepage - Edge")]
+        [Order(1)]
         public void HomepageChrome(string browser)
         {
             UseBrowser(browser);

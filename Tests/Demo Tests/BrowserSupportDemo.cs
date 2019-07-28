@@ -1,4 +1,4 @@
-﻿namespace AutomationFramework.Tests.Demo_Tests
+﻿namespace AutomationFramework.Tests.FrameworkDemo
 {
     using NUnit.Framework;
     using Pages.Google;
