@@ -19,6 +19,7 @@
     {
         protected IWebDriver _driver;
         protected IConfiguration _config;
+        protected string[] supportedBrowsers = { Chrome, Firefox, Edge };
         
         // Needed for reporting
         protected ExtentReports _extent;
