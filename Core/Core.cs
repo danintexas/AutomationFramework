@@ -30,7 +30,7 @@
 
         public const string Chrome = "chrome", Firefox = "firefox", Edge = "edge"; // Const Keywords for UseBrowser
         public const string Info = "info", Pass = "pass", Fail = "fail"; // Const Keywords for Logger
-        public const string XPath = "xpath"; // Const Keywords for Selenium Locators
+        public const string XPath = "xpath", CSS = "css"; // Const Keywords for Selenium Locators
 
         protected Core()
         {
@@ -134,6 +134,9 @@
                     case XPath:
                         _driver.FindElement(By.XPath(element)).Click();
                         break;
+                    case CSS:
+                        _driver.FindElement(By.CssSelector(element)).Click();
+                        break;
                     default:
                         Logger(Info, "Unsupported element type passed to ClickButton. Please report to framework owner.");
                         Logger(Fail, "Used " + type + " to click on element: " + element);
@@ -170,6 +173,18 @@
             _driver?.Close();
             _driver?.Quit();
             Logger(Info, "Closing and quitting all active Selenium controlled browsers");
+        }
+
+        /// <summary>
+        /// This method just tells the framework to read the JSON file - appsettings
+        /// </summary>
+        /// <param name="call">JSON entry to use</param>
+        /// <returns></returns>
+        protected string JsonCall(string call)
+        {
+            string returnedCall = _config[call];
+
+            return returnedCall;
         }
 
         /// <summary>
@@ -278,7 +293,7 @@
         /// <param name="text">Text to send to the element</param>
         protected void SendKeys(string type, string element, string text)
         {
-            IWebElement textbox = _driver.FindElement(By.XPath(element)); ;
+            IWebElement textbox = _driver.FindElement(By.XPath(element));
             try
             {
                 switch (type)
