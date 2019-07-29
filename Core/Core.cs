@@ -123,7 +123,7 @@
         /// <summary>
         /// Uses Selenium to click on an element on the page
         /// </summary>
-        /// <param name="type">Supported: XPath</param>
+        /// <param name="type">Supported: XPath - CSS</param>
         /// <param name="element">Locator path to the item to click</param>
         protected void ClickButton(string type, string element)
         {
@@ -173,6 +173,46 @@
             _driver?.Close();
             _driver?.Quit();
             Logger(Info, "Closing and quitting all active Selenium controlled browsers");
+        }
+
+        /// <summary>
+        /// GetFieldValue method checks an elements field for its current value
+        /// </summary>
+        /// <param name="type">Supported: XPath - CSS</param>
+        /// <param name="element">Locator path to the item to click</param>
+        /// <returns></returns>
+        protected string GetFieldValue(string type, string element)
+        {
+            string value = null;
+            try
+            {
+                switch (type)
+                {
+                    case XPath:
+                        value = _driver.FindElement(By.XPath(element)).GetAttribute("value");
+                        break;
+                    case CSS:
+                        value = _driver.FindElement(By.CssSelector(element)).GetAttribute("value");
+                        break;
+                    default:
+                        Logger(Info, "Unsupported element type passed to GetFieldValue. Please report to framework owner.");
+                        Logger(Fail, "Used " + type + " to try and retrieve info in : " + element);
+                        Assert.Fail($@"Something happened with GetFieldValue method. Please report to framework owner.");
+                        Environment.Exit(1);
+                        break;
+                }
+
+                Logger(Info, "Used " + type + " to try and retrieve info in : " + element);
+            }
+
+            catch
+            {
+                Logger(Fail, "Used " + type + " to try and retrieve info in : " + element);
+                Assert.Fail($@"Something happened with GetFieldValue method. Please report to framework owner.");
+                Environment.Exit(1);
+            }
+
+            return value;
         }
 
         /// <summary>
