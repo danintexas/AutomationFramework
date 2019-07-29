@@ -24,11 +24,20 @@ This will run the test with the namespace of 'AutomationFramework.Tests.Framewor
 - Edge
 
 ## Planned ToDo List:
-- Smoke Test for RumbleOn -> Classifieds
+- Smoke Test for RumbleOn -> Classifieds (In Progress)
+- Redo logic for running single test with multiple browsers
 - Shouldly implementation 
 - Check POP3 email account for required email
 - Direct checks on entered data in the database that is entered during testing. 
 - Built in API endpoint testing. 
 - Built in API stress testing.
+
+## Custom Items for RumbleOn to dotnet
+- Mileage and Price randomizer
+- Description text randomizer
+- Upload photos from a bank of photos for testing
+- Vin Generator
+- Account Generator tied to personal or work webserver
+- Upload logs/notification to Slack and or text message
 
 Special shout out to David for mentoring me through this and providing great feedback!

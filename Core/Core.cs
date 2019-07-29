@@ -398,6 +398,19 @@
         }
 
         /// <summary>
+        /// StripEndingURL is a custom method that will remove everything after the last '/' in a URL
+        /// </summary>
+        /// <param name="urlToStrip">URL to strip everything after the last '/'</param>
+        /// <returns></returns>
+        protected string StripEndingUrl(string urlToStrip)
+        {
+            if (urlToStrip.Contains('/'))
+                urlToStrip = urlToStrip.Substring(0, urlToStrip.LastIndexOf('/'));
+
+            return urlToStrip;
+        }
+
+        /// <summary>
         /// Method to start up the Selenium driver
         /// </summary>
         /// <param name="browserType"></param>
