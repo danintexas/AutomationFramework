@@ -125,7 +125,7 @@
         /// </summary>
         /// <param name="type">Supported: XPath - CSS</param>
         /// <param name="element">Locator path to the item to click</param>
-        protected void ClickButton(string type, string element)
+        protected void ClickElement(string type, string element)
         {
             try
             {
