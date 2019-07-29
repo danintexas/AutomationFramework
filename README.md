@@ -32,7 +32,7 @@ This will run the test with the namespace of 'AutomationFramework.Tests.Framewor
 - Built in API endpoint testing. 
 - Built in API stress testing.
 
-## Custom Items for RumbleOn to dotnet
+## Custom Items for RumbleOn to do
 - Mileage and Price randomizer
 - Description text randomizer
 - Upload photos from a bank of photos for testing
