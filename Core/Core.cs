@@ -39,6 +39,22 @@
             var configBuilder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", false, true) // load base settings
                 .AddJsonFile("appsettings.local.json", true, true); // load local settings
 
+            foreach (var filename in Directory.GetFiles(Directory.GetCurrentDirectory() + @"\Json Repo" , "*.json"))
+            {
+                if (!filename.StartsWith("appsettings"))
+                {
+                    configBuilder.AddJsonFile(filename, true, true);
+                }
+            }
+
+            foreach (var filename in Directory.GetFiles(Directory.GetCurrentDirectory() + @"\Json Repo\Json Override", "*.json"))
+            {
+                if (!filename.StartsWith("appsettings"))
+                {
+                    configBuilder.AddJsonFile(filename, true, true);
+                }
+            }
+
             _config = configBuilder.Build();
         }
 
@@ -138,9 +154,9 @@
                         _driver.FindElement(By.CssSelector(element)).Click();
                         break;
                     default:
-                        Logger(Info, "Unsupported element type passed to ClickButton. Please report to framework owner.");
+                        Logger(Info, "Unsupported element type passed to ClickElement. Please report to framework owner.");
                         Logger(Fail, "Used " + type + " to click on element: " + element);
-                        Assert.Fail($@"Something happened with ClickButton method. Please report to framework owner.");
+                        Assert.Fail($@"Something happened with ClickElement method. Please report to framework owner.");
                         Environment.Exit(1);
                         break;
                 }
@@ -151,7 +167,7 @@
             catch
             {
                 Logger(Fail, "Used " + type + " to click on element: " + element);
-                Assert.Fail($@"Something happened with ClickButton method. Please report to framework owner.");
+                Assert.Fail($@"Something happened with ClickElement method. Please report to framework owner.");
                 Environment.Exit(1);
             }
         }
