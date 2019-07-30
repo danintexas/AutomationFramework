@@ -1,5 +1,5 @@
 {
-  // RumbleOn Classifieds specific information
+  // RumbleOn Classifieds specific locator information
   "RumbleOnClassifieds": {
     "Header": {
       "About": "//span[contains(text(),'About')]",
