@@ -21,11 +21,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Json Repo\Json Override\" />
     <Folder Include="Support\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Json Repo\*.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Json Repo\Json Override\*.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Support\chromedriver.exe">
