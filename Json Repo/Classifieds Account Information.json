@@ -1,0 +1,10 @@
+{
+  // RumbleOn Classifieds specific information
+  "RumbleOnClassifieds": {
+    "Account": {
+      "User": "daniel.qa.test.1@danintexas.com",
+      "Password": "Rumbleon12",
+      "VIN": "1HD1JRV11DB436666"
+    }
+  }
+}
