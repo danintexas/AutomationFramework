@@ -128,13 +128,8 @@
 
             // Load up My Garage
             ClickElement(XPath, JsonCall("RumbleonClassifieds:Header:MyGarage"));
-            WaitForElement(XPath, JsonCall("RumbleOnClassifieds:MyGarage:DeleteButton"));
-            ScreenShot("My Garage Before Delete - " + browser);
-            ClickElement(XPath, JsonCall("RumbleOnClassifieds:MyGarage:DeleteButton"));
             Wait(3);
-            ClickElement(XPath, JsonCall("RumbleOnClassifieds:MyGarage:ConfirmDeleteButton"));
-            Wait(1);
-            ScreenShot("My Garage After Delete - " + browser);
+            ScreenShot("My Garage After listing - " + browser);
         }
     }
 }

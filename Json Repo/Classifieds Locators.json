@@ -62,8 +62,8 @@
       "LoginButton": "//button[@class='ant-btn _2Vkk2TyDmy8kd63i5Od425 ant-btn-primary']"
     },
     "MyGarage": {
-      "DeleteButton": "/html/body/div[3]/div/div[2]/div/div[1]/div/div/div/div/div[1]/button",
-      "ConfirmDeleteListing": "//button[@class='ant-btn _2Vkk2TyDmy8kd63i5Od425 ant-btn-primary']"
+      "DeleteButton": ".p8uIOpAdXgH406ve820OC",
+      "ConfirmDeleteListing": "//div[2]/div/div/div/div/div/div/div/button"
     }
   }
 }
