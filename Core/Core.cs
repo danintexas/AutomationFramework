@@ -319,6 +319,7 @@
         {
             DateTime date = DateTime.Today;
             var logLocation = $@"c:\Automation Logs\{date:MM.dd.yyyy}\Screenshots";
+            var reportLocation = $@"..\Screenshots";
 
             if (!Directory.Exists(logLocation))
             {
@@ -329,16 +330,19 @@
             DateTime timeStamp = DateTime.Now;
 
             var filename = $"{logLocation}\\{name}.png";
+            reportLocation = $"{reportLocation}\\{name}.png";
             int counter = 2;
 
             while (File.Exists(filename))
             {
                 filename = $"{logLocation}\\{name} - {counter}.png";
+                reportLocation = $"{reportLocation}\\{name} - {counter}.png";
                 counter++;
             }
 
             image.SaveAsFile(filename);
             Logger(Info, "Screenshot saved at: " + filename);
+            _test.AddScreenCaptureFromPath(reportLocation);
         }
 
         /// <summary>
