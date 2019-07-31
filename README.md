@@ -24,7 +24,8 @@ This will run the test with the namespace of 'AutomationFramework.Tests.Framewor
 - Edge
 
 ## Planned ToDo List:
-- Smoke Test for RumbleOn -> Classifieds (In Progress)
+- Logs to AWS bucket
+- Concurrent testing through ASYNC or Selenium Grid
 - Redo logic for running single test with multiple browsers
 - Shouldly implementation 
 - Check POP3 email account for required email
@@ -33,6 +34,7 @@ This will run the test with the namespace of 'AutomationFramework.Tests.Framewor
 - Built in API stress testing.
 
 ## Custom Items for RumbleOn to do
+- Smoke Test for RumbleOn -> Classifieds (In Progress)
 - Mileage and Price randomizer
 - Description text randomizer
 - Upload photos from a bank of photos for testing
