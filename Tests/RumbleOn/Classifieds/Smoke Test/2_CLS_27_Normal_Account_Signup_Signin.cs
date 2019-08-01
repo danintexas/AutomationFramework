@@ -10,7 +10,7 @@
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:Header:LoginButton"));
             ShouldBe(SetUrl, JsonCall("RumbleOnClassifieds:Url:LoginPage"));
             WaitForElement(XPath, JsonCall("RumbleOnClassifieds:Loginpage:Email"));
-            ScreenShot("After clicking Login - " + browser);
+            ScreenShot("After clicking Login on Homepage - " + browser);
 
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:Loginpage:Email"));
             SendKeys(XPath, JsonCall("RumbleOnClassifieds:Loginpage:Email"), JsonCall("RumbleOnClassifieds:Account:User"));
