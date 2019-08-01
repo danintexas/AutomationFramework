@@ -330,19 +330,19 @@
             DateTime timeStamp = DateTime.Now;
 
             var filename = $"{logLocation}\\{name}.png";
-            reportLocation = $"{reportLocation}\\{name}.png";
+            var screenLocation = $"{reportLocation}\\{name}.png";
             int counter = 2;
 
             while (File.Exists(filename))
             {
                 filename = $"{logLocation}\\{name} - {counter}.png";
-                reportLocation = $"{reportLocation}\\{name} - {counter}.png";
+                screenLocation = $"{reportLocation}\\{name} - {counter}.png";
                 counter++;
             }
 
             image.SaveAsFile(filename);
             Logger(Info, "Screenshot saved at: " + filename);
-            _test.AddScreenCaptureFromPath(reportLocation);
+            _test.AddScreenCaptureFromPath(screenLocation);
         }
 
         /// <summary>
@@ -509,6 +509,6 @@
                 Assert.Fail($@"Something happened with WaitForElement method. Please report to framework owner.");
                 Environment.Exit(1);
             }
-        }
+        }    
     }
 }
