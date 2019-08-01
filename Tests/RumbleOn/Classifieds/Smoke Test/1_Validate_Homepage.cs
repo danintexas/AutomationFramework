@@ -13,7 +13,6 @@
             MaximizeBrowser();
             SetUrl = JsonCall("RumbleOnClassifieds:Url:Homepage");
             ScreenShot("Classifieds Homepage - " + browser);
-            ScreenShot("Classifieds Homepage - " + browser);
             ShouldBe(SetUrl, JsonCall("RumbleOnClassifieds:Url:Homepage"));
             ShouldBe(Title, JsonCall("RumbleOnClassifieds:Homepage:Title"));
         }
