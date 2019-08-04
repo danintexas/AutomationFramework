@@ -4,11 +4,14 @@
 
     partial class SmokeTest : Core
     {
-        [TestCase(Chrome, TestName = "CLS-27 Normal Account Signup/Signin")]
-        [Order(2)]
+        [TestCase(Chrome, TestName = "CLS-27 Normal Account Signin")]
+        [Order(3)]
         public void StepOne(string browser)
         {
+            UseBrowser(browser);
+            MaximizeBrowser();
             Logger(Info, "Normal Account Login Test");
+            SetUrl = JsonCall("RumbleOnClassifieds:Url:Homepage");
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:Header:LoginButton"));
             ShouldBe(SetUrl, JsonCall("RumbleOnClassifieds:Url:LoginPage"));
             WaitForElement(XPath, JsonCall("RumbleOnClassifieds:Loginpage:Email"));

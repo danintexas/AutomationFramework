@@ -6,7 +6,7 @@
     partial class SmokeTest : Core
     {
         [TestCase(Chrome, TestName = "CLS-28 Create Listing Normal Flow")]
-        [Order(3)]
+        [Order(4)]
         public void StepTwo(string browser)
         {
             // First page of listing flow
@@ -117,10 +117,10 @@
 
             // Set Price Page
             Logger(Info, "Set Price page Test");
-            WaitForElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:SetPriceBox"));
+            WaitForElement(ID, JsonCall("RumbleOnClassifieds:ListingFlow:SetPriceBox"));
             ShouldBe(SetUrl, JsonCall("RumbleOnClassifieds:Url:SetPrice"));
-            ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:SetPriceBox"));
-            SendKeys(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:SetPriceBox"), "5000");
+            ClickElement(ID, JsonCall("RumbleOnClassifieds:ListingFlow:SetPriceBox"));
+            SendKeys(ID, JsonCall("RumbleOnClassifieds:ListingFlow:SetPriceBox"), "5000");
             ScreenShot("Price Set Page");
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:SetPriceButton"));
 

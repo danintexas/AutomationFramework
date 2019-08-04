@@ -11,6 +11,7 @@
       "MainButton": "//a[@class='active']//img",
       "MyGarage": "//a[contains(text(),'My Garage')]",
       "OptionalServices": "(//a[contains(text(),'Optional Services')])[2]",
+      "Signup": "//a[contains(text(),'Sign Up')]",
       "UserIcon": "//i[@class='anticon anticon-user']",
       "ViewListings": "//a[contains(text(),'View Listings')]"
     },
@@ -58,7 +59,7 @@
       // Confirm Email Page
       "SendNotificationsButton": "//button[@type='button']",
       // Set Price Page
-      "SetPriceBox": "//input[@id='price']",
+      "SetPriceBox": "price",
       "SetPriceButton": "//button[@type='button']",
       // Editing & Review Page
       "EditPageMileageBox": "//input[@id='mileage']",
@@ -81,6 +82,9 @@
     "MyGarage": {
       "DeleteButton": ".p8uIOpAdXgH406ve820OC path",
       "ConfirmDeleteListing": ".ant-col-xs-24 > .ant-btn-primary"
+    },
+    "Signup": {
+      "FirstName": "firstName"
     }
   }
 }
