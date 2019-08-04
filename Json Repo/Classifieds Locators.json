@@ -3,57 +3,74 @@
   "RumbleOnClassifieds": {
     "Header": {
       "About": "//span[contains(text(),'About')]",
-      "AboutSub": "//li[@class='ant-menu-item ant-menu-item-active']//a[contains(text(),'About')]",
+      "AboutSub": "(//a[contains(text(),'About')])[2]",
       "FAQ": "//a[contains(text(),'Frequently Asked Questions')]",
       "ListMyVehicle": "//a[contains(text(),'List my vehicle')]",
       "LoginButton": "//a[contains(text(),'Log In')]",
       "LogOut": "//p[contains(text(),'Log Out')]",
       "MainButton": "//a[@class='active']//img",
       "MyGarage": "//a[contains(text(),'My Garage')]",
-      "OptionalServices": "//li[@class='ant-menu-item ant-menu-item-active']//a[contains(text(),'Optional Services')]",
+      "OptionalServices": "(//a[contains(text(),'Optional Services')])[2]",
       "UserIcon": "//i[@class='anticon anticon-user']",
-      "ViewListings": "//li[@class='ant-menu-item ant-menu-item-active']//a[contains(text(),'View Listings')]"
+      "ViewListings": "//a[contains(text(),'View Listings')]"
     },
     "Homepage": {
       "Title": "Welcome to RumbleOn Classifieds Motorcycle Listing Site"
     },
     "ListingFlow": {
-      "ABSBox": "//*[@id='root']/div/div[2]/div/div/div/div/div[4]/div/div[3]/div[1]/div/div/div/div/div",
-      "ABSBoxYes": "/html/body/div[5]/div/div/div/ul/li[1]",
-      "AdditionalInfoNext": "//button[@class='ant-btn _2Vkk2TyDmy8kd63i5Od425 ant-btn-primary']",
-      "AdditionalQuestionsDamage": "//*[@id='root']/div/div[2]/div/div/div/div[2]/div[1]/div[1]/div[1]/div/div/div/div/div/div",
-      "AdditionalQuestionsNext": "//button[@class='ant-btn _2Vkk2TyDmy8kd63i5Od425 ant-btn-primary']",
-      "ColorBlack": "//li[@class='ant-select-dropdown-menu-item ant-select-dropdown-menu-item-active']",
-      "ColorPicker": "//div[@class='ant-select-selection__placeholder']",
-      "ContinueButton": "//button[@class='ant-btn _2Vkk2TyDmy8kd63i5Od425 ant-btn-primary']",
-      "DamageNo": "/html/body/div[3]/div/div/div/ul/li[2]",
-      "EditVehiclePricingButton": "//button[@class='ant-btn _2Vkk2TyDmy8kd63i5Od425 tKqnxS9Uw-00yVWpCkHtT ant-btn-outline']",
-      "KeyFeaturesNextButton": "//button[@class='ant-btn _2Vkk2TyDmy8kd63i5Od425 ant-btn-primary']",
-      "ListingDescription": "//textarea[@id='listingDescription']",
-      "ListingPreviewPublishButton": "//button[@class='ant-btn _2Vkk2TyDmy8kd63i5Od425 ant-btn-primary']",
-      "MajorFactoryOptions": "//textarea[@id='majorFactoryOptions']",
+      // First Page of Listing Flow
+      "ContinueButton": "//button[@type='button']",
+      // VIN Entry Page
+      "SubmitButton": "//button[@type='button']",
+      "VinEntry": "//input[@id='vin']",
+      // VIN Found page
+      "VinFoundButton": "//button[contains(.,'YES, THIS IS CORRECT')]",
+      // Additional Information page
       "MileageEntry": "//input[@id='mileage']",
-      "EditPageMileageBox": "//input[@id='mileage']",
-      "EditPageDescription": "//textarea[@id='listingDescription']",
-      "EditPageSaveContinueButton": "//button[@class='ant-btn _2Vkk2TyDmy8kd63i5Od425 ant-btn-primary']",
-      "RateNextButton": "//button[@class='ant-btn _2Vkk2TyDmy8kd63i5Od425 ant-btn-primary']",
+      "ColorBlack": "//li[contains(text(),'Black')]",
+      "ColorPicker": "//div[@class='ant-select-selection__placeholder']",
+      "ListingDescription": "//textarea[@id='listingDescription']",
+      "AdditionalInfoNext": "//button[contains(.,'NEXT')]",
+      // Additional Questions page
+      "AdditionalQuestionsDamage": ".ant-row:nth-child(1) > .ant-col-24 .ant-select-selection__placeholder",
+      "DamageNo": "//li[contains(.,'No')]",
+      "VehicleOperated": ".ant-row:nth-child(2) .ant-select-selection__placeholder",
+      "VehicleOperatedYes": ".ant-select-dropdown-menu-item-active",
+      "AdditionalQuestionsNext": "//button[@class='ant-btn _2Vkk2TyDmy8kd63i5Od425 ant-btn-primary']",
+      // Rate Your Vehicle page
+      "RateNextButton": "//button[contains(.,'NEXT')]",
+      // Show Your Ride Off page
+      "ShowYourRideNextButton": "//button[contains(.,'NEXT')]",
+      // Key Featurs of Your Ride
+      "ABSBox": ".ant-row-flex:nth-child(4) > .ant-col-xs-24:nth-child(1) .ant-select-selection__placeholder",
+      "ABSBoxYes": "//li[contains(.,'Yes')]",
+      "KeyFeaturesNextButton": "//button[@class='ant-btn _2Vkk2TyDmy8kd63i5Od425 ant-btn-primary']",
+      "MajorFactoryOptions": "//textarea[@id='majorFactoryOptions']",
       "SecondaryColorBlack": "//li[contains(.,'Black')]",
       "SecondaryColorBox": ".ant-row-flex:nth-child(2) .ant-select-selection__placeholder",
+      "StateTitledInBox": ".ant-row-flex:nth-child(4) > .ant-col-xs-24:nth-child(2) .ant-select-selection__placeholder",
+      "StateTitledInSelectStateTX": "/html/body/div[4]/div/div/div/ul/li[43]",
+      "TitleStatusBox": "//div[4]/div/div[4]/div/div/div/div/div/div",
+      "TitleStatusClean": "//li[contains(text(),'Clean')]",
+      "VehicleDescription": "//textarea[@id='listingDescription']",
+      "WarrantyBox": "//div[4]/div[2]/div/div/div/div/div",
+      "WarrantyBoxYes": "/html/body/div[6]/div/div/div/ul/li[1]",
+      // Confirm Email Page
       "SendNotificationsButton": "//button[@type='button']",
+      // Set Price Page
       "SetPriceBox": "//input[@id='price']",
-      "SetPriceButton": "//button[@class='ant-btn _2Vkk2TyDmy8kd63i5Od425 ant-btn-primary']",
-      "ShowYourRideNextButton": "//button[@class='ant-btn _2Vkk2TyDmy8kd63i5Od425 ant-btn-primary']",
-      "StateTitledInBox": "//body/div[@id='root']/div/div[@class='re3SLgm81R3XuXVYwr0PF']/div[@class='_1QGWwr2V-O1-s35GspN-Gm']/div/div[@class='ant-row-flex ant-row-flex-space-around']/div[@class='ant-col-xs-24 ant-col-lg-18']/div[@class='ant-row-flex ant-row-flex-center']/div[@class='ant-col-xs-24 ant-col-lg-20']/div[3]/div[2]/div[1]/div[1]/div[1]/div[1]",
-      "StateTitledInSelectState": "/html/body/div[4]/div/div/div/ul/li[1]",
-      "SubmitButton": "//button[@class='ant-btn _6TTwm-eJDeHQnZTtUOx8d _2Vkk2TyDmy8kd63i5Od425 ant-btn-fullwidth']",
-      "TitleStatusBox": "//*[@id='root']/div/div[2]/div/div/div/div/div[4]/div/div[4]/div[1]/div/div/div/div",
-      "TitleStatusClean": "/html/body/div[7]/div/div/div/ul/li[1]",
-      "VehicleOperated": "//*[@id='root']/div/div[2]/div/div/div/div[2]/div[1]/div[1]/div[2]/div/div/div/div/div/div",
-      "VehicleOperatedYes": "/html/body/div[4]/div/div/div/ul/li[1]",
-      "VinEntry": "//input[@id='vin']",
-      "VinFoundButton": "//button[@class='ant-btn _2Vkk2TyDmy8kd63i5Od425 ant-btn-primary']",
-      "WarrantyBox": "//body/div[@id='root']/div/div[@class='re3SLgm81R3XuXVYwr0PF']/div[@class='_1QGWwr2V-O1-s35GspN-Gm']/div/div[@class='ant-row-flex ant-row-flex-space-around']/div[@class='ant-col-xs-24 ant-col-lg-18']/div[@class='ant-row-flex ant-row-flex-center']/div[@class='ant-col-xs-24 ant-col-lg-20']/div[4]/div[2]/div[1]/div[1]/div[1]/div[1]",
-      "WarrantyBoxYes": "/html/body/div[6]/div/div/div/ul/li[1]"
+      "SetPriceButton": "//button[@type='button']",
+      // Editing & Review Page
+      "EditPageMileageBox": "//input[@id='mileage']",
+      "EditPageDescription": "//textarea[@id='listingDescription']",
+      "EditPageSaveContinueButton": "//button[contains(.,' SAVE & CONTINUE')]",
+      "EditVehiclePricingButton": "//button[contains(.,'EDIT VEHICLE PRICING')]",
+      "FactoryOptionsBox": "//textarea[@id='majorFactoryOptions']",
+      // Listing Preview Page
+      "ListingPreviewPublishButton": "//button[contains(.,'PUBLISH LISTING')]",
+      "ReserveSafeXChangeButton": "//div[2]/button",
+      // Congratulations Page
+      "GoToMyGarageButton": "//button[contains(.,'GO TO MY GARAGE')]"
     },
     "Loginpage": {
       "Title": "RumbleOn Classifieds | Sign In",
@@ -62,8 +79,8 @@
       "LoginButton": "//button[@class='ant-btn _2Vkk2TyDmy8kd63i5Od425 ant-btn-primary']"
     },
     "MyGarage": {
-      "DeleteButton": ".p8uIOpAdXgH406ve820OC",
-      "ConfirmDeleteListing": "//div[2]/div/div/div/div/div/div/div/button"
+      "DeleteButton": ".p8uIOpAdXgH406ve820OC path",
+      "ConfirmDeleteListing": ".ant-col-xs-24 > .ant-btn-primary"
     }
   }
 }
