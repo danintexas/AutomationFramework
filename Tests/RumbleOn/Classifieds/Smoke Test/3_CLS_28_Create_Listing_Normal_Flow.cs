@@ -74,7 +74,7 @@
 
             ScreenShot("Key Features Part I - " + browser);
 
-            ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:SecondaryColorBox"));
+            ClickElement(CSS, JsonCall("RumbleOnClassifieds:ListingFlow:SecondaryColorBox"));
             WaitForElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:SecondaryColorBlack"));
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:SecondaryColorBlack"));
 
@@ -99,6 +99,7 @@
 
             // Confirm Email Page
             WaitForElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:SendNotificationsButton"));
+            Wait(1);
             ShouldBe(SetUrl, JsonCall("RumbleOnClassifieds:Url:ConfirmEmail"));
             ScreenShot("Please Confirm Your Email - " + browser);
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:SendNotificationsButton"));
