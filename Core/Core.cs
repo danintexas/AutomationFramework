@@ -164,10 +164,11 @@
                 Logger(Info, "Used " + type + " to click on element: " + element);
             }
 
-            catch
+            catch (Exception ex_)
             {
                 Logger(Fail, "Used " + type + " to click on element: " + element);
-                Assert.Fail($@"Something happened with ClickElement method. Please report to framework owner.");
+                Assert.Fail($@"Something happened with ClickElement method. Please report to framework owner." +
+                    Environment.NewLine + "Used " + type + " to click on element: " + element + Environment.NewLine + ex_);
                 Environment.Exit(1);
             }
         }
@@ -221,10 +222,11 @@
                 Logger(Info, "Used " + type + " to try and retrieve info in : " + element);
             }
 
-            catch
+            catch (Exception ex_)
             {
                 Logger(Fail, "Used " + type + " to try and retrieve info in : " + element);
-                Assert.Fail($@"Something happened with GetFieldValue method. Please report to framework owner.");
+                Assert.Fail($@"Something happened with GetFieldValue method. Please report to framework owner." +
+                   Environment.NewLine + "Used " + type + " to try and retrieve info in : " + element + Environment.NewLine + ex_);
                 Environment.Exit(1);
             }
 
@@ -372,11 +374,12 @@
                 Logger(Info, "Sent the following: '" + text + "'" + " to the element: '" + element + "'");
             }
 
-            catch
+            catch (Exception ex_)
             {
                 Logger(Info, "Possible bad element sent to SendKeys.");
                 Logger(Fail, "Used " + type + " to send: '" + text + "' to element: " + element);
-                Assert.Fail($@"Something happened with SendKeys method. Please report to framework owner.");
+                Assert.Fail($@"Something happened with SendKeys method. Please report to framework owner." +
+                   Environment.NewLine + "Used " + type + " to send: '" + text + "' to element: " + element + Environment.NewLine + ex_);
                 Environment.Exit(1);
             }
         }
@@ -492,6 +495,9 @@
                     case XPath:
                         wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(element)));
                         break;
+                    case CSS:
+                        wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector(element)));
+                        break;
                     default:
                         Logger(Info, "Unsupported element type passed to WaitForElement. Please report to framework owner.");
                         Logger(Fail, "Used " + type + " to wait on element: " + element);
@@ -503,10 +509,11 @@
                 Logger(Info, "Used " + type + " to wait on element: " + element);
             }
 
-            catch
+            catch (Exception ex_)
             {
                 Logger(Fail, "Used " + type + " to wait on element: " + element);
-                Assert.Fail($@"Something happened with WaitForElement method. Please report to framework owner.");
+                Assert.Fail($@"Something happened with WaitForElement method. Please report to framework owner." +
+                    Environment.NewLine + "Used " + type + " to wait on element: " + element + Environment.NewLine + ex_);
                 Environment.Exit(1);
             }
         }    
