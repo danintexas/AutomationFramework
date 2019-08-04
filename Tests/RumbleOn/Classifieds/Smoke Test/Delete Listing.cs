@@ -7,13 +7,14 @@
         [Order(4)]
         public void Delete(string browser)
         {
+            Logger(Info, "Delete Listing Test");
             WaitForElement(CSS, JsonCall("RumbleOnClassifieds:MyGarage:DeleteButton"));
-            ScreenShot("My Garage Before Delete - " + browser);
+            ScreenShot("My Garage Before Delete");
             ClickElement(CSS, JsonCall("RumbleOnClassifieds:MyGarage:DeleteButton"));
             WaitForElement(CSS, JsonCall("RumbleOnClassifieds:MyGarage:ConfirmDeleteListing"));
             ClickElement(CSS, JsonCall("RumbleOnClassifieds:MyGarage:ConfirmDeleteListing"));
             Wait(1);
-            ScreenShot("My Garage After Delete - " + browser);
+            ScreenShot("My Garage After Delete");
 
         }
     }
