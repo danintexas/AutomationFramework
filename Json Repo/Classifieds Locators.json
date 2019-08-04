@@ -6,7 +6,7 @@
       "AboutSub": "//li[@class='ant-menu-item ant-menu-item-active']//a[contains(text(),'About')]",
       "FAQ": "//a[contains(text(),'Frequently Asked Questions')]",
       "ListMyVehicle": "//a[contains(text(),'List my vehicle')]",
-      "LoginButton": "//a[contains(text(),'Log In')]",
+      "LoginButton": "Xpath=//a[contains(text(),'Log In')]",
       "LogOut": "//p[contains(text(),'Log Out')]",
       "MainButton": "//a[@class='active']//img",
       "MyGarage": "//a[contains(text(),'My Garage')]",
