@@ -30,7 +30,7 @@
 
         public const string Chrome = "chrome", Firefox = "firefox", Edge = "edge"; // Const Keywords for UseBrowser
         public const string Info = "info", Pass = "pass", Fail = "fail"; // Const Keywords for Logger
-        public const string XPath = "xpath", CSS = "css"; // Const Keywords for Selenium Locators
+        public const string XPath = "xpath", CSS = "css", ID = "ID"; // Const Keywords for Selenium Locators
 
         protected Core()
         {
@@ -152,6 +152,9 @@
                         break;
                     case CSS:
                         _driver.FindElement(By.CssSelector(element)).Click();
+                        break;
+                    case ID:
+                        _driver.FindElement(By.Id(element)).Click();
                         break;
                     default:
                         Logger(Fail, "Unsupported element type passed to ClickElement. Please report to framework owner. Used " + type + " to click on element: " + element);
@@ -355,12 +358,22 @@
         /// <param name="text">Text to send to the element</param>
         protected void SendKeys(string type, string element, string text)
         {
-            IWebElement textbox = _driver.FindElement(By.XPath(element));
+            IWebElement textbox;
             try
             {
                 switch (type)
                 {
                     case XPath:
+                        textbox = _driver.FindElement(By.XPath(element));
+                        textbox.SendKeys(text);
+                        break;
+                    case CSS:
+                        textbox = _driver.FindElement(By.CssSelector(element));
+                        textbox.SendKeys(text);
+                        break;
+                    case ID:
+                        textbox = _driver.FindElement(By.Id(element));
+                        textbox.SendKeys(text);
                         break;
                     default:
                         Logger(Fail, $@"Something happened with SendKeys method. Please report to framework owner." + Environment.NewLine +
@@ -371,8 +384,7 @@
                         break;
                 }
 
-                textbox.SendKeys(text);
-                // Logger(Info, "Sent the following: '" + text + "'" + " to the element: '" + element + "'");
+                
             }
 
             catch (Exception ex_)
@@ -496,6 +508,9 @@
                         break;
                     case CSS:
                         wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector(element)));
+                        break;
+                    case ID:
+                        wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(element)));
                         break;
                     default:
                         Logger(Fail, $@"Unsupported element type passed to WaitForElement. Please report to framework owner." + Environment.NewLine +
