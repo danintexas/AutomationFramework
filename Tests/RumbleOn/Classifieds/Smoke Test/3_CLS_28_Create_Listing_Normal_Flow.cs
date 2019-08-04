@@ -23,7 +23,7 @@
             Wait(1);
             ScreenShot("Vin Entered - " + browser);
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:SubmitButton"));
-
+            
             // VIN Found page
             WaitForElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:VinFoundButton"));
             ShouldBe(SetUrl, JsonCall("RumbleOnClassifieds:Url:VinFound"));
@@ -41,24 +41,26 @@
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:AdditionalInfoNext"));
 
             // Additional Questions page
-            WaitForElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:AdditionalQuestionsDamage"));
+            WaitForElement(CSS, JsonCall("RumbleOnClassifieds:ListingFlow:AdditionalQuestionsDamage"));
             ShouldBe(SetUrl, JsonCall("RumbleOnClassifieds:Url:AdditionalQuestions"));
-            ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:AdditionalQuestionsDamage"));
+            ClickElement(CSS, JsonCall("RumbleOnClassifieds:ListingFlow:AdditionalQuestionsDamage"));
             WaitForElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:DamageNo"));
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:DamageNo"));
-            ClickElement(XPath, JsonCall(@"RumbleOnClassifieds:ListingFlow:VehicleOperated"));
-            WaitForElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:VehicleOperatedYes"));
-            ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:VehicleOperatedYes"));
+            ClickElement(CSS, JsonCall(@"RumbleOnClassifieds:ListingFlow:VehicleOperated"));
+            WaitForElement(CSS, JsonCall("RumbleOnClassifieds:ListingFlow:VehicleOperatedYes"));
+            ClickElement(CSS, JsonCall("RumbleOnClassifieds:ListingFlow:VehicleOperatedYes"));
             Wait(1);
             ScreenShot("Additional Questions - " + browser);
             WaitForElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:AdditionalQuestionsNext"));
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:AdditionalQuestionsNext"));
+            Wait(2);
 
             // Rate Your Vehicle page
             WaitForElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:RateNextButton"));
             ShouldBe(SetUrl, JsonCall("RumbleOnClassifieds:Url:RateYourVehicle"));
             ScreenShot("Rate Your Vehicle - " + browser);
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:RateNextButton"));
+            Wait(2);
 
             // Show Your Ride Off page
             // Need to add in photo upload - this can not be done with Selenium but can with C#
@@ -78,11 +80,11 @@
             WaitForElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:SecondaryColorBlack"));
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:SecondaryColorBlack"));
 
-            ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:StateTitledInBox"));
-            WaitForElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:StateTitledInSelectState"));
-            ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:StateTitledInSelectState"));
+            ClickElement(CSS, JsonCall("RumbleOnClassifieds:ListingFlow:StateTitledInBox"));
+            WaitForElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:StateTitledInSelectStateTX"));
+            ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:StateTitledInSelectStateTX"));
 
-            ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:ABSBox"));
+            ClickElement(CSS, JsonCall("RumbleOnClassifieds:ListingFlow:ABSBox"));
             WaitForElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:ABSBoxYes"));
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:ABSBoxYes"));
 
@@ -127,10 +129,11 @@
             ScreenShot("Your Listing Preview - " + browser);
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:ListingPreviewPublishButton"));
 
-            // Load up My Garage
-            ClickElement(XPath, JsonCall("RumbleonClassifieds:Header:MyGarage"));
-            Wait(3);
-            ScreenShot("My Garage After listing - " + browser);
+            // Congratulations Page
+            WaitForElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:GoToMyGarageButton"));
+            ShouldBe(SetUrl, JsonCall("RumbleOnClassifieds:Url:CongratulationsPage"));
+            ScreenShot("Congratulations Page - " + browser);
+            ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:GoToMyGarageButton"));
         }
     }
 }
