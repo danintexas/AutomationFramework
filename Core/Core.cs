@@ -154,19 +154,20 @@
                         _driver.FindElement(By.CssSelector(element)).Click();
                         break;
                     default:
-                        Logger(Info, "Unsupported element type passed to ClickElement. Please report to framework owner.");
-                        Logger(Fail, "Used " + type + " to click on element: " + element);
-                        Assert.Fail($@"Something happened with ClickElement method. Please report to framework owner.");
+                        Logger(Fail, "Unsupported element type passed to ClickElement. Please report to framework owner. Used " + type + " to click on element: " + element);
+                        Assert.Fail($@"Unsupported element type passed to ClickElement. Please report to framework owner." + Environment.NewLine + 
+                            "Used " + type + " to click on element: " + element);
                         Environment.Exit(1);
                         break;
                 }
 
-                Logger(Info, "Used " + type + " to click on element: " + element);
+                // Logger(Info, "Used " + type + " to click on element: " + element);
             }
 
             catch (Exception ex_)
             {
-                Logger(Fail, "Used " + type + " to click on element: " + element);
+                Logger(Fail, $@"Something happened with ClickElement method. Please report to framework owner." +
+                    Environment.NewLine + "Used " + type + " to click on element: " + element + Environment.NewLine + ex_);
                 Assert.Fail($@"Something happened with ClickElement method. Please report to framework owner." +
                     Environment.NewLine + "Used " + type + " to click on element: " + element + Environment.NewLine + ex_);
                 Environment.Exit(1);
@@ -179,7 +180,7 @@
         protected void CloseBrowser()
         {
             _driver.Close();
-            Logger(Info, "Closing active Selenium controlled browser");
+            // Logger(Info, "Closing active Selenium controlled browser");
         }
 
         /// <summary>
@@ -189,7 +190,7 @@
         {
             _driver?.Close();
             _driver?.Quit();
-            Logger(Info, "Closing and quitting all active Selenium controlled browsers");
+            // Logger(Info, "Closing and quitting all active Selenium controlled browsers");
         }
 
         /// <summary>
@@ -212,19 +213,19 @@
                         value = _driver.FindElement(By.CssSelector(element)).GetAttribute("value");
                         break;
                     default:
-                        Logger(Info, "Unsupported element type passed to GetFieldValue. Please report to framework owner.");
-                        Logger(Fail, "Used " + type + " to try and retrieve info in : " + element);
-                        Assert.Fail($@"Something happened with GetFieldValue method. Please report to framework owner.");
+                        Logger(Fail, "Unsupported element type passed to GetFieldValue. Please report to framework owner. Used " + type + " to try and retrieve info in : " + element);
+                        Assert.Fail($@"Unsupported element type passed to GetFieldValue. Please report to framework owner. Used " + type + " to try and retrieve info in : " + element);
                         Environment.Exit(1);
                         break;
                 }
 
-                Logger(Info, "Used " + type + " to try and retrieve info in : " + element);
+                //Logger(Info, "Used " + type + " to try and retrieve info in : " + element);
             }
 
             catch (Exception ex_)
             {
-                Logger(Fail, "Used " + type + " to try and retrieve info in : " + element);
+                Logger(Fail, $@"Something happened with GetFieldValue method. Please report to framework owner." +
+                   Environment.NewLine + "Used " + type + " to try and retrieve info in : " + element + Environment.NewLine + ex_);
                 Assert.Fail($@"Something happened with GetFieldValue method. Please report to framework owner." +
                    Environment.NewLine + "Used " + type + " to try and retrieve info in : " + element + Environment.NewLine + ex_);
                 Environment.Exit(1);
@@ -301,7 +302,7 @@
         protected void MaximizeBrowser()
         {
             _driver.Manage().Window.Maximize();
-            Logger(Info, "Maximized controlled browser");
+            //Logger(Info, "Maximized controlled browser");
         }
 
         /// <summary>
@@ -310,7 +311,7 @@
         protected void QuitBrowsers()
         {
             _driver.Quit();
-            Logger(Info, "Quitting all active Selenium controlled browsers");
+            //Logger(Info, "Quitting all active Selenium controlled browsers");
         }
 
         /// <summary>
@@ -343,8 +344,7 @@
             }
 
             image.SaveAsFile(filename);
-            Logger(Info, "Screenshot saved at: " + filename);
-            _test.AddScreenCaptureFromPath(screenLocation);
+            _test.Info(name + " : ", MediaEntityBuilder.CreateScreenCaptureFromPath(screenLocation).Build());
         }
 
         /// <summary>
@@ -363,21 +363,22 @@
                     case XPath:
                         break;
                     default:
-                        Logger(Info, "Unsupported element type passed to SendKeys. Please report to framework owner.");
-                        Logger(Fail, "Used " + type + " to send: '" + text + "' to element: " + element);
-                        Assert.Fail($@"Something happened with SendKeys method. Please report to framework owner.");
+                        Logger(Fail, $@"Something happened with SendKeys method. Please report to framework owner." + Environment.NewLine +
+                            "Used " + type + " to send: '" + text + "' to element: " + element);
+                        Assert.Fail($@"Something happened with SendKeys method. Please report to framework owner." + Environment.NewLine +
+                            "Used " + type + " to send: '" + text + "' to element: " + element);
                         Environment.Exit(1);
                         break;
                 }
 
                 textbox.SendKeys(text);
-                Logger(Info, "Sent the following: '" + text + "'" + " to the element: '" + element + "'");
+                // Logger(Info, "Sent the following: '" + text + "'" + " to the element: '" + element + "'");
             }
 
             catch (Exception ex_)
             {
-                Logger(Info, "Possible bad element sent to SendKeys.");
-                Logger(Fail, "Used " + type + " to send: '" + text + "' to element: " + element);
+                Logger(Fail, $@"Something happened with SendKeys method. Please report to framework owner." +
+                   Environment.NewLine + "Used " + type + " to send: '" + text + "' to element: " + element + Environment.NewLine + ex_);
                 Assert.Fail($@"Something happened with SendKeys method. Please report to framework owner." +
                    Environment.NewLine + "Used " + type + " to send: '" + text + "' to element: " + element + Environment.NewLine + ex_);
                 Environment.Exit(1);
@@ -394,11 +395,12 @@
             try
             {
                 Assert.AreEqual(valueOne, valueTwo);
-                Logger(Info, "Verified the two values were the same: '" + valueOne + "' and '" + valueTwo + "'");
+                // Logger(Info, "Verified the two values were the same: '" + valueOne + "' and '" + valueTwo + "'");
             }
-            catch (Exception)
+            catch (Exception ex_)
             {
-                Logger(Fail, "Two values asked to be the same were not: '" + valueOne + "' and '" + valueTwo + "'");
+                Logger(Fail, $@"Two values asked to be the same were not: '" + valueOne + "' and '" + valueTwo + "' " + Environment.NewLine + ex_);
+                Assert.Fail($@"Two values asked to be the same were not: '" + valueOne + "' and '" + valueTwo + "' " + Environment.NewLine + ex_);
             }
         }
 
@@ -412,11 +414,12 @@
             try
             {
                 Assert.AreNotEqual(valueOne, valueTwo);
-                Logger(Info, "Verified the two values were not the same: '" + valueOne + "' and '" + valueTwo + "'");
+                // Logger(Info, "Verified the two values were not the same: '" + valueOne + "' and '" + valueTwo + "'");
             }
-            catch
+            catch (Exception ex_)
             {
-                Logger(Fail, "Two values asked to be the different were the same: '" + valueOne + "' and '" + valueTwo + "'");
+                Logger(Fail, $@"Two values asked to be the different were the same: '" + valueOne + "' and '" + valueTwo + "' " + Environment.NewLine + ex_);
+                Assert.Fail($@"Two values asked to be the different were the same: '" + valueOne + "' and '" + valueTwo + "' " + Environment.NewLine + ex_);
             }
         }
 
@@ -445,27 +448,24 @@
             {
                 case "chrome":
                     _driver = new ChromeDriver($"{_homeDirectory}\\Support");
-                    Logger(Info, "Chrome started");
                     break;
 
                 case "firefox":
                     _driver = new FirefoxDriver($"{_homeDirectory}\\Support");
-                    logstatus = Status.Pass;
-                    Logger(Info, "Firefox started");
                     break;
 
                 case "edge":
                     _driver = new EdgeDriver($"{_homeDirectory}\\Support");
-                    logstatus = Status.Pass;
-                    Logger(Info, "Edge started");
                     break;
 
                 default:
                     logstatus = Status.Fail;
-                    Logger(Fail, "Browser type passed is not supported on test");
-                    Assert.Fail("Browser type passed is not supported on test");
+                    Logger(Fail, "Browser type passed is not supported on test. Used: " + browserType);
+                    Assert.Fail("Browser type passed is not supported on test Used: " + browserType);
                     break;
             }
+
+            Logger(Info, "Starting test with " + browserType);
         }
 
         /// <summary>
@@ -477,7 +477,6 @@
         {
             wait = wait * 1000; // Converts from milliseconds to seconds
             Thread.Sleep(wait);
-            Logger(Info, "Waited " + (wait / 1000) + " seconds");
         }
 
         /// <summary>
@@ -499,19 +498,21 @@
                         wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector(element)));
                         break;
                     default:
-                        Logger(Info, "Unsupported element type passed to WaitForElement. Please report to framework owner.");
-                        Logger(Fail, "Used " + type + " to wait on element: " + element);
-                        Assert.Fail($@"Something happened with WaitForElement method. Please report to framework owner.");
+                        Logger(Fail, $@"Unsupported element type passed to WaitForElement. Please report to framework owner." + Environment.NewLine +
+                            "Used " + type + " to wait on element: " + element);
+                        Assert.Fail($@"Unsupported element type passed to WaitForElement. Please report to framework owner." + Environment.NewLine +
+                            "Used " + type + " to wait on element: " + element);
                         Environment.Exit(1);
                         break;
                 }
 
-                Logger(Info, "Used " + type + " to wait on element: " + element);
+                //Logger(Info, "Used " + type + " to wait on element: " + element);
             }
 
             catch (Exception ex_)
             {
-                Logger(Fail, "Used " + type + " to wait on element: " + element);
+                Logger(Fail, $@"Something happened with WaitForElement method. Please report to framework owner." +
+                    Environment.NewLine + "Used " + type + " to wait on element: " + element + Environment.NewLine + ex_);
                 Assert.Fail($@"Something happened with WaitForElement method. Please report to framework owner." +
                     Environment.NewLine + "Used " + type + " to wait on element: " + element + Environment.NewLine + ex_);
                 Environment.Exit(1);
