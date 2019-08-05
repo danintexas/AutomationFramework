@@ -14,7 +14,7 @@
             ClickElement(CSS, JsonCall("RumbleOnClassifieds:MyGarage:DeleteButton"));
             WaitForElement(CSS, JsonCall("RumbleOnClassifieds:MyGarage:ConfirmDeleteListing"));
             ClickElement(CSS, JsonCall("RumbleOnClassifieds:MyGarage:ConfirmDeleteListing"));
-            Wait(1);
+            Wait(2);
             ScreenShot("My Garage After Delete");
 
         }
