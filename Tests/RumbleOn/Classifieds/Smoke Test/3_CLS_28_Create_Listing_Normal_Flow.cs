@@ -52,8 +52,8 @@
             WaitForElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:DamageNo"));
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:DamageNo"));
             ClickElement(CSS, JsonCall(@"RumbleOnClassifieds:ListingFlow:VehicleOperated"));
-            WaitForElement(CSS, JsonCall("RumbleOnClassifieds:ListingFlow:VehicleOperatedYes"));
-            ClickElement(CSS, JsonCall("RumbleOnClassifieds:ListingFlow:VehicleOperatedYes"));
+            WaitForElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:VehicleOperatedYes"));
+            ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:VehicleOperatedYes"));
             Wait(1);
             ScreenShot("Additional Questions");
             WaitForElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:AdditionalQuestionsNext"));

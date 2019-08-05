@@ -19,9 +19,22 @@
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:Header:Signup"));
 
             WaitForElement(ID, JsonCall("RumbleOnClassifieds:Signup:FirstName"));
+            ShouldBe(SetUrl, JsonCall("RumbleOnClassifieds:Url:CreateAnAccountPage"));
             ScreenShot("Classifieds Signup Page");
-            SendKeys(ID, JsonCall("RumbleOnClassifieds:Signup:FirstName"), "Test Name");
-            Wait(1);
+            SendKeys(ID, JsonCall("RumbleOnClassifieds:Signup:FirstName"), JsonCall("RumbleOnClassifieds:NewAccount:FirstName"));
+            SendKeys(ID, JsonCall("RumbleOnClassifieds:Signup:LastName"), JsonCall("RumbleOnClassifieds:NewAccount:LastName"));
+            SendKeys(ID, JsonCall("RumbleOnClassifieds:Signup:Email"), JsonCall("RumbleOnClassifieds:NewAccount:Email"));
+            SendKeys(ID, JsonCall("RumbleOnClassifieds:Signup:ConfirmEmail"), JsonCall("RumbleOnClassifieds:NewAccount:ConfirmEmail"));
+            SendKeys(ID, JsonCall("RumbleOnClassifieds:Signup:PhoneNumber"), JsonCall("RumbleOnClassifieds:NewAccount:PhoneNumber"));
+            SendKeys(ID, JsonCall("RumbleOnClassifieds:Signup:StreetAddress"), JsonCall("RumbleOnClassifieds:NewAccount:StreetAddress"));
+            SendKeys(ID, JsonCall("RumbleOnClassifieds:Signup:ZipCode"), JsonCall("RumbleOnClassifieds:NewAccount:ZipCode"));
+            ClickElement(CSS, JsonCall("RumbleOnClassifieds:Signup:StateDropdown"));
+            ClickElement(XPath, JsonCall("RumbleOnClassifieds:Signup:SelectStateAL"));
+            SendKeys(ID, JsonCall("RumbleOnClassifieds:Signup:Password"), JsonCall("RumbleOnClassifieds:NewAccount:Password"));
+            SendKeys(ID, JsonCall("RumbleOnClassifieds:Signup:ConfirmPassword"), JsonCall("RumbleOnClassifieds:NewAccount:ConfirmPassword"));
+
+
+            Wait(3);
             ScreenShot("Classifieds Signup Page - After Fill in");
 
         }

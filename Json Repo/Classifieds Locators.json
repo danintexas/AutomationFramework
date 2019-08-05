@@ -36,8 +36,8 @@
       "AdditionalQuestionsDamage": ".ant-row:nth-child(1) > .ant-col-24 .ant-select-selection__placeholder",
       "DamageNo": "//li[contains(.,'No')]",
       "VehicleOperated": ".ant-row:nth-child(2) .ant-select-selection__placeholder",
-      "VehicleOperatedYes": ".ant-select-dropdown-menu-item-active",
-      // /html/body/div[4]/div/div/div/ul/li[1] <- Use this and test Firefox
+      // "VehicleOperatedYes": ".ant-select-dropdown-menu-item-active",
+      "VehicleOperatedYes": "/html/body/div[4]/div/div/div/ul/li[1]",
       "AdditionalQuestionsNext": "//button[@class='ant-btn _2Vkk2TyDmy8kd63i5Od425 ant-btn-primary']",
       // Rate Your Vehicle page
       "RateNextButton": "//button[contains(.,'NEXT')]",
@@ -85,7 +85,17 @@
       "ConfirmDeleteListing": ".ant-col-xs-24 > .ant-btn-primary"
     },
     "Signup": {
-      "FirstName": "firstName"
+      "ConfirmEmail": "confirmEmail",
+      "ConfirmPassword": "confirmPassword",
+      "Email": "email",
+      "FirstName": "firstName",
+      "LastName": "lastName",
+      "Password": "password",
+      "PhoneNumber": "mobile",
+      "SelectStateAL": "//li[contains(text(),'AL')]",
+      "StreetAddress": "streetAddress",
+      "StateDropdown": ".ant-select-selection__rendered",
+      "ZipCode": "zip"
     }
   }
 }
