@@ -37,6 +37,7 @@
       "DamageNo": "//li[contains(.,'No')]",
       "VehicleOperated": ".ant-row:nth-child(2) .ant-select-selection__placeholder",
       "VehicleOperatedYes": ".ant-select-dropdown-menu-item-active",
+      // /html/body/div[4]/div/div/div/ul/li[1] <- Use this and test Firefox
       "AdditionalQuestionsNext": "//button[@class='ant-btn _2Vkk2TyDmy8kd63i5Od425 ant-btn-primary']",
       // Rate Your Vehicle page
       "RateNextButton": "//button[contains(.,'NEXT')]",
