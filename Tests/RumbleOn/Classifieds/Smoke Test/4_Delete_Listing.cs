@@ -3,9 +3,9 @@
     using NUnit.Framework;
     partial class SmokeTest : Core
     {
-        [TestCase(Chrome, TestName = "Delete Listing")]
+        [TestCase(TestName = "Delete Listing")]
         [Order(5)]
-        public void Delete(string browser)
+        public void Delete()
         {
             Logger(Info, "Delete Listing Test");
             WaitForElement(CSS, JsonCall("RumbleOnClassifieds:MyGarage:DeleteButton"));

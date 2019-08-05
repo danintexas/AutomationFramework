@@ -4,11 +4,11 @@
 
     partial class SmokeTest : Core
     {
-        [TestCase(Chrome, TestName = "CLS-27 Normal Account Signin")]
+        [TestCase(TestName = "CLS-27 Normal Account Signin")]
         [Order(3)]
-        public void StepOne(string browser)
+        public void StepOne()
         {
-            UseBrowser(browser);
+            UseBrowser(JsonCall("FrameworkConfiguration:Browser"));
             MaximizeBrowser();
             Logger(Info, "Normal Account Login Test");
             SetUrl = JsonCall("RumbleOnClassifieds:Url:Homepage");

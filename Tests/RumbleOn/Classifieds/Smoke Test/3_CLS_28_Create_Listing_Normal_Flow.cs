@@ -5,9 +5,9 @@
     [Category("Classifieds Smoketest")]
     partial class SmokeTest : Core
     {
-        [TestCase(Chrome, TestName = "CLS-28 Create Listing Normal Flow")]
+        [TestCase(TestName = "CLS-28 Create Listing Normal Flow")]
         [Order(4)]
-        public void StepTwo(string browser)
+        public void StepTwo()
         {
             // First page of listing flow
             Logger(Info, "Normal Listing Flow Test");

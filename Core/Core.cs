@@ -19,7 +19,6 @@
     {
         protected IWebDriver _driver;
         protected IConfiguration _config;
-        protected string[] supportedBrowsers = { Chrome, Firefox, Edge };
         
         // Needed for reporting
         protected ExtentReports _extent;
@@ -28,7 +27,6 @@
 
         private readonly string _homeDirectory;
 
-        public const string Chrome = "chrome", Firefox = "firefox", Edge = "edge"; // Const Keywords for UseBrowser
         public const string Info = "info", Pass = "pass", Fail = "fail"; // Const Keywords for Logger
         public const string XPath = "xpath", CSS = "css", ID = "ID"; // Const Keywords for Selenium Locators
 

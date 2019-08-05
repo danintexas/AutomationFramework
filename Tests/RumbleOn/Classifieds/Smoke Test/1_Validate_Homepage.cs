@@ -5,11 +5,11 @@
     [Category("Classifieds Smoketest")]
     partial class SmokeTest : Core
     {
-        [TestCase(Chrome, TestName = "Validate Classifieds Homepage")]
+        [TestCase(TestName = "Validate Classifieds Homepage")]
         [Order(1)]
-        public void HomepageVerification(string browser)
+        public void HomepageVerification()
         {
-            UseBrowser(browser);
+            UseBrowser(JsonCall("FrameworkConfiguration:Browser"));
             MaximizeBrowser();
             Logger(Info, "Starting valadiation test of Classifieds Homepage");
             SetUrl = JsonCall("RumbleOnClassifieds:Url:Homepage");
