@@ -76,10 +76,12 @@
             ScreenShot("Show Off Your Ride");
 
             // Below is for testing
-            //ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:RightSidePic"));
-            //Wait(5);
-            //RumbleOnClassifieds.PhotoSelection();
-            //Wait(5);
+            /*
+            ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:RightSidePic"));
+            Wait(5);
+            RumbleOnClassifieds.PhotoSelection();
+            Wait(5);
+            */
 
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:ShowYourRideNextButton"));
 
