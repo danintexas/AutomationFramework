@@ -43,6 +43,7 @@
       "RateNextButton": "//button[contains(.,'NEXT')]",
       // Show Your Ride Off page
       "ShowYourRideNextButton": "//button[contains(.,'NEXT')]",
+      "RightSidePic": "//img[@alt='(Upload Right Side)']",
       // Key Featurs of Your Ride
       "ABSBox": ".ant-row-flex:nth-child(4) > .ant-col-xs-24:nth-child(1) .ant-select-selection__placeholder",
       "ABSBoxYes": "//li[contains(.,'Yes')]",

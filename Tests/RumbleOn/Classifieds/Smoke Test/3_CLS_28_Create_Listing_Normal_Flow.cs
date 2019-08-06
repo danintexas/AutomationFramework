@@ -74,6 +74,13 @@
             WaitForElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:ShowYourRideNextButton"));
             ShouldBe(SetUrl, JsonCall("RumbleOnClassifieds:Url:ShowOffYourRide"));
             ScreenShot("Show Off Your Ride");
+
+            // Below is for testing
+            //ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:RightSidePic"));
+            //Wait(5);
+            //RumbleOnClassifieds.PhotoSelection();
+            //Wait(5);
+
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:ShowYourRideNextButton"));
 
             // Key Featurs of Your Ride page
@@ -138,6 +145,7 @@
             Logger(Info, "Listing Preview page Test");
             WaitForElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:ListingPreviewPublishButton"));
             ShouldBe(StripEndingUrl(SetUrl), JsonCall("RumbleOnClassifieds:Url:YourListingPreview"));
+            Wait(1);
             ScreenShot("Your Listing Preview");
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:ListingPreviewPublishButton"));
 
