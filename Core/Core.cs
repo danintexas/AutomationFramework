@@ -331,7 +331,6 @@
             }
 
             Screenshot image = ((ITakesScreenshot)_driver).GetScreenshot();
-            DateTime timeStamp = DateTime.Now;
 
             var filename = $"{logLocation}\\{name}.png";
             var screenLocation = $"{reportLocation}\\{name}.png";
@@ -485,7 +484,7 @@
         /// <param name="wait"></param>
         protected void Wait(int wait)
         {
-            wait = wait * 1000; // Converts from milliseconds to seconds
+            wait *= 1000; // Converts from milliseconds to seconds
             Thread.Sleep(wait);
         }
 
