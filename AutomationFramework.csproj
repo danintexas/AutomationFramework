@@ -83,6 +83,9 @@
     <None Update="Json Repo\Json Override\*.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="appsettings.local.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Json Repo\Json Override\Any JSON files dropped here will override the others.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

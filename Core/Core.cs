@@ -34,8 +34,7 @@
         {
             _homeDirectory = Path.GetDirectoryName(Assembly.GetAssembly(typeof(Core)).Location);
 
-            var configBuilder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", false, true) // load base settings
-                .AddJsonFile("appsettings.local.json", true, true); // load local settings
+            var configBuilder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", false, true); 
 
             foreach (var filename in Directory.GetFiles(Directory.GetCurrentDirectory() + @"\Json Repo" , "*.json"))
             {
@@ -52,6 +51,8 @@
                     configBuilder.AddJsonFile(filename, true, true);
                 }
             }
+
+            configBuilder.AddJsonFile(_homeDirectory + "\\appsettings.local.json", true, true);
 
             _config = configBuilder.Build();
         }
