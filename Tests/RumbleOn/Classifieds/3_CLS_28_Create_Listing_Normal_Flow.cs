@@ -1,8 +1,6 @@
 ﻿namespace AutomationFramework.Tests.Classifieds.Smoke
 {
     using NUnit.Framework;
-    using System.IO;
-    using System.Reflection;
 
     [Category("Classifieds Smoketest")]
     partial class SmokeTest : Core
