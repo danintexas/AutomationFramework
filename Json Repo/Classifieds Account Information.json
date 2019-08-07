@@ -2,23 +2,23 @@
   // RumbleOn Classifieds specific Account and testing information
   "RumbleOnClassifieds": {
     "Account": {
-      "User": "daniel.test.automation@danintexas.com",
-      "Password": "Rumbleon12",
-      "VIN": "1HD1JRV11DB436666",
-      "VIN2": "1HD1JRV11DB436665"
+      "User": "User Email Goes Here",
+      "Password": "Password Goes Here",
+      "VIN": "VIN # 1",
+      "VIN2": "VIN # 2"
     },
     "NewAccount": {
-      "ConfirmEmail": "daniel.qa.test.123456@danintexas.com",
-      "ConfirmPassword": "Rumbleon12",
-      "Email": "daniel.qa.test.123456@danintexas.com",
-      "FirstName": "Daniel Gail",
-      "LastName": "Test Account",
-      "Password": "Rumbleon12",
-      "PhoneNumber": "8326121753",
-      "SelectStateTX": "//li[contains(.,'TX')]",
-      "StreetAddress": "1929 Capulin Rd",
-      "StateDropdown": ".ant-select-selection__rendered",
-      "ZipCode": "76131"
+      "ConfirmEmail": "",
+      "ConfirmPassword": "",
+      "Email": "",
+      "FirstName": "",
+      "LastName": "",
+      "Password": "",
+      "PhoneNumber": "",
+      "SelectStateTX": "",
+      "StreetAddress": "",
+      "StateDropdown": "",
+      "ZipCode": ""
     }
   }
 }
