@@ -4,8 +4,8 @@
     partial class SmokeTest : Core
     {
         [TestCase(TestName = "Delete Listing")]
-        [Order(5)]
-        public void Delete()
+        [Order(99)]
+        public void DeleteListing()
         {
             Logger(Info, "Delete Listing Test");
             WaitForElement(CSS, JsonCall("RumbleOnClassifieds:MyGarage:DeleteButton"));

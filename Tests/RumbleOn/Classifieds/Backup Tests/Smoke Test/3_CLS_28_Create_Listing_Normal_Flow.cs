@@ -1,13 +1,15 @@
 ﻿namespace AutomationFramework.Tests.Classifieds.Smoke
 {
     using NUnit.Framework;
+    using System.IO;
+    using System.Reflection;
 
     [Category("Classifieds Smoketest")]
     partial class SmokeTest : Core
     {
         [TestCase(TestName = "CLS-28 Create Listing Normal Flow")]
         [Order(4)]
-        public void StepTwo()
+        public void NormalListingflow()
         {
             // First page of listing flow
             Logger(Info, "Normal Listing Flow Test");
@@ -73,13 +75,13 @@
             Logger(Info, "Show Your Ride Off page Test");
             WaitForElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:ShowYourRideNextButton"));
             ShouldBe(SetUrl, JsonCall("RumbleOnClassifieds:Url:ShowOffYourRide"));
-            
+
             // Below is for testing
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:BackSidePic"));
             Wait(5);
             RumbleOnClassifieds.PhotoSelection(0);
-            Wait(1); // Long timer here for error dialog
-
+            Wait(5); // Long timer here for error dialog
+            
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:FrontSidePic"));
             Wait(1);
             RumbleOnClassifieds.PhotoSelection(0);
@@ -99,7 +101,7 @@
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:RightSidePic"));
             Wait(1);
             RumbleOnClassifieds.PhotoSelection(0);
-
+            
             Wait(3);
 
             ScreenShot("Show Off Your Ride");

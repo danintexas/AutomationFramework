@@ -6,7 +6,7 @@
     {
         [TestCase(TestName = "CLS-27 Normal Account Signin")]
         [Order(3)]
-        public void StepOne()
+        public void NormalAccountLogin()
         {
             UseBrowser(JsonCall("FrameworkConfiguration:Browser"));
             MaximizeBrowser();

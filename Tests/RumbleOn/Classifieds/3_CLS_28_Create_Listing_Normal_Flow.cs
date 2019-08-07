@@ -9,7 +9,7 @@
     {
         [TestCase(TestName = "CLS-28 Create Listing Normal Flow")]
         [Order(4)]
-        public void StepTwo()
+        public void NormalListingflow()
         {
             // First page of listing flow
             Logger(Info, "Normal Listing Flow Test");
@@ -76,35 +76,31 @@
             WaitForElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:ShowYourRideNextButton"));
             ShouldBe(SetUrl, JsonCall("RumbleOnClassifieds:Url:ShowOffYourRide"));
 
-            // Below is for testing
-            ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:BackSidePic"));
+            // Below is proof of concept. This generates an error dialog with SendKeys. 
+            // It will be corrected with Net Core 3.0 which supports SendKeys
+            //////////////////////////////////////////////////////////////////////////////////////
+            ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:RightSidePic"));
             Wait(5);
-            RumbleOnClassifieds.PhotoSelection(0);
-            Wait(5); // Long timer here for error dialog
-            
-            ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:FrontSidePic"));
-            Wait(1);
-            RumbleOnClassifieds.PhotoSelection(0);
-            
+            AdditionalFunctions.PhotoSelection(0, "Test Image.png");
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:LeftSidePic"));
             Wait(1);
-            RumbleOnClassifieds.PhotoSelection(0);
-            
-            ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:OdometerPic"));
+            AdditionalFunctions.PhotoSelection(1);
+            ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:FrontSidePic"));
             Wait(1);
-            RumbleOnClassifieds.PhotoSelection(0);
-            
+            AdditionalFunctions.PhotoSelection(2);
+            ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:BackSidePic"));
+            Wait(1);
+            AdditionalFunctions.PhotoSelection(3);
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:RearTirePic"));
             Wait(1);
-            RumbleOnClassifieds.PhotoSelection(0);
-
-            ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:RightSidePic"));
+            AdditionalFunctions.PhotoSelection(4);
+            ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:OdometerPic"));
             Wait(1);
-            RumbleOnClassifieds.PhotoSelection(0);
-            
+            AdditionalFunctions.PhotoSelection(0);
             Wait(3);
-
             ScreenShot("Show Off Your Ride");
+            //////////////////////////////////////////////////////////////////////////////////////
+
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:ShowYourRideNextButton"));
 
             // Key Featurs of Your Ride page

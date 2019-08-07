@@ -4,7 +4,8 @@
     "Account": {
       "User": "daniel.test.automation@danintexas.com",
       "Password": "Rumbleon12",
-      "VIN": "1HD1JRV11DB436666"
+      "VIN": "1HD1JRV11DB436666",
+      "VIN2": "1HD1JRV11DB436665"
     },
     "NewAccount": {
       "ConfirmEmail": "daniel.qa.test.123456@danintexas.com",
