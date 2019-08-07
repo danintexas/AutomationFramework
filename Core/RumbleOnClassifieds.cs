@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Reflection;
 
+
 class RumbleOnClassifieds
 {
     /// <summary>
@@ -12,31 +13,26 @@ class RumbleOnClassifieds
     public static void PhotoSelection(int selection)
     {
         string homeDirectory = Path.GetDirectoryName(Assembly.GetAssembly(typeof(Core)).Location);
-        Random random = new Random();
-        int randomNumber = random.Next(1, 5);
+        int fCount = Directory.GetFiles($"{homeDirectory}\\Support\\Image Bank\\", "*", SearchOption.TopDirectoryOnly).Length;
 
-        switch (selection)
+        if (selection == 0)
         {
-            case 1:
-                System.Windows.Forms.SendKeys.SendWait($"{homeDirectory}\\Support\\Image Bank\\automation image 1.png");
-                System.Windows.Forms.SendKeys.SendWait("{ENTER}");
-                break;
-            case 2:
-                System.Windows.Forms.SendKeys.SendWait($"{homeDirectory}\\Support\\Image Bank\\automation image 2.png");
-                System.Windows.Forms.SendKeys.SendWait("{ENTER}");
-                break;
-            case 3:
-                System.Windows.Forms.SendKeys.SendWait($"{homeDirectory}\\Support\\Image Bank\\automation image 3.png");
-                System.Windows.Forms.SendKeys.SendWait("{ENTER}");
-                break;
-            case 4:
-                System.Windows.Forms.SendKeys.SendWait($"{homeDirectory}\\Support\\Image Bank\\automation image 4.png");
-                System.Windows.Forms.SendKeys.SendWait("{ENTER}");
-                break;
-            default:
-                System.Windows.Forms.SendKeys.SendWait($"{homeDirectory}\\Support\\Image Bank\\automation image {randomNumber}.png");
-                System.Windows.Forms.SendKeys.SendWait("{ENTER}");
-                break;
+            Random random = new Random();
+            selection = random.Next(1, (fCount + 1));
         }
+
+        else if (selection > fCount)
+        {
+            Random random = new Random();
+            selection = random.Next(1, (fCount + 1));
+        }
+
+        System.Windows.Forms.SendKeys.SendWait($"{homeDirectory}\\Support\\Image Bank\\automation image {selection}.png");
+        System.Windows.Forms.SendKeys.SendWait("{ENTER}");
+
+        /* The above generates the following error with a 3 X .Net dialog
+         * $exception	{"Could not load type 'System.Runtime.InteropServices.StandardOleMarshalObject' from assembly 
+         * 'System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089'.":"System.Runtime.InteropServices.StandardOleMarshalObject"}	System.TypeLoadException
+         */
     }
 }
