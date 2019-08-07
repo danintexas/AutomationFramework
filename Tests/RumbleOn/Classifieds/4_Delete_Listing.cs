@@ -16,7 +16,6 @@
             ClickElement(CSS, JsonCall("RumbleOnClassifieds:MyGarage:ConfirmDeleteListing"));
             Wait(2);
             ScreenShot("My Garage After Delete");
-
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿namespace AutomationFramework.Tests.Classifieds.Smoke
 {
     using NUnit.Framework;
+    using System.IO;
+    using System.Reflection;
 
     [Category("Classifieds Smoketest")]
     partial class SmokeTest : Core
@@ -73,33 +75,33 @@
             Logger(Info, "Show Your Ride Off page Test");
             WaitForElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:ShowYourRideNextButton"));
             ShouldBe(SetUrl, JsonCall("RumbleOnClassifieds:Url:ShowOffYourRide"));
-            
+
             // Below is for testing
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:BackSidePic"));
             Wait(5);
-            RumbleOnClassifieds.PhotoSelection(10);
-            Wait(15); // Long timer here for error dialog
-
+            RumbleOnClassifieds.PhotoSelection(0);
+            Wait(5); // Long timer here for error dialog
+            
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:FrontSidePic"));
             Wait(1);
-            RumbleOnClassifieds.PhotoSelection(10);
+            RumbleOnClassifieds.PhotoSelection(0);
             
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:LeftSidePic"));
             Wait(1);
-            RumbleOnClassifieds.PhotoSelection(10);
+            RumbleOnClassifieds.PhotoSelection(0);
             
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:OdometerPic"));
             Wait(1);
-            RumbleOnClassifieds.PhotoSelection(10);
+            RumbleOnClassifieds.PhotoSelection(0);
             
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:RearTirePic"));
             Wait(1);
-            RumbleOnClassifieds.PhotoSelection(10);
+            RumbleOnClassifieds.PhotoSelection(0);
 
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:RightSidePic"));
             Wait(1);
-            RumbleOnClassifieds.PhotoSelection(10);
-
+            RumbleOnClassifieds.PhotoSelection(0);
+            
             Wait(3);
 
             ScreenShot("Show Off Your Ride");
