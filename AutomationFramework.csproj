@@ -6,6 +6,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <PlatformTarget>x64</PlatformTarget>
+    <NoWarn>1701;1702;NU1701</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,14 +18,18 @@
   <ItemGroup>
     <Compile Remove="Json Repo\Backup\**" />
     <Compile Remove="Tests\Archive Tests\**" />
+    <Compile Remove="Tests\Assorted Tests Archive\**" />
     <Compile Remove="Tests\RumbleOn\Classifieds\Backup Tests\**" />
     <Compile Remove="Tests\RumbleOn\Classifieds\Ignored Tests\**" />
     <EmbeddedResource Remove="Json Repo\Backup\**" />
     <EmbeddedResource Remove="Tests\Archive Tests\**" />
+    <EmbeddedResource Remove="Tests\Assorted Tests Archive\**" />
     <EmbeddedResource Remove="Tests\RumbleOn\Classifieds\Backup Tests\**" />
     <EmbeddedResource Remove="Tests\RumbleOn\Classifieds\Ignored Tests\**" />
+	<EmbeddedResource Remove="Tests\Assorted Tests\**" />
     <None Remove="Json Repo\Backup\**" />
     <None Remove="Tests\Archive Tests\**" />
+    <None Remove="Tests\Assorted Tests Archive\**" />
     <None Remove="Tests\RumbleOn\Classifieds\Backup Tests\**" />
     <None Remove="Tests\RumbleOn\Classifieds\Ignored Tests\**" />
   </ItemGroup>
@@ -38,6 +43,7 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
     <PackageReference Include="NUnit" Version="3.12.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
+    <PackageReference Include="OpenPop.NET" Version="2.0.6.1120" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
     <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
   </ItemGroup>
