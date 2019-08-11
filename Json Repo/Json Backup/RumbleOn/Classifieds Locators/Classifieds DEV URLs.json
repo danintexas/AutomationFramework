@@ -1,0 +1,23 @@
+{
+  // RumbleOn Classifieds specific URL information for DEV environment
+  "RumbleOnClassifieds": {
+    "URL": {
+      "HomePage": "https://dev.rumbleonclassifieds.com/",
+      "AdditionalInfo": "https://dev.rumbleonclassifieds.com/list-your-vehicle/step-1/additional-info",
+      "AdditionalQuestions": "https://dev.rumbleonclassifieds.com/list-your-vehicle/step-1/additonal-question",
+      "ConfirmEmail": "https://dev.rumbleonclassifieds.com/list-your-vehicle/step-3/confirm-email",
+      "CongratulationsPage": "https://dev.rumbleonclassifieds.com/list-your-vehicle/complete",
+      "CreateAnAccountPage": "https://dev.rumbleonclassifieds.com/auth/sign-up-for-an-account",
+      "EditReview": "https://dev.rumbleonclassifieds.com/list-your-vehicle/step-3/review-and-edit",
+      "KeyFeatures": "https://dev.rumbleonclassifieds.com/list-your-vehicle/step-2/key-features",
+      "LandingPage": "https://dev.rumbleonclassifieds.com/list-your-vehicle/pricing",
+      "ListingPage": "https://dev.rumbleonclassifieds.com/list-your-vehicle/step-1",
+      "RateYourVehicle": "https://dev.rumbleonclassifieds.com/list-your-vehicle/step-1/rate-vehicle",
+      "SetPrice": "https://dev.rumbleonclassifieds.com/list-your-vehicle/step-3/set-price",
+      "ShowOffYourRide": "https://dev.rumbleonclassifieds.com/list-your-vehicle/step-2/show-your-ride",
+      "VinFound": "https://dev.rumbleonclassifieds.com/list-your-vehicle/step-1/confirm-vehicle",
+      "YourListingPreview": "https://dev.rumbleonclassifieds.com/list-your-vehicle/step-3/preview-listing",
+      "LoginPage": "https://dev.rumbleonclassifieds.com/auth/sign-in-to-your-account"
+    }
+  }
+}

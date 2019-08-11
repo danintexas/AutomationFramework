@@ -1,0 +1,23 @@
+{
+  // RumbleOn Classifieds specific URL information for PPROD environment
+  "RumbleOnClassifieds": {
+    "URL": {
+      "HomePage": "https://pprod.rumbleonclassifieds.com/",
+      "AdditionalInfo": "https://pprod.rumbleonclassifieds.com/list-your-vehicle/step-1/additional-info",
+      "AdditionalQuestions": "https://pprod.rumbleonclassifieds.com/list-your-vehicle/step-1/additonal-question",
+      "ConfirmEmail": "https://pprod.rumbleonclassifieds.com/list-your-vehicle/step-3/confirm-email",
+      "CongratulationsPage": "https://pprod.rumbleonclassifieds.com/list-your-vehicle/complete",
+      "CreateAnAccountPage": "https://pprod.rumbleonclassifieds.com/auth/sign-up-for-an-account",
+      "EditReview": "https://pprod.rumbleonclassifieds.com/list-your-vehicle/step-3/review-and-edit",
+      "KeyFeatures": "https://pprod.rumbleonclassifieds.com/list-your-vehicle/step-2/key-features",
+      "LandingPage": "https://pprod.rumbleonclassifieds.com/list-your-vehicle/pricing",
+      "ListingPage": "https://pprod.rumbleonclassifieds.com/list-your-vehicle/step-1",
+      "RateYourVehicle": "https://pprod.rumbleonclassifieds.com/list-your-vehicle/step-1/rate-vehicle",
+      "SetPrice": "https://pprod.rumbleonclassifieds.com/list-your-vehicle/step-3/set-price",
+      "ShowOffYourRide": "https://pprod.rumbleonclassifieds.com/list-your-vehicle/step-2/show-your-ride",
+      "VinFound": "https://pprod.rumbleonclassifieds.com/list-your-vehicle/step-1/confirm-vehicle",
+      "YourListingPreview": "https://pprod.rumbleonclassifieds.com/list-your-vehicle/step-3/preview-listing",
+      "LoginPage": "https://pprod.rumbleonclassifieds.com/auth/sign-in-to-your-account"
+    }
+  }
+}
