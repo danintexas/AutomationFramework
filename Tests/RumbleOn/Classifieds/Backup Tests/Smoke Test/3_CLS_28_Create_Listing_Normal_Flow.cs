@@ -79,19 +79,19 @@
             //////////////////////////////////////////////////////////////////////////////////////
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:RightSidePic"));
             Wait(5);
-            AdditionalFunctions.PhotoSelection(0, "Test Image.png");
+            AdditionalFunctions.PhotoSelection(0);
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:LeftSidePic"));
             Wait(1);
-            AdditionalFunctions.PhotoSelection(1);
+            AdditionalFunctions.PhotoSelection(0);
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:FrontSidePic"));
             Wait(1);
-            AdditionalFunctions.PhotoSelection(2);
+            AdditionalFunctions.PhotoSelection(0);
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:BackSidePic"));
             Wait(1);
-            AdditionalFunctions.PhotoSelection(3);
+            AdditionalFunctions.PhotoSelection(0);
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:RearTirePic"));
             Wait(1);
-            AdditionalFunctions.PhotoSelection(4);
+            AdditionalFunctions.PhotoSelection(0);
             ClickElement(XPath, JsonCall("RumbleOnClassifieds:ListingFlow:OdometerPic"));
             Wait(1);
             AdditionalFunctions.PhotoSelection(0);
