@@ -530,6 +530,11 @@
                     Environment.NewLine + "Used " + type + " to wait on element: " + element + Environment.NewLine + ex_);
                 Environment.Exit(1);
             }
-        }    
+        }
+        protected void GetAllEmailsFromAnEmailAccount()
+        {
+            //FetchAllMessages("danintexas.com", 110, false, "dan.test.5.17.2@danintexas.com", "Rumbleon12");
+            AdditionalFunctions.FetchAllMessages(JsonCall(""), 110, false, "dan.test.5.17.2@danintexas.com", "Rumbleon12");
+        }
     }
 }
