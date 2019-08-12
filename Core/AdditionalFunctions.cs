@@ -51,7 +51,7 @@ class AdditionalFunctions
         System.Windows.Forms.SendKeys.SendWait("{ENTER}");
     }
 
-    public static List<Message> FetchAllMessages(string hostname, int port, bool useSsl, string username, string password)
+    public static List<Message> FetchAllMessages(string hostname, int port, bool useSsl, string username, string password, bool delete = false)
     {
         // The client disconnects from the server when being disposed
         using (Pop3Client client = new Pop3Client())
@@ -81,15 +81,26 @@ class AdditionalFunctions
             // Now return the fetched messages
             foreach (var emailText in allMessages)
             {
+                DateTime date = DateTime.Today;
+                var dir = $@"c:\Automation Logs\{date:MM.dd.yyyy}\Emails\";
+
+                if (!Directory.Exists(dir))
+                {
+                    Directory.CreateDirectory(dir);
+                }
+
                 MessagePart plainText = emailText.FindFirstPlainTextVersion();
                 var body = plainText.GetBodyAsText();
                 Console.WriteLine(body);
-                plainText.Save(new FileInfo($"c:\\Automation Logs\\Email {number}.txt"));
+                plainText.Save(new FileInfo(dir + $"\\Email {number}.txt"));
                 number++;
             }
 
             // Delete all messages from the account
-            client.DeleteAllMessages();
+            if (delete == true)
+            {
+                client.DeleteAllMessages();
+            }
 
             return allMessages;
         }
