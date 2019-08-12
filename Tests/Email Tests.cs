@@ -11,7 +11,6 @@ namespace AutomationFramework.Tests.Development_Tests
         public void Test()
         {
            GetAllEmailsFromAnEmailAccount();
-        }
-       
+        }       
     }
 }
