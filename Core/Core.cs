@@ -192,7 +192,28 @@
         {
             _driver?.Close();
             _driver?.Quit();
-            // Logger(Info, "Closing and quitting all active Selenium controlled browsers");
+        }
+
+        /// <summary>
+        /// Simple wrapper method to call the 'FetchAllMessages' method which pulls all emails from an email account using POP3. 
+        /// Ensure your appsettings.local.JSON file has the following filled out
+        /// -EmailInformation:HostName
+        /// -EmailInformation:UserName
+        /// -EmailInformation:Password
+        /// </summary>
+        /// <param name="delete">Pass 'true' through the method if you want the emails deleted off the account after saving them</param>
+        protected void GetAllEmailsFromAnEmailAccount(bool delete = false)
+        {
+            if (delete == true)
+            {
+                AdditionalFunctions.FetchAllMessages(JsonCall("EmailInformation:HostName"), 110, false,
+                   JsonCall("EmailInformation:UserName"), JsonCall("EmailInformation:Password"), true);
+            }
+            else
+            {
+                AdditionalFunctions.FetchAllMessages(JsonCall("EmailInformation:HostName"), 110, false,
+                    JsonCall("EmailInformation:UserName"), JsonCall("EmailInformation:Password"));
+            }
         }
 
         /// <summary>
@@ -220,8 +241,6 @@
                         Environment.Exit(1);
                         break;
                 }
-
-                //Logger(Info, "Used " + type + " to try and retrieve info in : " + element);
             }
 
             catch (Exception ex_)
@@ -304,7 +323,6 @@
         protected void MaximizeBrowser()
         {
             _driver.Manage().Window.Maximize();
-            //Logger(Info, "Maximized controlled browser");
         }
 
         /// <summary>
@@ -313,7 +331,6 @@
         protected void QuitBrowsers()
         {
             _driver.Quit();
-            //Logger(Info, "Quitting all active Selenium controlled browsers");
         }
 
         /// <summary>
@@ -381,8 +398,6 @@
                         Environment.Exit(1);
                         break;
                 }
-
-                
             }
 
             catch (Exception ex_)
@@ -405,7 +420,6 @@
             try
             {
                 Assert.AreEqual(valueOne, valueTwo);
-                // Logger(Info, "Verified the two values were the same: '" + valueOne + "' and '" + valueTwo + "'");
             }
             catch (Exception ex_)
             {
@@ -424,7 +438,6 @@
             try
             {
                 Assert.AreNotEqual(valueOne, valueTwo);
-                // Logger(Info, "Verified the two values were not the same: '" + valueOne + "' and '" + valueTwo + "'");
             }
             catch (Exception ex_)
             {
@@ -518,8 +531,6 @@
                         Environment.Exit(1);
                         break;
                 }
-
-                //Logger(Info, "Used " + type + " to wait on element: " + element);
             }
 
             catch (Exception ex_)
@@ -530,11 +541,6 @@
                     Environment.NewLine + "Used " + type + " to wait on element: " + element + Environment.NewLine + ex_);
                 Environment.Exit(1);
             }
-        }
-        protected void GetAllEmailsFromAnEmailAccount()
-        {
-            //FetchAllMessages("danintexas.com", 110, false, "dan.test.5.17.2@danintexas.com", "Rumbleon12");
-            AdditionalFunctions.FetchAllMessages(JsonCall(""), 110, false, "dan.test.5.17.2@danintexas.com", "Rumbleon12");
         }
     }
 }
