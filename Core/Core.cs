@@ -202,20 +202,21 @@
         /// -EmailInformation:Password
         /// </summary>
         /// <param name="delete">Pass 'true' through the method if you want the emails deleted off the account after saving them</param>
+        /// <param name="textToSearchFor">Pass a string value to parse the emails for</param>
         protected void GetAllEmailsFromAnEmailAccount(bool delete = false)
         {
             if (delete == true)
             {
                 AdditionalFunctions.FetchAllMessages(JsonCall("EmailInformation:HostName"), 110, false,
                    JsonCall("EmailInformation:UserName"), JsonCall("EmailInformation:Password"), true);
-                Logger(Info, "Checking all emails in the following email account" + JsonCall("EmailInformation:UserName"));
+                Logger(Info, "Checking all emails in the following email account: " + JsonCall("EmailInformation:UserName"));
                 Logger(Info, "Deleting all emails in the following email account: " + JsonCall("EmailInformation:UserName"));
             }
             else
             {
                 AdditionalFunctions.FetchAllMessages(JsonCall("EmailInformation:HostName"), 110, false,
                     JsonCall("EmailInformation:UserName"), JsonCall("EmailInformation:Password"));
-                Logger(Info, "Checking all emails in the following email account" + JsonCall("EmailInformation:UserName"));
+                Logger(Info, "Checking all emails in the following email account: " + JsonCall("EmailInformation:UserName"));
             }
         }
 
@@ -334,6 +335,57 @@
         protected void QuitBrowsers()
         {
             _driver.Quit();
+        }
+
+        /// <summary>
+        /// Method will search in the 'c:\Automation Logs\{Date}\Emails' folder for a specific string in all the emails 
+        /// downloaded with the GetAllEmailsFromAnEmailAccount method.
+        /// This will fail or pass the current test if the string is not found.
+        /// It is recommended to run this after all other tests are completed. 
+        /// </summary>
+        /// <param name="valueToSearchFor">String to search for.</param>
+        protected void ParseAllEmailFilesForAStringValue(string valueToSearchFor)
+        {
+            DateTime date = DateTime.Today;
+            int fileCount   = Directory.GetFiles($@"c:\Automation Logs\{date:MM.dd.yyyy}\Emails\", "Email *" ,SearchOption.TopDirectoryOnly).Length;
+            
+            if (fileCount > 0)
+            {
+                bool valueFound = false;
+
+                for (int i = 1; i <= fileCount; i++)
+                {
+                    StreamReader textFile = new StreamReader($@"c:\Automation Logs\{date:MM.dd.yyyy}\Emails\\Email " + i + ".txt");
+                    string fileContents = textFile.ReadToEnd();
+
+                    if (fileContents.Contains(valueToSearchFor))
+                    {
+                        Logger(Pass, $@"c:\Automation Logs\{ date: MM.dd.yyyy}\Emails\Email " + i + ".txt - Contained the needed text of: " + valueToSearchFor);
+                        valueFound = true;
+                        break;
+                    }
+
+                    textFile.Close();
+                }
+
+                if (!valueFound)
+                {
+                    Logger(Fail, $@"No email files contained in: c:\Automation Logs\{ date: MM.dd.yyyy}\Emails - Contained the needed text of: " + valueToSearchFor);
+                    Assert.Fail($@"No email files contained in: c:\Automation Logs\{ date: MM.dd.yyyy}\Emails - Contained the needed text of: " + valueToSearchFor);
+                    Environment.Exit(1);
+                }
+            }
+
+            else
+            {
+                Logger(Fail, "No emails were found for ParseAllEmailFilesForAStringValue method to look through. " +
+                    "Please ensure your test has a call to the GetAllEmailsFromAnEmailAccount method before this one will work, " + 
+                    "otherwise report to framework owner.");
+                Assert.Fail("No emails were found for ParseAllEmailFilesForAStringValue method to look through. " +
+                    "Please ensure your test has a call to the GetAllEmailsFromAnEmailAccount method before this one will work, " +
+                    "otherwise report to framework owner.");
+                Environment.Exit(1);
+            }
         }
 
         /// <summary>
