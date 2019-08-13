@@ -208,11 +208,14 @@
             {
                 AdditionalFunctions.FetchAllMessages(JsonCall("EmailInformation:HostName"), 110, false,
                    JsonCall("EmailInformation:UserName"), JsonCall("EmailInformation:Password"), true);
+                Logger(Info, "Checking all emails in the following email account" + JsonCall("EmailInformation:UserName"));
+                Logger(Info, "Deleting all emails in the following email account: " + JsonCall("EmailInformation:UserName"));
             }
             else
             {
                 AdditionalFunctions.FetchAllMessages(JsonCall("EmailInformation:HostName"), 110, false,
                     JsonCall("EmailInformation:UserName"), JsonCall("EmailInformation:Password"));
+                Logger(Info, "Checking all emails in the following email account" + JsonCall("EmailInformation:UserName"));
             }
         }
 
