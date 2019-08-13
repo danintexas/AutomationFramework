@@ -106,7 +106,7 @@ class AdditionalFunctions
                 }
                 catch (Exception _ex)
                 {
-                    Console.WriteLine("Error occured trying to delet with FetchAllMessages method." + Environment.NewLine + _ex);
+                    Console.WriteLine("Error occured trying to delete with FetchAllMessages method." + Environment.NewLine + _ex);
                 }
             }
 
