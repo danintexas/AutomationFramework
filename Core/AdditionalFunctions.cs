@@ -9,7 +9,8 @@ using System.Reflection;
 class AdditionalFunctions
 {
     /// <summary>
-    /// PhotoSelection will select an image to upload from the 'Support\Image Bank' folder of the framework.
+    /// PhotoSelection will select an image to upload from the 'Support\Image Bank' folder of the framework. 
+    /// Known bug currently with .Net 2.2 - will be resolved with Core 3.0
     /// </summary>
     /// <param name="selection">Select the number of the automation image #.png to use. You can also enter '0' for this field to randomly pick an image</param>
     /// <param name="fileName">Optional filename to upload. If using this the selection field will be ignored.</param>
@@ -35,37 +36,39 @@ class AdditionalFunctions
             }
 
             trueFilename = $"automation image {selection}.png";
-
-            /* The above generates the following error with a 3 X .Net dialog
-             * $exception	{"Could not load type 'System.Runtime.InteropServices.StandardOleMarshalObject' from assembly 
-             * 'System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089'.":"System.Runtime.InteropServices.StandardOleMarshalObject"}	System.TypeLoadException
-             */
         }
 
         else
         {
             trueFilename = fileName;
         }
-        
+
+
+        // Below generates an error because Core 2.2 does not support SendKeys. 
+        // 3.0 should support this. Once this is migrated to 3.0 then all the .Net 4.6 assemblies can be removed from the project's Dependencies
         System.Windows.Forms.SendKeys.SendWait($"{homeDirectory}\\Support\\Image Bank\\" + trueFilename);
         System.Windows.Forms.SendKeys.SendWait("{ENTER}");
     }
 
+    /// <summary>
+    /// This method is the heavy lifter to get all email messages from a POP3 account. This is called by the GetAllEmailsFromAnEmailAccount method
+    /// in the Core.cs
+    /// </summary>
+    /// <param name="hostname">Domain</param>
+    /// <param name="port">Usually always 110 for Pop3</param>
+    /// <param name="useSsl">SSL true or false</param>
+    /// <param name="username">Email Account</param>
+    /// <param name="password">Password for the account</param>
+    /// <param name="delete">Delete all emails from the account after the account's emails are saved.</param>
+    /// <returns></returns>
     public static List<Message> FetchAllMessages(string hostname, int port, bool useSsl, string username, string password, bool delete = false)
     {
-        // The client disconnects from the server when being disposed
         using (Pop3Client client = new Pop3Client())
         {
-            // Connect to the server
             client.Connect(hostname, port, useSsl);
-
-            // Authenticate ourselves towards the server
             client.Authenticate(username, password);
-
-            // Get the number of messages in the inbox
             int messageCount = client.GetMessageCount();
 
-            // We want to download all messages
             List<Message> allMessages = new List<Message>(messageCount);
 
             // Messages are numbered in the interval: [1, messageCount]
@@ -90,8 +93,6 @@ class AdditionalFunctions
                 }
 
                 MessagePart plainText = emailText.FindFirstPlainTextVersion();
-                var body = plainText.GetBodyAsText();
-                Console.WriteLine(body);
                 plainText.Save(new FileInfo(dir + $"\\Email {number}.txt"));
                 number++;
             }
@@ -99,7 +100,14 @@ class AdditionalFunctions
             // Delete all messages from the account
             if (delete == true)
             {
-                client.DeleteAllMessages();
+                try
+                {
+                    client.DeleteAllMessages();
+                }
+                catch (Exception _ex)
+                {
+                    Console.WriteLine("Error occured trying to delet with FetchAllMessages method." + Environment.NewLine + _ex);
+                }
             }
 
             return allMessages;
