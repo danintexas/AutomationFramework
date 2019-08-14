@@ -3,11 +3,58 @@ using OpenPop.Mime;
 using OpenPop.Pop3;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Reflection;
 
 class AdditionalFunctions
 {
+    public static bool QueryDatabase(string query, string expected)
+    {
+        bool returnStatus = false;
+        string results = "";
+
+        string connectionString =
+            "Server=clssqlpprod.rumbleonclassifieds.com;Database=ClassifiedsQA;User Id=Daniel;Password = Rumbleon12;";
+
+        using (SqlConnection connection =
+            new SqlConnection(connectionString))
+        {
+            SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        results = reader.GetValue(0).ToString();
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No rows found.");
+                }
+                
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        if (results == expected)
+        {
+            returnStatus = true;
+        }
+
+        return returnStatus; 
+    }
+
     /// <summary>
     /// PhotoSelection will select an image to upload from the 'Support\Image Bank' folder of the framework. 
     /// Known bug currently with .Net 2.2 - will be resolved with Core 3.0

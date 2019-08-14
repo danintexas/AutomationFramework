@@ -195,6 +195,25 @@
         }
 
         /// <summary>
+        /// DatabaseCheck method is used to verify a single table entry matches an expected result
+        /// </summary>
+        /// <param name="query">Single Table entry SQL query to run against the database</param>
+        /// <param name="expectedResult">The exact result expected</param>
+        protected void DatabaseCheck(string query, string expectedResult)
+        {
+            bool result = AdditionalFunctions.QueryDatabase(query, expectedResult);
+
+            if (result)
+            {
+                Console.WriteLine("Pass");
+            }
+            else
+            {
+                Console.WriteLine("Fail");
+            }
+        }
+
+        /// <summary>
         /// Simple wrapper method to call the 'FetchAllMessages' method which pulls all emails from an email account using POP3. 
         /// Ensure your appsettings.local.JSON file has the following filled out
         /// -EmailInformation:HostName
@@ -356,16 +375,22 @@
                 for (int i = 1; i <= fileCount; i++)
                 {
                     StreamReader textFile = new StreamReader($@"c:\Automation Logs\{date:MM.dd.yyyy}\Emails\\Email " + i + ".txt");
-                    string fileContents = textFile.ReadToEnd();
+                    try
+                    {                        
+                        string fileContents = textFile.ReadToEnd();
 
-                    if (fileContents.Contains(valueToSearchFor))
-                    {
-                        Logger(Pass, $@"c:\Automation Logs\{ date: MM.dd.yyyy}\Emails\Email " + i + ".txt - Contained the needed text of: " + valueToSearchFor);
-                        valueFound = true;
-                        break;
+                        if (fileContents.Contains(valueToSearchFor))
+                        {
+                            Logger(Pass, $@"c:\Automation Logs\{ date: MM.dd.yyyy}\Emails\Email " + i + ".txt - Contained the needed text of: " + valueToSearchFor);
+                            valueFound = true;
+                            break;
+                        }
                     }
 
-                    textFile.Close();
+                    finally
+                    {
+                        textFile.Close();
+                    }
                 }
 
                 if (!valueFound)
