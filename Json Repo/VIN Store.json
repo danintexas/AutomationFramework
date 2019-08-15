@@ -1,0 +1,39 @@
+{
+  // RumbleOn Classifieds VIN Store
+  // Note that all VINs are missing the last three digits. 
+  // Code will need to be changed to deal with more than the three catagories.
+  "VINStore": {
+    "Motorcycle": [
+      {
+        "VinTemplate": "VTTGM51A082101",
+        "Year": 2008,
+        "Make": "Suzuki",
+        "Model": "GS500FK8"
+      },
+      {
+        "VinTemplate": "JKAVN2C1X9A030",
+        "Year": 2009,
+        "Make": "Kawasaki",
+        "Model": "VN900C9FA Vulcan Custom"
+      }
+    ],
+    "Cars": [
+      {
+        "VinTemplate": "1G1PB5SH1F7172216",
+        "Year": 2015,
+        "Make": "Chevrolet",
+        "Model": "Cruze",
+        "Trim": "LS"
+      }
+    ],
+    "Trucks": [
+      {
+        "VinTemplate": "3D7HA18H35G834000",
+        "Year": 2005,
+        "Make": "Dodge",
+        "Model": "Ram 1500",
+        "Trim": "SRT-10"
+      }
+    ]
+  }
+}
