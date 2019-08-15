@@ -24,6 +24,7 @@ This will run the test with the namespace of 'AutomationFramework.Tests.Framewor
 - Edge
 
 ## Planned ToDo List:
+- Update Readme to full documentation for Framework use
 - Upgrade to Core 3.0
 - Upload Logs to Slack Channel
 - Logs to AWS bucket
