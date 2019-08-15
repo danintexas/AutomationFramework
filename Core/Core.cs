@@ -195,21 +195,39 @@
         }
 
         /// <summary>
-        /// DatabaseCheck method is used to verify a single table entry matches an expected result
+        /// DatabaseCheck method is used to verify a single table entry matches an expected result. 
+        /// Please ensure all the server information is filled out in the appsettings.local.template.json file
         /// </summary>
         /// <param name="query">Single Table entry SQL query to run against the database</param>
         /// <param name="expectedResult">The exact result expected</param>
         protected void DatabaseCheck(string query, string expectedResult)
         {
-            bool result = AdditionalFunctions.QueryDatabase(query, expectedResult);
+            var runDBTests = JsonCall("FrameworkConfiguration:DatabaseTestSteps").ToLower();
 
-            if (result)
+            if (runDBTests != "no")
             {
-                Console.WriteLine("Pass");
+                string connectionString = "Server=" + JsonCall("DatabaseServerInformation:Server") +
+                    ";Database=" + JsonCall("DatabaseServerInformation:Database") + 
+                    ";User Id=" + JsonCall("DatabaseServerInformation:Account") + 
+                    ";Password=" + JsonCall("DatabaseServerInformation:Password");
+
+                bool result = AdditionalFunctions.QueryDatabase(query, expectedResult, connectionString);
+
+                if (result)
+                {
+                    Logger(Pass, "Checked the database with the following query: '" + query + "' - The expected value returned was: '" + expectedResult + "'");
+                }
+                else
+                {
+                    Logger(Fail, "Checked the database with the following query: '" + query + "' - The expected value returned was not: '" + expectedResult + "'");
+                    Assert.Fail("Checked the database with the following query: '" + query + "' - The expected value returned was not: '" + expectedResult + "'");
+                }
             }
-            else
+
+            if (runDBTests != "yes")
             {
-                Console.WriteLine("Fail");
+                Logger(Info, "Database test step skipped per the setting = 'FrameworkConfiguration:DatabaseTestSteps' set to: '" + runDBTests +
+                "' and not being set to 'yes'");
             }
         }
 

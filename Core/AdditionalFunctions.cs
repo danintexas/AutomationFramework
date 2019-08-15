@@ -9,13 +9,81 @@ using System.Reflection;
 
 class AdditionalFunctions
 {
-    public static bool QueryDatabase(string query, string expected)
+    /// <summary>
+    /// This method is the heavy lifter to get all email messages from a POP3 account. This is called by the GetAllEmailsFromAnEmailAccount method
+    /// in the Core.cs
+    /// </summary>
+    /// <param name="hostname">Domain</param>
+    /// <param name="port">Usually always 110 for Pop3</param>
+    /// <param name="useSsl">SSL true or false</param>
+    /// <param name="username">Email Account</param>
+    /// <param name="password">Password for the account</param>
+    /// <param name="delete">Delete all emails from the account after the account's emails are saved.</param>
+    /// <returns></returns>
+    public static List<Message> FetchAllMessages(string hostname, int port, bool useSsl, string username, string password, bool delete = false)
+    {
+        using (Pop3Client client = new Pop3Client())
+        {
+            client.Connect(hostname, port, useSsl);
+            client.Authenticate(username, password);
+            int messageCount = client.GetMessageCount();
+
+            List<Message> allMessages = new List<Message>(messageCount);
+
+            // Messages are numbered in the interval: [1, messageCount]
+            // Ergo: message numbers are 1-based.
+            // Most servers give the latest message the highest number
+            for (int i = messageCount; i > 0; i--)
+            {
+                allMessages.Add(client.GetMessage(i));
+            }
+
+            int number = 1;
+
+            // Now return the fetched messages
+            foreach (var emailText in allMessages)
+            {
+                DateTime date = DateTime.Today;
+                var dir = $@"c:\Automation Logs\{date:MM.dd.yyyy}\Emails\";
+
+                if (!Directory.Exists(dir))
+                {
+                    Directory.CreateDirectory(dir);
+                }
+
+                MessagePart plainText = emailText.FindFirstPlainTextVersion();
+                plainText.Save(new FileInfo(dir + $"\\Email {number}.txt"));
+                number++;
+            }
+
+            // Delete all messages from the account
+            if (delete == true)
+            {
+                try
+                {
+                    client.DeleteAllMessages();
+                }
+                catch (Exception _ex)
+                {
+                    Console.WriteLine("Error occured trying to delete with FetchAllMessages method." + Environment.NewLine + _ex);
+                }
+            }
+
+            return allMessages;
+        }
+    }
+
+    /// <summary>
+    /// QueryDatabase method is meant to be called by DatabaseCheck method in the Core
+    /// </summary>
+    /// <param name="query">Query to run against the database</param>
+    /// <param name="expected">Expected results from the query</param>
+    /// <param name="connectionString">Database connection information</param>
+    /// <returns></returns>
+    public static bool QueryDatabase(string query, string expected, string connectionString)
     {
         bool returnStatus = false;
         string results = "";
-
-        string connectionString =
-            "Server=clssqlpprod.rumbleonclassifieds.com;Database=ClassifiedsQA;User Id=Daniel;Password = Rumbleon12;";
 
         using (SqlConnection connection =
             new SqlConnection(connectionString))
@@ -90,74 +158,9 @@ class AdditionalFunctions
             trueFilename = fileName;
         }
 
-
         // Below generates an error because Core 2.2 does not support SendKeys. 
         // 3.0 should support this. Once this is migrated to 3.0 then all the .Net 4.6 assemblies can be removed from the project's Dependencies
         System.Windows.Forms.SendKeys.SendWait($"{homeDirectory}\\Support\\Image Bank\\" + trueFilename);
         System.Windows.Forms.SendKeys.SendWait("{ENTER}");
-    }
-
-    /// <summary>
-    /// This method is the heavy lifter to get all email messages from a POP3 account. This is called by the GetAllEmailsFromAnEmailAccount method
-    /// in the Core.cs
-    /// </summary>
-    /// <param name="hostname">Domain</param>
-    /// <param name="port">Usually always 110 for Pop3</param>
-    /// <param name="useSsl">SSL true or false</param>
-    /// <param name="username">Email Account</param>
-    /// <param name="password">Password for the account</param>
-    /// <param name="delete">Delete all emails from the account after the account's emails are saved.</param>
-    /// <returns></returns>
-    public static List<Message> FetchAllMessages(string hostname, int port, bool useSsl, string username, string password, bool delete = false)
-    {
-        using (Pop3Client client = new Pop3Client())
-        {
-            client.Connect(hostname, port, useSsl);
-            client.Authenticate(username, password);
-            int messageCount = client.GetMessageCount();
-
-            List<Message> allMessages = new List<Message>(messageCount);
-
-            // Messages are numbered in the interval: [1, messageCount]
-            // Ergo: message numbers are 1-based.
-            // Most servers give the latest message the highest number
-            for (int i = messageCount; i > 0; i--)
-            {
-                allMessages.Add(client.GetMessage(i));
-            }
-
-            int number = 1;
-
-            // Now return the fetched messages
-            foreach (var emailText in allMessages)
-            {
-                DateTime date = DateTime.Today;
-                var dir = $@"c:\Automation Logs\{date:MM.dd.yyyy}\Emails\";
-
-                if (!Directory.Exists(dir))
-                {
-                    Directory.CreateDirectory(dir);
-                }
-
-                MessagePart plainText = emailText.FindFirstPlainTextVersion();
-                plainText.Save(new FileInfo(dir + $"\\Email {number}.txt"));
-                number++;
-            }
-
-            // Delete all messages from the account
-            if (delete == true)
-            {
-                try
-                {
-                    client.DeleteAllMessages();
-                }
-                catch (Exception _ex)
-                {
-                    Console.WriteLine("Error occured trying to delete with FetchAllMessages method." + Environment.NewLine + _ex);
-                }
-            }
-
-            return allMessages;
-        }
     }
 }
