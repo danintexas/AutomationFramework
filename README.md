@@ -24,12 +24,12 @@ This will run the test with the namespace of 'AutomationFramework.Tests.Framewor
 - Edge
 
 ## Planned ToDo List:
+- Upgrade to Core 3.0
+- Upload Logs to Slack Channel
 - Logs to AWS bucket
 - Concurrent testing through ASYNC or Selenium Grid
 - Redo logic for running single test with multiple browsers
 - Shouldly implementation 
-- Check POP3 email account for required email
-- Direct checks on entered data in the database that is entered during testing. 
 - Built in API endpoint testing. 
 - Built in API stress testing.
 
@@ -39,7 +39,6 @@ This will run the test with the namespace of 'AutomationFramework.Tests.Framewor
 - Description text randomizer
 - Upload photos from a bank of photos for testing
 - Vin Generator
-- Account Generator tied to personal or work webserver
 - Upload logs/notification to Slack and or text message
 
 Special shout out to David for mentoring me through this and providing great feedback!
