@@ -232,6 +232,54 @@
         }
 
         /// <summary>
+        /// Wrapper method for the AdditionalFunctions.GenerateRandomVINFromTemplate method. This reads the VIN Store.json file for VIN templates. 
+        /// </summary>
+        /// <param name="vinSelection">If not given this method will randomly pick a vehicle type. Other wise you can use the following:
+        /// 1 = motorcycle : 2 = car : 3 = truck</param>
+        /// <returns></returns>
+        protected string GenerateAVIN(int vinSelection = 0)
+        {
+            string type = "", vin = "";
+
+            switch (vinSelection)
+            {
+                case 1:
+                    type = "Motorcycle";
+                    break;
+                case 2:
+                    type = "Cars";
+                    break;
+                case 3:
+                    type = "Trucks";
+                    break;
+                default:
+                    int randomNumber = (new Random()).Next(1, 4);
+                    switch (randomNumber)
+                    {
+                        case 1:
+                            type = "Motorcycle";
+                            break;
+                        case 2:
+                            type = "Cars";
+                            break;
+                        case 3:
+                            type = "Trucks";
+                            break;
+                        default:
+                            type = "oops";
+                            break;
+                    }
+                    break;
+            }
+
+            Console.WriteLine(type);
+
+            //vin = AdditionalFunctions.GenerateRandomVINFromTemplate(vin);
+
+            return vin;
+        }
+
+        /// <summary>
         /// Simple wrapper method to call the 'FetchAllMessages' method which pulls all emails from an email account using POP3. 
         /// Ensure your appsettings.local.JSON file has the following filled out
         /// -EmailInformation:HostName

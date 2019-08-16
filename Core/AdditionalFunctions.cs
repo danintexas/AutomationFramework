@@ -10,6 +10,94 @@ using System.Reflection;
 class AdditionalFunctions
 {
     /// <summary>
+    /// GenerateRandomVINFromTemplate is a method made specifically for RumbleOn. This will take a truncated vehicle VIN 
+    /// missing the last three digits - apply a random 3 digits to the end and then change the VIN
+    /// check digit to its correct value.
+    /// </summary>
+    /// <param name="vin">Truncated auto VIN missing the last three digits</param>
+    /// <returns></returns>
+    public static string GenerateRandomVINFromTemplate(string vin)
+    {
+        var result = 0;
+        var index = 0;
+        var checkDigit = 0;
+        var checkSum = 0;
+        var weight = 0;
+        int randomNumber = (new Random()).Next(100, 1000);
+        vin += randomNumber.ToString();
+
+        foreach (var c in vin.ToCharArray())
+        {
+            index++;
+            var character = c.ToString().ToLower();
+            if (char.IsNumber(c))
+                result = int.Parse(character);
+            else
+            {
+                switch (character)
+                {
+                    case "a":
+                    case "j":
+                        result = 1;
+                        break;
+                    case "b":
+                    case "k":
+                    case "s":
+                        result = 2;
+                        break;
+                    case "c":
+                    case "l":
+                    case "t":
+                        result = 3;
+                        break;
+                    case "d":
+                    case "m":
+                    case "u":
+                        result = 4;
+                        break;
+                    case "e":
+                    case "n":
+                    case "v":
+                        result = 5;
+                        break;
+                    case "f":
+                    case "w":
+                        result = 6;
+                        break;
+                    case "g":
+                    case "p":
+                    case "x":
+                        result = 7;
+                        break;
+                    case "h":
+                    case "y":
+                        result = 8;
+                        break;
+                    case "r":
+                    case "z":
+                        result = 9;
+                        break;
+                }
+            }
+
+            if (index >= 1 && index <= 7 || index == 9)
+                weight = 9 - index;
+            else if (index == 8)
+                weight = 10;
+            else if (index >= 10 && index <= 17)
+                weight = 19 - index;
+            if (index == 9)
+                checkDigit = character == "x" ? 10 : result;
+            checkSum += (result * weight);
+        }
+        checkSum %= 11;
+
+        vin = vin.Remove(8, 1).Insert(8, checkSum.ToString());
+        
+        return vin;
+    }
+
+    /// <summary>
     /// This method is the heavy lifter to get all email messages from a POP3 account. This is called by the GetAllEmailsFromAnEmailAccount method
     /// in the Core.cs
     /// </summary>

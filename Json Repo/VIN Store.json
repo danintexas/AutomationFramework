@@ -19,7 +19,7 @@
     ],
     "Cars": [
       {
-        "VinTemplate": "1G1PB5SH1F7172216",
+        "VinTemplate": "1G1PB5SH1F7172",
         "Year": 2015,
         "Make": "Chevrolet",
         "Model": "Cruze",
@@ -28,7 +28,7 @@
     ],
     "Trucks": [
       {
-        "VinTemplate": "3D7HA18H35G834000",
+        "VinTemplate": "3D7HA18H35G834",
         "Year": 2005,
         "Make": "Dodge",
         "Model": "Ram 1500",
