@@ -2,8 +2,9 @@
   // RumbleOn Classifieds VIN Store
   // Note that all VINs are missing the last three digits. 
   // Code will need to be changed to deal with more than the three catagories.
+  // Offroad is not in place past a JSON counter
   "VINStore": {
-    "Motorcycle": [
+    "Motorcycles": [
       {
         "VinTemplate": "VTTGM51A082101",
         "Year": 2008,
@@ -33,6 +34,14 @@
         "Make": "Dodge",
         "Model": "Ram 1500",
         "Trim": "SRT-10"
+      }
+    ],
+    "Offroad": [
+      {
+        "VinTemplate": "",
+        "Year": 5555,
+        "Make": "Make",
+        "Model": "Model"
       }
     ]
   }

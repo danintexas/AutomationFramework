@@ -29,6 +29,7 @@
 
         public const string Info = "info", Pass = "pass", Fail = "fail"; // Const Keywords for Logger
         public const string XPath = "xpath", CSS = "css", ID = "ID"; // Const Keywords for Selenium Locators
+        public const string Motorcycle = "motorcycle", Car = "car", Truck = "truck", Offroad = "offroad", Random = "random"; // Const Keyworkds for GenerateAVIN method
 
         protected Core()
         {
@@ -55,6 +56,8 @@
             configBuilder.AddJsonFile(_homeDirectory + "\\appsettings.local.json", true, true);
 
             _config = configBuilder.Build();
+
+            
         }
 
         protected string SetUrl
@@ -237,44 +240,88 @@
         /// <param name="vinSelection">If not given this method will randomly pick a vehicle type. Other wise you can use the following:
         /// 1 = motorcycle : 2 = car : 3 = truck</param>
         /// <returns></returns>
-        protected string GenerateAVIN(int vinSelection = 0)
+        protected string GenerateAVIN(string vinSelection = "random")
         {
-            string type = "", vin = "";
+            int motorcyleCounter = 0, truckCounter = 0, carCounter = 0, offroadCounter = 0, randomType = 0;
+            int randomVINEnding = (new Random()).Next(100, 1000);
+            string vin = "";
 
+            // Below counts the number of valid VIN templates in the VIN Stor.json file
+            for (int x = 0; x < 100; x++)
+            {
+                if ($"{_config["VINStore:Motorcycles:" + x + ":VinTemplate"]}" != "")
+                {
+                    motorcyleCounter++;
+                }
+                if ($"{_config["VINStore:Cars:" + x + ":VinTemplate"]}" != "")
+                {
+                    carCounter++;
+                }
+                if ($"{_config["VINStore:Trucks:" + x + ":VinTemplate"]}" != "")
+                {
+                    truckCounter++;
+                }
+                if ($"{_config["VINStore:Offroad:" + x + ":VinTemplate"]}" != "")
+                {
+                    offroadCounter++;
+                }
+            }
+
+            if (vinSelection == "random")
+            {
+                randomType = (new Random()).Next(1, 4);
+                switch (randomType)
+                {
+                    case 1:
+                        vinSelection = "motorcycle";
+                        break;
+                    case 2:
+                        vinSelection = "car";
+                        break;
+                    case 3:
+                        vinSelection = "truck";
+                        break;
+                    case 4:
+                        vinSelection = "offroad";
+                        break;
+                }
+            }
+
+            if ((vinSelection == "motorcycle" && motorcyleCounter < 1) ||
+                (vinSelection == "car" && carCounter < 1) ||
+                (vinSelection == "truck" && truckCounter < 1) ||
+                (vinSelection == "offroad" && offroadCounter < 1))
+            {
+                return "No valid VIN template found in the 'VIN Store.json' file!!";
+            }
+            
             switch (vinSelection)
             {
-                case 1:
-                    type = "Motorcycle";
+                case "motorcycle":
+                    int randomMotorcycleVin = (new Random()).Next(0, motorcyleCounter);
+                    vin = $"{_config["VINStore:Motorcycles:" + randomMotorcycleVin + ":VinTemplate"]}";
                     break;
-                case 2:
-                    type = "Cars";
+                case "car":
+                    int randomCarVin = (new Random()).Next(0, carCounter);
+                    vin = $"{_config["VINStore:Cars:" + randomCarVin + ":VinTemplate"]}";
                     break;
-                case 3:
-                    type = "Trucks";
+                case "truck":
+                    int randomTruckVin = (new Random()).Next(0, truckCounter);
+                    vin = $"{_config["VINStore:Trucks:" + randomTruckVin + ":VinTemplate"]}";
                     break;
-                default:
-                    int randomNumber = (new Random()).Next(1, 4);
-                    switch (randomNumber)
-                    {
-                        case 1:
-                            type = "Motorcycle";
-                            break;
-                        case 2:
-                            type = "Cars";
-                            break;
-                        case 3:
-                            type = "Trucks";
-                            break;
-                        default:
-                            type = "oops";
-                            break;
-                    }
+                case "offroad":
+                    int randomOffroadVin = (new Random()).Next(0, offroadCounter);
+                    vin = $"{_config["VINStore:Offroad:" + randomOffroadVin + ":VinTemplate"]}";
                     break;
             }
 
-            Console.WriteLine(type);
+            // Add last three random numbers to VIN template
+            vin += randomVINEnding.ToString();
 
-            //vin = AdditionalFunctions.GenerateRandomVINFromTemplate(vin);
+            if (vinSelection == "car" || vinSelection == "truck")
+            {
+                vin = AdditionalFunctions.FixCheckDigit(vin);
+            }
 
             return vin;
         }

@@ -16,7 +16,7 @@ class AdditionalFunctions
     /// </summary>
     /// <param name="vin">Truncated auto VIN missing the last three digits</param>
     /// <returns></returns>
-    public static string GenerateRandomVINFromTemplate(string vin)
+    public static string FixCheckDigit(string vin)
     {
         var result = 0;
         var index = 0;
