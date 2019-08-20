@@ -4,42 +4,37 @@
 
 This automation framework is build from the ground up as an simple to use and maintain solution. 
 
-All you need is Visual Studio 17 or 19 along with installing .NET Core 2.2!
+All you need is Visual Studio 19 to write tests along with installing .NET Core 2.2!
 
-To run an individual test through command line use the following in the solution folder:
+If you want to just run an tests just install .NET Core 2.2 and run through command line use the following in the solution folder:
 
-'dotnet test -- filter FrameworkDemo'
-
-This will run the test with the namespace of 'AutomationFramework.Tests.FrameworkDemo'
+'dotnet test'
 
 ## Tech Used:
 - .NET Core 2.2
 - NUnit
 - Extent Reports
 - Selenium
+- OpenPop
+- ADO
 
 ## Supports the following browsers:
 - Chrome
 - Firefox
 - Edge
 
+## Known Issues:
+- SendKeys is kinda 'hacked' with .NET Core 2.2. A red X dialog comes up the first time it is called in a test. This can be closed
+	and the method will work fine going forward. Believe this is because to get this to work I am calling a few .NET 4.6 Framework 
+	files that technically is not supported. This will be resolved with .NET Core 3.0 due to be released mid Sept. 
+
 ## Planned ToDo List:
 - Update Readme to full documentation for Framework use
 - Upgrade to Core 3.0
 - Upload Logs to Slack Channel
-- Logs to AWS bucket
-- Concurrent testing through ASYNC or Selenium Grid
-- Redo logic for running single test with multiple browsers
-- Shouldly implementation 
+- Concurrent testing through ASYNC/Selenium Grid and allow concurrent browser testing
 - Built in API endpoint testing. 
 - Built in API stress testing.
 
 ## Custom Items for RumbleOn to do
-- Smoke Test for RumbleOn -> Classifieds (In Progress)
-- Mileage and Price randomizer
-- Description text randomizer
-- Upload photos from a bank of photos for testing
-- Vin Generator
-- Upload logs/notification to Slack and or text message
 
-Special shout out to David for mentoring me through this and providing great feedback!
