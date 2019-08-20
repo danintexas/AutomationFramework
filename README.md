@@ -23,11 +23,11 @@ Personal Email: daniel.gail@gmail.com
 
 ## Tech Used:
 - .NET Core 2.2
-- NUnit
-- Extent Reports
-- Selenium
-- OpenPop
-- ADO
+- NUnit 3.12.0
+- Extent Reports 1.0.2
+- Selenium 3.141.0
+- OpenPop 2.0.6.1120
+- ADO 4.6.1
 
 ## Supports the following browsers:
 - Chrome
@@ -60,17 +60,18 @@ Personal Email: daniel.gail@gmail.com
   - `Json Override Folder`: Any JSON files put into this folder will override any other JSON files in the base repo file. Usefull if you want to use an override for a specific JSON entry.
   - `VIN Store`: This file is special and used by the GenerateVIN method. If you call this method you need to ensure this file is there. 
 - `Support Folder`: This folder contains all side files needed for the framework. 
-  - `Image Bank`: Storage folder used for images used for multiple tests.
-  ```json
-  "ReportInformation": {
-    "TesterName": "TesterName",
-    "Project": "Project Name",
-    "Environment": "Environment Name",
-    "Build": "Environment Build"
-  },
-  "FrameworkConfiguration": {
-    "Browser": "chrome",
-    "DatabaseTestSteps": "Yes" 
-  }
+  - `Image Bank Folder`: Storage folder used for images used by the framework.
+  - 'Support DLLs Folder': Currently houses .NET 4.6.1 DLLs to get SendKeys working with .NET Core 2.2. Once the framework is updated to 3.0 this folder will go away.
+  - 'chromedriver.exe' : 'geckodriver.exe' : 'MicrosoftWebDriver.exe': Selenium browser drivers.
+  - 'Kill All Selenium Instances.bat': Helpful batch file that will kill all Selenium Browser drivers running. This is helpful when writing tests and problems happen. 
+- 'Tests Folder': This is where all the magic happens. The automation tests! Any .cs files in this folder will be included in the NUNIT Test Explorer.
+   - 'Assorted Tests Archive': This is where I store my development tests. This folder is ignored during project build time. Tests in this folder do not appear in the NUNIT Test Explorer.
+   - 'RumbleOn': All tests related to RumbleOn
 
-```
+## Using the Framework
+First off I will not go into great detail about the code of Kindergarten past just saying I have tried my hardest to name all variables and methods to where you should understand what is going on under the hood. 
+Any where I feel needs a comment I have done so in the code. All methods that can be called from a test have filled out and up todate XML with it. You should be able to see what a method does and expects through
+Visual Studio. If you see anywhere I have missed something please let me know. 
+
+- Quickest way to get going with Kindergarten is to grab the 'Test Template.cs' file from the 'Tests\Assorted Tests Archive', copy it to the base 'Tests' folder and rename the commented fields. At that point when you 
+build the project you should see that test appear in the NUNIT Test Explorer. 
