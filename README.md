@@ -75,4 +75,8 @@ Visual Studio. If you see anywhere I have missed something please let me know.
 build the project you should see that test appear in the NUNIT Test Explorer. 
 
 ### Currently supported methods you can use in your tests
-- 'First Method': 
+- 'ClickElement': This method is used to have Selenium click on any element in a website like a form field or button. 
+   - This method has two parameters that need to be passed. Locator type and the path to the locator. Example:
+'''ClickElement(XPath, "//button[@type='Login']")'''
+
+  
