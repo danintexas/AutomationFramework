@@ -62,7 +62,6 @@ Personal Email: daniel.gail@gmail.com
 - `Support Folder`: This folder contains all side files needed for the framework. 
   - `Image Bank`: Storage folder used for images used for multiple tests.
   ```json
-  {
   "ReportInformation": {
     "TesterName": "TesterName",
     "Project": "Project Name",
@@ -71,7 +70,7 @@ Personal Email: daniel.gail@gmail.com
   },
   "FrameworkConfiguration": {
     "Browser": "chrome",
-    "DatabaseTestSteps": "Yes" // 'Yes' or 'No'
+    "DatabaseTestSteps": "Yes" 
   }
-}
+
 ```
