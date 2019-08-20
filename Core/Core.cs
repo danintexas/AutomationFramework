@@ -2,6 +2,7 @@
 {
     using System;
     using System.IO;
+    using System.Linq;
     using System.Reflection;
     using System.Threading;
     using AventStack.ExtentReports;
@@ -172,7 +173,7 @@
                         _driver.FindElement(By.Id(element)).Click();
                         break;
                     default:
-                        Logger(Fail, "Unsupported element type passed to ClickElement. Please report to framework owner. Used " + type + " to click on element: " + element);
+                        Logger(Fail, "Unsupported element type passed to ClickElement. Please report to framework owner. <br />Used " + type + " to click on element: <br />" + element);
                         Assert.Fail($@"Unsupported element type passed to ClickElement. Please report to framework owner." + Environment.NewLine + 
                             "Used " + type + " to click on element: " + element);
                         Environment.Exit(1);
@@ -184,8 +185,8 @@
 
             catch (Exception ex_)
             {
-                Logger(Fail, $@"Something happened with ClickElement method. Please report to framework owner." +
-                    Environment.NewLine + "Used " + type + " to click on element: " + element + Environment.NewLine + ex_);
+                Logger(Fail, $@"Something happened with ClickElement method. Please report to framework owner. <br />Used " 
+                    + type + " to click on element: <br />" + element + "<br />" + ex_);
                 Assert.Fail($@"Something happened with ClickElement method. Please report to framework owner." +
                     Environment.NewLine + "Used " + type + " to click on element: " + element + Environment.NewLine + ex_);
                 Environment.Exit(1);
@@ -198,7 +199,6 @@
         protected void CloseBrowser()
         {
             _driver.Close();
-            // Logger(Info, "Closing active Selenium controlled browser");
         }
 
         /// <summary>
@@ -231,19 +231,19 @@
 
                 if (result)
                 {
-                    Logger(Pass, "Checked the database with the following query: '" + query + "' - The expected value returned was: '" + expectedResult + "'");
+                    Logger(Pass, "Checked the database with the following query: <br />'" + query + "' <br />The expected value returned was: <br />'" + expectedResult + "'");
                 }
                 else
                 {
-                    Logger(Fail, "Checked the database with the following query: '" + query + "' - The expected value returned was not: '" + expectedResult + "'");
-                    Assert.Fail("Checked the database with the following query: '" + query + "' - The expected value returned was not: '" + expectedResult + "'");
+                    Logger(Fail, "Checked the database with the following query: <br />'" + query + "' <br />The expected value returned was not: <br />'" + expectedResult + "'");
+                    Assert.Fail("Checked the database with the following query: <br />'" + query + "' <br />The expected value returned was not: <br />'" + expectedResult + "'");
                 }
             }
 
             if (runDBTests != "yes")
             {
-                Logger(Info, "Database test step skipped per the setting = 'FrameworkConfiguration:DatabaseTestSteps' set to: '" + runDBTests +
-                "' and not being set to 'yes'");
+                Logger(Info, "Database test step skipped per the setting = 'FrameworkConfiguration:DatabaseTestSteps' set to: <br />'" + runDBTests +
+                "'<br />and not being set to 'yes'");
             }
         }
 
@@ -306,6 +306,7 @@
                 (vinSelection == "offroad" && offroadCounter < 1))
             {
                 Console.WriteLine("No valid VIN found in the 'VIN Store.json' file for: " + vinSelection);
+                Logger(Fail, "No valid VIN found in the 'VIN Store.json' file for: <br />" + vinSelection);
                 throw new Exception("No valid VIN found in the 'VIN Store.json' file for: " + vinSelection);
             }
             
@@ -324,6 +325,7 @@
                     yearUnderTest = Int32.Parse($"{_config["VINStore:Cars:" + randomCarVin + ":Year"]}");
                     makeUnderTest = $"{_config["VINStore:Cars:" + randomCarVin + ":Make"]}";
                     modelUnderTest = $"{_config["VINStore:Cars:" + randomCarVin + ":Model"]}";
+                    trimUnderTest = $"{_config["VINStore:Cars:" + randomCarVin + ":Trim"]}";
                     break;
                 case "truck":
                     int randomTruckVin = (new Random()).Next(0, truckCounter);
@@ -331,6 +333,7 @@
                     yearUnderTest = Int32.Parse($"{_config["VINStore:Trucks:" + randomTruckVin + ":Year"]}");
                     makeUnderTest = $"{_config["VINStore:Trucks:" + randomTruckVin + ":Make"]}";
                     modelUnderTest = $"{_config["VINStore:Trucks:" + randomTruckVin + ":Model"]}";
+                    trimUnderTest = $"{_config["VINStore:Trucks:" + randomTruckVin + ":Trim"]}";
                     break;
                 case "offroad":
                     int randomOffroadVin = (new Random()).Next(0, offroadCounter);
@@ -339,6 +342,23 @@
                     makeUnderTest = $"{_config["VINStore:Offroad:" + randomOffroadVin + ":Make"]}";
                     modelUnderTest = $"{_config["VINStore:Offroad:" + randomOffroadVin + ":Model"]}";
                     break;
+            }
+
+            // Log testing information to Automation Logs
+            if (trimUnderTest != "")
+            {
+                Logger(Info, "Using the following " + (vinSelection.First().ToString().ToUpper() + vinSelection.Substring(1)) + " for testing: <br />VIN: " + vinUnderTest +
+                "<br />Year: " + yearUnderTest +
+                "<br />Make: " + makeUnderTest +
+                "<br />Model: " + modelUnderTest +
+                "<br />Trim: " + trimUnderTest);
+            }
+            else
+            {
+                Logger(Info, "Using the following " + (vinSelection.First().ToString().ToUpper() + vinSelection.Substring(1)) + " for testing: <br />VIN: " + vinUnderTest +
+                "<br />Year: " + yearUnderTest +
+                "<br />Make: " + makeUnderTest +
+                "<br />Model: " + modelUnderTest);
             }
         }
 
@@ -357,14 +377,14 @@
             {
                 AdditionalFunctions.FetchAllMessages(JsonCall("EmailInformation:HostName"), 110, false,
                    JsonCall("EmailInformation:UserName"), JsonCall("EmailInformation:Password"), true);
-                Logger(Info, "Checking all emails in the following email account: " + JsonCall("EmailInformation:UserName"));
-                Logger(Info, "Deleting all emails in the following email account: " + JsonCall("EmailInformation:UserName"));
+                Logger(Info, "Checking all emails in the following email account: <br />" + JsonCall("EmailInformation:UserName"));
+                Logger(Info, "Deleting all emails in the following email account: <br />" + JsonCall("EmailInformation:UserName"));
             }
             else
             {
                 AdditionalFunctions.FetchAllMessages(JsonCall("EmailInformation:HostName"), 110, false,
                     JsonCall("EmailInformation:UserName"), JsonCall("EmailInformation:Password"));
-                Logger(Info, "Checking all emails in the following email account: " + JsonCall("EmailInformation:UserName"));
+                Logger(Info, "Checking all emails in the following email account: <br />" + JsonCall("EmailInformation:UserName"));
             }
         }
 
@@ -388,8 +408,10 @@
                         value = _driver.FindElement(By.CssSelector(element)).GetAttribute("value");
                         break;
                     default:
-                        Logger(Fail, "Unsupported element type passed to GetFieldValue. Please report to framework owner. Used " + type + " to try and retrieve info in : " + element);
-                        Assert.Fail($@"Unsupported element type passed to GetFieldValue. Please report to framework owner. Used " + type + " to try and retrieve info in : " + element);
+                        Logger(Fail, "Unsupported element type passed to GetFieldValue. Please report to framework owner. <br />Used " + type + 
+                            " to try and retrieve info in : <br />" + element);
+                        Assert.Fail($@"Unsupported element type passed to GetFieldValue. Please report to framework owner. " + Environment.NewLine + 
+                            "Used " + type + " to try and retrieve info in : " + element);
                         Environment.Exit(1);
                         break;
                 }
@@ -397,8 +419,8 @@
 
             catch (Exception ex_)
             {
-                Logger(Fail, $@"Something happened with GetFieldValue method. Please report to framework owner." +
-                   Environment.NewLine + "Used " + type + " to try and retrieve info in : " + element + Environment.NewLine + ex_);
+                Logger(Fail, $@"Something happened with GetFieldValue method. Please report to framework owner. <br />Used " 
+                    + type + " to try and retrieve info in :<br />" + element + "<br />" + ex_);
                 Assert.Fail($@"Something happened with GetFieldValue method. Please report to framework owner." +
                    Environment.NewLine + "Used " + type + " to try and retrieve info in : " + element + Environment.NewLine + ex_);
                 Environment.Exit(1);
@@ -510,7 +532,7 @@
 
                         if (fileContents.Contains(valueToSearchFor))
                         {
-                            Logger(Pass, $@"c:\Automation Logs\{ date: MM.dd.yyyy}\Emails\Email " + i + ".txt - Contained the needed text of: " + valueToSearchFor);
+                            Logger(Pass, $@"c:\Automation Logs\{ date: MM.dd.yyyy}\Emails\Email " + i + ".txt - Contained the needed text of:<br />" + valueToSearchFor);
                             valueFound = true;
                             break;
                         }
@@ -524,20 +546,21 @@
 
                 if (!valueFound)
                 {
-                    Logger(Fail, $@"No email files contained in: c:\Automation Logs\{ date: MM.dd.yyyy}\Emails - Contained the needed text of: " + valueToSearchFor);
-                    Assert.Fail($@"No email files contained in: c:\Automation Logs\{ date: MM.dd.yyyy}\Emails - Contained the needed text of: " + valueToSearchFor);
+                    Logger(Fail, $@"No email files contained in: c:\Automation Logs\{ date: MM.dd.yyyy}\Emails - Contained the needed text of:<br />" + valueToSearchFor);
+                    Assert.Fail($@"No email files contained in: c:\Automation Logs\{ date: MM.dd.yyyy}\Emails - Contained the needed text of: " + 
+                        Environment.NewLine + valueToSearchFor);
                     Environment.Exit(1);
                 }
             }
 
             else
             {
-                Logger(Fail, "No emails were found for ParseAllEmailFilesForAStringValue method to look through. " +
+                Logger(Fail, "No emails were found for ParseAllEmailFilesForAStringValue method to look through.<br />" +
+                    "Please ensure your test has a call to the GetAllEmailsFromAnEmailAccount method before this one will work,<br />" + 
+                    "otherwise report to framework owner.");
+                Assert.Fail("No emails were found for ParseAllEmailFilesForAStringValue method to look through. " + Environment.NewLine + 
                     "Please ensure your test has a call to the GetAllEmailsFromAnEmailAccount method before this one will work, " + 
-                    "otherwise report to framework owner.");
-                Assert.Fail("No emails were found for ParseAllEmailFilesForAStringValue method to look through. " +
-                    "Please ensure your test has a call to the GetAllEmailsFromAnEmailAccount method before this one will work, " +
-                    "otherwise report to framework owner.");
+                    Environment.NewLine + "otherwise report to framework owner.");
                 Environment.Exit(1);
             }
         }
@@ -571,7 +594,7 @@
             }
 
             image.SaveAsFile(filename);
-            _test.Info(name + " : ", MediaEntityBuilder.CreateScreenCaptureFromPath(screenLocation).Build());
+            _test.Info(name + "<br />", MediaEntityBuilder.CreateScreenCaptureFromPath(screenLocation).Build());
         }
 
         /// <summary>
@@ -600,8 +623,8 @@
                         textbox.SendKeys(text);
                         break;
                     default:
-                        Logger(Fail, $@"Something happened with SendKeys method. Please report to framework owner." + Environment.NewLine +
-                            "Used " + type + " to send: '" + text + "' to element: " + element);
+                        Logger(Fail, $@"Something happened with SendKeys method. Please report to framework owner." +
+                            "<br />Used " + type + " to send: <br />'" + text + "' to element: <br />" + element);
                         Assert.Fail($@"Something happened with SendKeys method. Please report to framework owner." + Environment.NewLine +
                             "Used " + type + " to send: '" + text + "' to element: " + element);
                         Environment.Exit(1);
@@ -612,7 +635,7 @@
             catch (Exception ex_)
             {
                 Logger(Fail, $@"Something happened with SendKeys method. Please report to framework owner." +
-                   Environment.NewLine + "Used " + type + " to send: '" + text + "' to element: " + element + Environment.NewLine + ex_);
+                   "<br />Used " + type + " to send: <br />'" + text + "' to element: <br />" + element + "<br />" + ex_);
                 Assert.Fail($@"Something happened with SendKeys method. Please report to framework owner." +
                    Environment.NewLine + "Used " + type + " to send: '" + text + "' to element: " + element + Environment.NewLine + ex_);
                 Environment.Exit(1);
@@ -632,7 +655,7 @@
             }
             catch (Exception ex_)
             {
-                Logger(Fail, $@"Two values asked to be the same were not: '" + valueOne + "' and '" + valueTwo + "' " + Environment.NewLine + ex_);
+                Logger(Fail, $@"Two values asked to be the same were not: <br />'" + valueOne + "' <br />and <br />'" + valueTwo + "' <br />" + ex_);
                 Assert.Fail($@"Two values asked to be the same were not: '" + valueOne + "' and '" + valueTwo + "' " + Environment.NewLine + ex_);
             }
         }
@@ -650,7 +673,7 @@
             }
             catch (Exception ex_)
             {
-                Logger(Fail, $@"Two values asked to be the different were the same: '" + valueOne + "' and '" + valueTwo + "' " + Environment.NewLine + ex_);
+                Logger(Fail, $@"Two values asked to be the different were the same: <br />'" + valueOne + "' <br />and <br />'" + valueTwo + "' <br />" + ex_);
                 Assert.Fail($@"Two values asked to be the different were the same: '" + valueOne + "' and '" + valueTwo + "' " + Environment.NewLine + ex_);
             }
         }
@@ -692,8 +715,8 @@
 
                 default:
                     logstatus = Status.Fail;
-                    Logger(Fail, "Browser type passed is not supported on test. Used: " + browserType);
-                    Assert.Fail("Browser type passed is not supported on test Used: " + browserType);
+                    Logger(Fail, "Browser type passed is not supported on test. Used: <br />" + browserType);
+                    Assert.Fail("Browser type passed is not supported on test Used: " + Environment.NewLine + browserType);
                     break;
             }
 
@@ -733,8 +756,8 @@
                         wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(element)));
                         break;
                     default:
-                        Logger(Fail, $@"Unsupported element type passed to WaitForElement. Please report to framework owner." + Environment.NewLine +
-                            "Used " + type + " to wait on element: " + element);
+                        Logger(Fail, $@"Unsupported element type passed to WaitForElement. Please report to framework owner." + 
+                            "<br />Used " + type + " to wait on element: <br />" + element);
                         Assert.Fail($@"Unsupported element type passed to WaitForElement. Please report to framework owner." + Environment.NewLine +
                             "Used " + type + " to wait on element: " + element);
                         Environment.Exit(1);
@@ -745,7 +768,7 @@
             catch (Exception ex_)
             {
                 Logger(Fail, $@"Something happened with WaitForElement method. Please report to framework owner." +
-                    Environment.NewLine + "Used " + type + " to wait on element: " + element + Environment.NewLine + ex_);
+                    "<br />Used " + type + " to wait on element: <br />" + element + "<br />" + ex_);
                 Assert.Fail($@"Something happened with WaitForElement method. Please report to framework owner." +
                     Environment.NewLine + "Used " + type + " to wait on element: " + element + Environment.NewLine + ex_);
                 Environment.Exit(1);
