@@ -1,8 +1,5 @@
 {
   // RumbleOn Classifieds VIN Store
-  // Note that all VINs are missing the last three digits. 
-  // Code will need to be changed to deal with more than the three catagories.
-  // Offroad is not in place past a JSON counter
   "VINStore": {
     "Motorcycles": [
       {
