@@ -17,19 +17,28 @@
 
     public abstract class Core
     {
-        protected IWebDriver _driver;
-        protected IConfiguration _config;
+        // Framework needed variables
+        private readonly string _homeDirectory;
         
-        // Needed for reporting
+        // Selenium & Json variables
+        protected IWebDriver _driver;
+        protected IConfiguration _config;       
+        public const string XPath = "xpath", CSS = "css", ID = "ID"; // Const Keywords for Selenium Locators
+
+        // Reporting variables
         protected ExtentReports _extent;
         protected ExtentTest _test;
         Status logstatus;
-
-        private readonly string _homeDirectory;
-
         public const string Info = "info", Pass = "pass", Fail = "fail"; // Const Keywords for Logger
-        public const string XPath = "xpath", CSS = "css", ID = "ID"; // Const Keywords for Selenium Locators
-        public const string Motorcycle = "motorcycle", Car = "car", Truck = "truck", Offroad = "offroad", Random = "random"; // Const Keyworkds for GenerateAVIN method
+
+        // ****RumbleOn Specific variables****
+        // Variables needed for account testing
+        public string accountEmailUnderTest = "", accountPasswordUnderTest = "", accountFirstNameUnderTest = "", accountLastNameUnderTest = "",
+            accountPhoneUnderTest = "", accountStreetAddressUnderTest = "", accountZipCodeUnderTest = "";
+        // Variables needed for VIN testing
+        public const string Motorcycle = "motorcycle", Car = "car", Truck = "truck", Offroad = "offroad", Random = "random"; 
+        public string vinUnderTest = "", makeUnderTest = "", modelUnderTest = "", trimUnderTest = "";
+        public int yearUnderTest = 0;
 
         protected Core()
         {
@@ -55,21 +64,23 @@
 
             configBuilder.AddJsonFile(_homeDirectory + "\\appsettings.local.json", true, true);
 
-            _config = configBuilder.Build();
-
-            
+            _config = configBuilder.Build();            
         }
 
+        // Selenium set the URL to go to
         protected string SetUrl
         {
             get => _driver.Url;
             set => _driver.Url = value;
         }
 
+        // Selenium read the webpages Title text
         protected string Title
         {
             get => _driver.Title;
         }
+
+        //////////////////////////////////////////////////////////////////////////////// NUNIT SECTION ////////////////////////////////////////////////////////////
 
         // Run before every suite
         [OneTimeSetUp]
@@ -137,6 +148,8 @@
             _test.Log(logstatus, "Test ended with " + logstatus + stacktrace);
             _extent.Flush();
         }
+
+        ///////////////////////////////////////////////////////////////////////////////// Core Commands ///////////////////////////////////////////////////////////
 
         /// <summary>
         /// Uses Selenium to click on an element on the page
@@ -235,33 +248,33 @@
         }
 
         /// <summary>
-        /// Wrapper method for the AdditionalFunctions.GenerateRandomVINFromTemplate method. This reads the VIN Store.json file for VIN templates. 
+        /// The GenerateAVIN method reads the VIN Store.json file for VIN known good VINs and will randomly select one. 
+        /// This will assign the VIN - Year - Make - Model to the global variables
         /// </summary>
         /// <param name="vinSelection">If not given this method will randomly pick a vehicle type. Other wise you can use the following:
-        /// 1 = motorcycle : 2 = car : 3 = truck</param>
+        /// Motorcycle : Car : Truck : Offroad : Random</param>
         /// <returns></returns>
-        protected string GenerateAVIN(string vinSelection = "random")
+        protected void GenerateAVIN(string vinSelection = "random")
         {
             int motorcyleCounter = 0, truckCounter = 0, carCounter = 0, offroadCounter = 0, randomType = 0;
             int randomVINEnding = (new Random()).Next(100, 1000);
-            string vin = "";
 
             // Below counts the number of valid VIN templates in the VIN Stor.json file
             for (int x = 0; x < 100; x++)
             {
-                if ($"{_config["VINStore:Motorcycles:" + x + ":VinTemplate"]}" != "")
+                if ($"{_config["VINStore:Motorcycles:" + x + ":Vin"]}" != "")
                 {
                     motorcyleCounter++;
                 }
-                if ($"{_config["VINStore:Cars:" + x + ":VinTemplate"]}" != "")
+                if ($"{_config["VINStore:Cars:" + x + ":Vin"]}" != "")
                 {
                     carCounter++;
                 }
-                if ($"{_config["VINStore:Trucks:" + x + ":VinTemplate"]}" != "")
+                if ($"{_config["VINStore:Trucks:" + x + ":Vin"]}" != "")
                 {
                     truckCounter++;
                 }
-                if ($"{_config["VINStore:Offroad:" + x + ":VinTemplate"]}" != "")
+                if ($"{_config["VINStore:Offroad:" + x + ":Vin"]}" != "")
                 {
                     offroadCounter++;
                 }
@@ -269,7 +282,7 @@
 
             if (vinSelection == "random")
             {
-                randomType = (new Random()).Next(1, 4);
+                randomType = (new Random()).Next(1, 5);
                 switch (randomType)
                 {
                     case 1:
@@ -292,38 +305,41 @@
                 (vinSelection == "truck" && truckCounter < 1) ||
                 (vinSelection == "offroad" && offroadCounter < 1))
             {
-                return "No valid VIN template found in the 'VIN Store.json' file!!";
+                Console.WriteLine("No valid VIN found in the 'VIN Store.json' file for: " + vinSelection);
+                throw new Exception("No valid VIN found in the 'VIN Store.json' file for: " + vinSelection);
             }
             
             switch (vinSelection)
             {
                 case "motorcycle":
                     int randomMotorcycleVin = (new Random()).Next(0, motorcyleCounter);
-                    vin = $"{_config["VINStore:Motorcycles:" + randomMotorcycleVin + ":VinTemplate"]}";
+                    vinUnderTest = $"{_config["VINStore:Motorcycles:" + randomMotorcycleVin + ":Vin"]}";
+                    yearUnderTest = Int32.Parse($"{_config["VINStore:Motorcycles:" + randomMotorcycleVin + ":Year"]}");
+                    makeUnderTest = $"{_config["VINStore:Motorcycles:" + randomMotorcycleVin + ":Make"]}";
+                    modelUnderTest = $"{_config["VINStore:Motorcycles:" + randomMotorcycleVin + ":Model"]}";
                     break;
                 case "car":
                     int randomCarVin = (new Random()).Next(0, carCounter);
-                    vin = $"{_config["VINStore:Cars:" + randomCarVin + ":VinTemplate"]}";
+                    vinUnderTest = $"{_config["VINStore:Cars:" + randomCarVin + ":Vin"]}";
+                    yearUnderTest = Int32.Parse($"{_config["VINStore:Cars:" + randomCarVin + ":Year"]}");
+                    makeUnderTest = $"{_config["VINStore:Cars:" + randomCarVin + ":Make"]}";
+                    modelUnderTest = $"{_config["VINStore:Cars:" + randomCarVin + ":Model"]}";
                     break;
                 case "truck":
                     int randomTruckVin = (new Random()).Next(0, truckCounter);
-                    vin = $"{_config["VINStore:Trucks:" + randomTruckVin + ":VinTemplate"]}";
+                    vinUnderTest = $"{_config["VINStore:Trucks:" + randomTruckVin + ":Vin"]}";
+                    yearUnderTest = Int32.Parse($"{_config["VINStore:Trucks:" + randomTruckVin + ":Year"]}");
+                    makeUnderTest = $"{_config["VINStore:Trucks:" + randomTruckVin + ":Make"]}";
+                    modelUnderTest = $"{_config["VINStore:Trucks:" + randomTruckVin + ":Model"]}";
                     break;
                 case "offroad":
                     int randomOffroadVin = (new Random()).Next(0, offroadCounter);
-                    vin = $"{_config["VINStore:Offroad:" + randomOffroadVin + ":VinTemplate"]}";
+                    vinUnderTest = $"{_config["VINStore:Offroad:" + randomOffroadVin + ":Vin"]}";
+                    yearUnderTest = Int32.Parse($"{_config["VINStore:Offroad:" + randomOffroadVin + ":Year"]}");
+                    makeUnderTest = $"{_config["VINStore:Offroad:" + randomOffroadVin + ":Make"]}";
+                    modelUnderTest = $"{_config["VINStore:Offroad:" + randomOffroadVin + ":Model"]}";
                     break;
             }
-
-            // Add last three random numbers to VIN template
-            vin += randomVINEnding.ToString();
-
-            if (vinSelection == "car" || vinSelection == "truck")
-            {
-                vin = AdditionalFunctions.FixCheckDigit(vin);
-            }
-
-            return vin;
         }
 
         /// <summary>
@@ -737,3 +753,4 @@
         }
     }
 }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
