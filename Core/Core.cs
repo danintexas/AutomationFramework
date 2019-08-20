@@ -738,9 +738,9 @@
         /// </summary>
         /// <param name="type">Supported: XPath</param>
         /// <param name="element">Locator path to the item to wait for</param>
-        protected void WaitForElement(string type, string element)
+        protected void WaitForElement(string type, string element, int time)
         {
-            var wait = new WebDriverWait(_driver, new TimeSpan(0, 0, 30));
+            var wait = new WebDriverWait(_driver, new TimeSpan(0, 0, time));
             try
             {
                 switch (type)
