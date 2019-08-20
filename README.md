@@ -99,6 +99,11 @@ build the project you should see that test appear in the NUNIT Test Explorer.
   - `makeUnderTest`
   - `modelUnderTest`
   - `trimUnderTest`
-- `GetAllEmailsFromAnEmailAccount`: Simple wrapper method to call the 'FetchAllMessages' method which pulls all emails from an email account using POP3. 
-To use this you need to ensure that your appsettings.local.JSON file has all the EmaiInformation filled out. 
+- `GetAllEmailsFromAnEmailAccount`: Simple wrapper method to call the 'FetchAllMessages' method which pulls all emails from an email account using POP3.<br />To use this you need to ensure that your appsettings.local.JSON file has all the EmaiInformation filled out. 
   - This method has one optional parameter you can pass `true` to. If you do this the method will pull all the email down from that account and delete the emails as well. Useful to ensure the account is left clean after your testing. 
+- `GetFieldValue`: This is a Selenium command that will return the value of a field on a website. 
+  - Method has two arguments. Locator type and the path to the locator. Example:
+     ```
+     GetFieldValue(XPath, "//button[@type='Login']");
+   ```
+    The above will use a XPath locator with the second parameter being the XPath locator. 
