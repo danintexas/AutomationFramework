@@ -44,5 +44,5 @@ Any comments, suggestions or complaints please reach out to me with them. I am l
 
 ## Folder Structure 
 - Root of project
-	appsettings.json: Contains all needed entries for the framework. Most of this is for Reports. Please ensure all this information is filled out or included in the appsettings.local.json which overrides the appsettings.json
-	AutomationFramework.sln: Visual Studio Solution file. Open this up to open, edit, or work with this framework.
+&nbsp;- appsettings.json: Contains all needed entries for the framework. Most of this is for Reports. Please ensure all this information is filled out or included in the appsettings.local.json which overrides the appsettings.json
+&nbsp;- AutomationFramework.sln: Visual Studio Solution file. Open this up to open, edit, or work with this framework.
