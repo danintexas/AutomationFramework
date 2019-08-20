@@ -93,9 +93,12 @@ build the project you should see that test appear in the NUNIT Test Explorer.
   - Again a tip I would provide is combine the above with JSONCALL - don't hard code your tests.
 - `GenerateAVIN`: This is a custom made module for RumbleOn. This will look at the VIN Store.json file in the Json Repo and randomly pull a VIN out of that file. 
   - This method has an option where you can specify `Motorcycle` - `Car` - `Truck` - `Offroad`. If no option is passed the method will randomly choose one of the four. 
-  The information pulled will populate the following variables which you can combine with DatabaseCheck, ShouldBe, or ShouldNotBe methods. 
-  - vinUnderTest
-  - yearUnderTest
-  - makeUnderTest
-  - modelUnderTest
-  - trimUnderTest
+  The information pulled will populate the following variables which you can combine with `DatabaseCheck`, `ShouldBe`, or `ShouldNotBe` methods. 
+  - `vinUnderTest`
+  - `yearUnderTest`
+  - `makeUnderTest`
+  - `modelUnderTest`
+  - `trimUnderTest`
+- `GetAllEmailsFromAnEmailAccount`: Simple wrapper method to call the 'FetchAllMessages' method which pulls all emails from an email account using POP3. 
+To use this you need to ensure that your appsettings.local.JSON file has all the EmaiInformation filled out. 
+  - This method has one optional parameter you can pass `true` to. If you do this the method will pull all the email down from that account and delete the emails as well. Useful to ensure the account is left clean after your testing. 

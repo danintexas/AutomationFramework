@@ -370,7 +370,6 @@
         /// -EmailInformation:Password
         /// </summary>
         /// <param name="delete">Pass 'true' through the method if you want the emails deleted off the account after saving them</param>
-        /// <param name="textToSearchFor">Pass a string value to parse the emails for</param>
         protected void GetAllEmailsFromAnEmailAccount(bool delete = false)
         {
             if (delete == true)
