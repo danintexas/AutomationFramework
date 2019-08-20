@@ -1,8 +1,8 @@
-﻿namespace AutomationFramework.Tests.Classifieds.Smoke
+﻿namespace AutomationFramework.Tests.Development_Tests
 {
     using NUnit.Framework;
     [Category("Web Server Tests")]
-    partial class SmokeTest : Core
+    partial class EmailServerCreationandDeletion : Core
     {
         [TestCase(TestName = "Create Email Account on Personal Webserver")]
         [Order(1)]

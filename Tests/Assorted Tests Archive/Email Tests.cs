@@ -2,7 +2,7 @@
 namespace AutomationFramework.Tests.Development_Tests
 {
     [Category("Dev Tests")]
-    partial class SmokeTest : Core
+    partial class CheckPOP3EmailTests : Core
     {
         [TestCase(TestName = "Check Email")]
         [Order(99)]

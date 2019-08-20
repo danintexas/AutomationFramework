@@ -2,7 +2,7 @@
 namespace AutomationFramework.Tests.Development_Tests
 {
     [Category("Dev Tests")]
-    partial class SmokeTest : Core
+    partial class CheckDataBaseTestExample : Core
     {
         [TestCase(TestName = "Check Database")]
         [Order(99)]
