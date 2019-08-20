@@ -6,13 +6,13 @@
   "VINStore": {
     "Motorcycles": [
       {
-        "VinTemplate": "VTTGM51A082101",
+        "Vin": "VTTGM51A082101123",
         "Year": 2008,
         "Make": "Suzuki",
         "Model": "GS500FK8"
       },
       {
-        "VinTemplate": "JKAVN2C1X9A030",
+        "Vin": "JKAVN2C1X9A030123",
         "Year": 2009,
         "Make": "Kawasaki",
         "Model": "VN900C9FA Vulcan Custom"
@@ -20,7 +20,7 @@
     ],
     "Cars": [
       {
-        "VinTemplate": "1G1PB5SH1F7172",
+        "Vin": "1G1PB5SH5F7172123868",
         "Year": 2015,
         "Make": "Chevrolet",
         "Model": "Cruze",
@@ -29,7 +29,7 @@
     ],
     "Trucks": [
       {
-        "VinTemplate": "3D7HA18H35G834",
+        "Vin": "3D7HA18H25G834246",
         "Year": 2005,
         "Make": "Dodge",
         "Model": "Ram 1500",
@@ -38,10 +38,10 @@
     ],
     "Offroad": [
       {
-        "VinTemplate": "",
-        "Year": 5555,
-        "Make": "Make",
-        "Model": "Model"
+        "Vin": "5Y4AM45Y5DA101040",
+        "Year": 2013,
+        "Make": "Yamaha",
+        "Model": "YFM7RSEDB Raptor Special Edition"
       }
     ]
   }
