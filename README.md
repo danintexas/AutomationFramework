@@ -63,7 +63,6 @@ Personal Email: daniel.gail@gmail.com
   - `Image Bank`: Storage folder used for images used for multiple tests.
   ```json
   {
-  // Information needed for reports - This stays no matter the project
   "ReportInformation": {
     "TesterName": "TesterName",
     "Project": "Project Name",
@@ -71,7 +70,6 @@ Personal Email: daniel.gail@gmail.com
     "Build": "Environment Build"
   },
   "FrameworkConfiguration": {
-    // Browser Keywords: 'chrome' 'firefox' 'edge'
     "Browser": "chrome",
     "DatabaseTestSteps": "Yes" // 'Yes' or 'No'
   }
