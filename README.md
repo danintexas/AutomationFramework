@@ -48,16 +48,16 @@ Personal Email: daniel.gail@gmail.com
 - Built in API stress testing.
 
 ## Folder Structure 
-- Framework Root
+- `Framework Root`
   - `appsettings.json`: Contains all needed entries for the framework. Most of this is for Reports. Please ensure all this information is filled out or included in the appsettings.local.json which overrides the appsettings.json
   - `AutomationFramework.sln`: Visual Studio Solution file. Open this up to open, edit, or work with this framework.
-  - README.md: This file you are reading
-- Core Folder: As the name implys this is where the core of the framework resides.
-  - AdditionalFunctions.cs: This file contains additional methods more to better manage an ever increasing core.cs file
-  - Core.cs: As you can probably guess this is where the heart of the framework is. I have tried to make all code easy to read so if there is something here you think needs improving please let me know. 
-- Json Repo: If the core folder is the heart of the framework this is the brains. Houses all needed input and locators for the framework to utilize. Please note ANY .JSON files dropped in this folder will be scanned on build time. 
-  - Json Backup Folder: This folder is ignored during project build time and test execution. Simple folder to store back ups of JSON files you do not want to use. This folder is not used or looked at by the framework.
-  - Json Override Folder: Any JSON files put into this folder will override any other JSON files in the base repo file. Usefull if you want to use an override for a specific JSON entry.
-  - VIN Store: This file is special and used by the GenerateVIN method. If you call this method you need to ensure this file is there. 
-- Support Folder: This folder contains all side files needed for the framework. 
-  - Image Bank: Storage folder used for images used for multiple tests.
+  - `README.md`: This file you are reading
+- `Core Folder`: As the name implys this is where the core of the framework resides.
+  - `AdditionalFunctions.cs`: This file contains additional methods more to better manage an ever increasing core.cs file
+  - `Core.cs`: As you can probably guess this is where the heart of the framework is. I have tried to make all code easy to read so if there is something here you think needs improving please let me know. 
+- `Json Repo`: If the core folder is the heart of the framework this is the brains. Houses all needed input and locators for the framework to utilize. Please note ANY .JSON files dropped in this folder will be scanned on build time. 
+  - `Json Backup Folder`: This folder is ignored during project build time and test execution. Simple folder to store back ups of JSON files you do not want to use. This folder is not used or looked at by the framework.
+  - `Json Override Folder`: Any JSON files put into this folder will override any other JSON files in the base repo file. Usefull if you want to use an override for a specific JSON entry.
+  - `VIN Store`: This file is special and used by the GenerateVIN method. If you call this method you need to ensure this file is there. 
+- `Support Folder`: This folder contains all side files needed for the framework. 
+  - `Image Bank`: Storage folder used for images used for multiple tests.
