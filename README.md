@@ -78,8 +78,16 @@ build the project you should see that test appear in the NUNIT Test Explorer.
 - 'ClickElement': This method is used to have Selenium click on any element in a website like a form field or button. 
    - This method has two parameters that need to be passed. Locator type and the path to the locator. Example:
    ```
-     ClickElement(XPath, "//button[@type='Login']")
+     ClickElement(XPath, "//button[@type='Login']");
    ```
     The above will use a XPath locator with the second parameter being the XPath locator. 
 
    - One tip I would suggest is instead of hardcoding your locators is to have a seperate JSON file with your locators and then use the 	`JSONCALL` method to call that locator. This way you do not have to modify your tests.
+- `CloseBrowser`: This method closes the current Selenium controlled browser.
+- `CloseQuitBrowsers`: This closes all active Selenium controlled browsers in addition it also ends all Selenium controlled processes
+- `DatabaseCheck`: This will query the database for a single value using a SQL command and ensures it is a specific value.
+  - This method has two parameters that need to be passed. The SQL query and the expected value. Example: 
+  ```
+     DatabaseCheck("select UserId from ClsListing where ListingId = 111", "61807");
+  ```
+  - Again a tip I would provide is combine the above with JSONCALL - don't hard code your tests.

@@ -202,7 +202,7 @@
         }
 
         /// <summary>
-        /// Closes active Selenum controlled browser then ends all Selenium controlled browser processes
+        /// Closes active Selenium controlled browser then ends all Selenium controlled browser processes
         /// </summary>
         protected void CloseQuitBrowsers()
         {
