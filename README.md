@@ -83,8 +83,6 @@ build the project you should see that test appear in the NUNIT Test Explorer.
     The above will use a XPath locator with the second parameter being the XPath locator. 
 
    - One tip I would suggest is instead of hardcoding your locators is to have a seperate JSON file with your locators and then use the 	`JSONCALL` method to call that locator. This way you do not have to modify your tests.
-- `CloseBrowser`: This method closes the current Selenium controlled browser.
-- `CloseQuitBrowsers`: This closes all active Selenium controlled browsers in addition it also ends all Selenium controlled processes
 - `DatabaseCheck`: This will query the database for a single value using a SQL command and ensures it is a specific value.
   - This method has two parameters that need to be passed. The SQL query and the expected value. Example: 
   ```
@@ -108,11 +106,13 @@ build the project you should see that test appear in the NUNIT Test Explorer.
   ```
     The above will use a XPath locator with the second parameter being the XPath locator. 
 - `JsonCall`: Simple method that does a ton to ensure you do not have to rewrite your tests. Call this method and the value passed is a variable entry in one of your JSON files in the JSON Repo.
+  - Example:
   ```
      JsonCall("GoogleHomePage:URL");
   ```
 - `Logger`: Method that writes information into the after test execution Extent logs. 
   - Two needed arguments supported - Type of report and the string value to write into the report. 
+  - Example:
   ```
      Logger(Info, "This will show up in the report!");
   ```
@@ -121,3 +121,16 @@ build the project you should see that test appear in the NUNIT Test Explorer.
     - `Info`: Normal information line. 
 	- `Pass`: This will mark the line in the report as a passed item. 
 	- `Fail`: This will mark the line in the report as a failed item.
+- `MaximizeBrowser`: This is a Selenium command that simply sets the current active Selenium controlled browser into a full screen state.
+- `ParseAllEmailFilesForAStringValue`: Method will search in the `c:\Automation Logs\{Date}\Emails` folder for a specific string in all the emails downloaded with the `GetAllEmailsFromAnEmailAccount` method. 
+This will fail or pass the current test if the string is not found. It is recommended to run this after all other tests are completed. 
+  - Argument passed is a string to parse the emails for. Again reccomend using JSONCALL for this. 
+  - Example:
+  ```
+     ParseAllEmailFilesForAStringValue("This text should be in one of the email files.");
+  ```
+
+### Methods you can use but are more used as support of the framework
+- `CloseBrowser`: This method closes the current Selenium controlled browser.
+- `CloseQuitBrowsers`: This closes all active Selenium controlled browsers in addition it also ends all Selenium controlled processes. Should know that this method is called at the end of a test run automatically by the framework.
+- `QuitBrowsers`: Quits all Selenium controlled browser processes. 
