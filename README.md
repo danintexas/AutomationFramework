@@ -75,7 +75,7 @@ Visual Studio. If you see anywhere I have missed something please let me know.
 build the project you should see that test appear in the NUNIT Test Explorer. 
 
 ### Currently supported methods you can use in your tests
-- 'ClickElement': This method is used to have Selenium click on any element in a website like a form field or button. 
+- `ClickElement`: This method is used to have Selenium click on any element in a website like a form field or button. 
    - This method has two parameters that need to be passed. Locator type and the path to the locator. Example:
    ```
      ClickElement(XPath, "//button[@type='Login']");
@@ -91,3 +91,11 @@ build the project you should see that test appear in the NUNIT Test Explorer.
      DatabaseCheck("select UserId from ClsListing where ListingId = 111", "61807");
   ```
   - Again a tip I would provide is combine the above with JSONCALL - don't hard code your tests.
+- `GenerateAVIN`: This is a custom made module for RumbleOn. This will look at the VIN Store.json file in the Json Repo and randomly pull a VIN out of that file. 
+  - This method has an option where you can specify `Motorcycle` - `Car` - `Truck` - `Offroad`. If no option is passed the method will randomly choose one of the four. 
+  The information pulled will populate the following variables which you can combine with DatabaseCheck, ShouldBe, or ShouldNotBe methods. 
+  - vinUnderTest
+  - yearUnderTest
+  - makeUnderTest
+  - modelUnderTest
+  - trimUnderTest
