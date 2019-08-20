@@ -1,14 +1,13 @@
-﻿namespace AutomationFramework.Tests.Test_Template
+﻿namespace AutomationFramework.Tests.Test_Template  // Good idea to change the namespace from Test_Template to something appropriate
 {
     using NUnit.Framework;
-    using System;
 
-    [Category("Category Name")]
-    partial class TestName : Core
+    [Category("Category Name")] // Change the Category Name to something more appropriate
+    partial class TestName : Core // Instead of TestName name the class something more descriptive
     {
-        [TestCase(TestName = "Test Name")]
+        [TestCase(TestName = "Test Name")] // Change the Test Name to something appropriate
         [Order(1)]
-        public void TestMethod()
+        public void TestMethod() // Method can also be renamed to something more descriptive
         {
             UseBrowser(JsonCall("FrameworkConfiguration:Browser"));
             MaximizeBrowser();

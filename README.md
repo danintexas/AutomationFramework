@@ -10,6 +10,12 @@ If you want to just run an tests just install .NET Core 2.2 and run through comm
 
 'dotnet test'
 
+From it's initial design this Kindergarten was designed to do two things:
+1. Help bring manual Q/A engineers up into the Automation world quickly while not needing full development skills and knowledge allowing them to ease into an automation role. 
+2. Allow nearly anyone to quickly develop Web Automation tests without the Framework getting in the way.
+
+Any comments, suggestions or complaints please reach out to me with them. I am looking to fine tune this Framework and I am always looking to make it better and with more features. 
+
 ## Tech Used:
 - .NET Core 2.2
 - NUnit
@@ -36,5 +42,7 @@ If you want to just run an tests just install .NET Core 2.2 and run through comm
 - Built in API endpoint testing. 
 - Built in API stress testing.
 
-## Custom Items for RumbleOn to do
-
+## Folder Structure 
+- Root of project
+	appsettings.json: Contains all needed entries for the framework. Most of this is for Reports. Please ensure all this information is filled out or included in the appsettings.local.json which overrides the appsettings.json
+	AutomationFramework.sln: Visual Studio Solution file. Open this up to open, edit, or work with this framework.
