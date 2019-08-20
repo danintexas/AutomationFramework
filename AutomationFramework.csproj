@@ -20,12 +20,14 @@
     <Compile Remove="Json Repo\Json Backup\**" />
     <Compile Remove="Tests\Archive Tests\**" />
     <Compile Remove="Tests\Assorted Tests Archive\**" />
+    <Compile Remove="Tests\RumbleOn\Classifieds\Archive Tests\**" />
     <Compile Remove="Tests\RumbleOn\Classifieds\Backup Tests\**" />
     <Compile Remove="Tests\RumbleOn\Classifieds\Ignored Tests\**" />
     <EmbeddedResource Remove="Json Repo\Backup\**" />
     <EmbeddedResource Remove="Json Repo\Json Backup\**" />
     <EmbeddedResource Remove="Tests\Archive Tests\**" />
     <EmbeddedResource Remove="Tests\Assorted Tests Archive\**" />
+    <EmbeddedResource Remove="Tests\RumbleOn\Classifieds\Archive Tests\**" />
     <EmbeddedResource Remove="Tests\RumbleOn\Classifieds\Backup Tests\**" />
     <EmbeddedResource Remove="Tests\RumbleOn\Classifieds\Ignored Tests\**" />
 	<EmbeddedResource Remove="Tests\Assorted Tests\**" />
@@ -33,6 +35,7 @@
     <None Remove="Json Repo\Json Backup\**" />
     <None Remove="Tests\Archive Tests\**" />
     <None Remove="Tests\Assorted Tests Archive\**" />
+    <None Remove="Tests\RumbleOn\Classifieds\Archive Tests\**" />
     <None Remove="Tests\RumbleOn\Classifieds\Backup Tests\**" />
     <None Remove="Tests\RumbleOn\Classifieds\Ignored Tests\**" />
   </ItemGroup>
@@ -54,6 +57,7 @@
 
   <ItemGroup>
     <Folder Include="Json Repo\Json Override\" />
+    <Folder Include="Tests\RumbleOn\Classifieds\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -103,6 +107,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Support\geckodriver.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Support\Kill All Selenium Instances.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Support\MicrosoftWebDriver.exe">
