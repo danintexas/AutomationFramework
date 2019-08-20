@@ -103,7 +103,21 @@ build the project you should see that test appear in the NUNIT Test Explorer.
   - This method has one optional parameter you can pass `true` to. If you do this the method will pull all the email down from that account and delete the emails as well. Useful to ensure the account is left clean after your testing. 
 - `GetFieldValue`: This is a Selenium command that will return the value of a field on a website. 
   - Method has two arguments. Locator type and the path to the locator. Example:
-     ```
+  ```
      GetFieldValue(XPath, "//button[@type='Login']");
-   ```
+  ```
     The above will use a XPath locator with the second parameter being the XPath locator. 
+- `JsonCall`: Simple method that does a ton to ensure you do not have to rewrite your tests. Call this method and the value passed is a variable entry in one of your JSON files in the JSON Repo.
+  ```
+     JsonCall("GoogleHomePage:URL");
+  ```
+- `Logger`: Method that writes information into the after test execution Extent logs. 
+  - Two needed arguments supported - Type of report and the string value to write into the report. 
+  ```
+     Logger(Info, "This will show up in the report!");
+  ```
+  - The above will show up as an informational line in the logs for that test. Useful to put into logs what flow you are testing or what behavior you are expecting from your test to better track it. 
+  - Supported Report types:
+    - `Info`: Normal information line. 
+	- `Pass`: This will mark the line in the report as a passed item. 
+	- `Fail`: This will mark the line in the report as a failed item.
