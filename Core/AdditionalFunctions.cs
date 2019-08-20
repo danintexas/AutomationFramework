@@ -9,6 +9,13 @@ using System.Reflection;
 
 class AdditionalFunctions
 {
+    // The FixCheckDigit function is not used and currently flawed. Apparently just doing last 3 digits as well as the 
+    // check digit is not enough. This can end up still coming up with incorrect VINs. 
+    // This can still be used to mass print a ton of vins. Use the following:
+    /*
+     *  vinUnderTest = AdditionalFunctions.FixCheckDigit("3JBKXLP15BJ001");
+     *  Console.WriteLine(vinUnderTest); 
+     */
     /// <summary>
     /// GenerateRandomVINFromTemplate is a method made specifically for RumbleOn. This will take a truncated vehicle VIN 
     /// missing the last three digits - apply a random 3 digits to the end and then change the VIN
