@@ -65,6 +65,7 @@ Personal Email: daniel.gail@gmail.com
 - `Tests Folder`: This is where all the magic happens. The automation tests! Any .cs files in this folder will be included in the NUNIT Test Explorer.
    - `Assorted Tests Archive`: This is where I store my development tests. This folder is ignored during project build time. Tests in this folder do not appear in the NUNIT Test Explorer.
    - `RumbleOn`: All tests related to RumbleOn
+- `c:\Automation Logs`: This is where the Extent reports, screenshots, and all ancillary files are stored for your test runs.
 
 ## Using the Framework
 First off I will not go into great detail about the code of Kindergarten past just saying I have tried my hardest to name all variables and methods to where you should understand what is going on under the hood. 
@@ -129,6 +130,25 @@ This will fail or pass the current test if the string is not found. It is recomm
   ```
      ParseAllEmailFilesForAStringValue("This text should be in one of the email files.");
   ```
+- `ScreenShot`: This is a simple method to take a screenshot of the currently active Selenium controlled browser. Single argument passed which is the name of the screenshot. 
+  - Example:
+  ```
+     ScreenShot("Picture of Homepage");
+  ```
+  - This method automatically saves the screenshot into the Automation Logs folder and adds them to the current Extent report for that test. 
+- `SendKeys`: This sends a set of keyboard commands to a specific element with in the Selenium controlled browser.
+  - Three arguments are needed for this method. 
+    - Locator type
+	- Locator (Again combine with JSONCALL)
+	- String to send
+  - Example:
+  ```
+     SendKeys(XPath, "//button[@type='Login']", "Type this message in the box.");
+  ```
+- `ShouldBe`: Very simple method that compares two string values and ensures they are exactly the same.
+  - Two arguments are needed for this. 
+    - Value #1 to compare to #2
+	- Value #2 to compare to #1
 
 ### Methods you can use but are more used as support of the framework
 - `CloseBrowser`: This method closes the current Selenium controlled browser.
