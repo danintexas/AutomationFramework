@@ -6,19 +6,17 @@ This automation framework is build from the ground up as an simple to use and ma
 
 All you need is Visual Studio 19 to write tests along with installing .NET Core 2.2!
 
-If you want to just run an tests just install .NET Core 2.2 and run through command line use the following in the solution folder:
+If you want to just run an tests just install .NET Core 2.2 and run through command line use the following in the solution folder: `dotnet test`
 
-'dotnet test'
-
-From it's initial design this Kindergarten was designed to do two things:
+## From it's initial design this Kindergarten was designed to do two things:
 1. Help bring manual Q/A engineers up into the Automation world quickly while not needing full development skills and knowledge allowing them to ease into an automation role. 
 2. Allow nearly anyone to quickly develop Web Automation tests without the Framework getting in the way.
 
 Any comments, suggestions or complaints please reach out to me with them. I am looking to fine tune this Framework and I am always looking to make it better and with more features. 
 This is a passion project and something I will be working on for the foreseable future.
 
-Daniel Gail
-Work Email: danielg@rumbleon.com
+Daniel Gail<br />
+Work Email: danielg@rumbleon.com<br />
 Personal Email: daniel.gail@gmail.com
 
 ## Tech Used:
