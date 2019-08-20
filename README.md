@@ -149,8 +149,21 @@ This will fail or pass the current test if the string is not found. It is recomm
   - Two arguments are needed for this. 
     - Value #1 to compare to #2
 	- Value #2 to compare to #1
+- `ShouldNotBe`: Method is exactly the same as `ShouldBe` but ensures the values are not the same.
+- `StripEndingUrl`: Custom method for RumbleOn that strips all characters after the last `/` in a string. This is was made to trip the ending of a URL.
+- `Wait`: Method that takes in a numeric value as an argument and tells Selenium to wait for that number of seconds. This is considered an implicit wait.
+- `WaitForElement`: This is a Selenium command that will pause a test until Selenium sees a specific element on a webpage.
+  - Two arguments are needed for this method. The third is optional.
+    - Locator type
+	- Locator (Again combine with JSONCALL)
+	- Numeric time to wait for the element. Default is 30 seconds and if this argument is not passed Selenium will wait 30 seconds before failing the test step.
+  - Example:
+  ```
+     WaitForElement(XPath, "//button[@type='Login']", "Type this message in the box.", 30);
+  ```
 
 ### Methods you can use but are more used as support of the framework
 - `CloseBrowser`: This method closes the current Selenium controlled browser.
 - `CloseQuitBrowsers`: This closes all active Selenium controlled browsers in addition it also ends all Selenium controlled processes. Should know that this method is called at the end of a test run automatically by the framework.
 - `QuitBrowsers`: Quits all Selenium controlled browser processes. 
+- `UseBrowser`: Internal method that tells Selenium what browser to run. Currently supports: `chrome` - `firefox` - `edge`
