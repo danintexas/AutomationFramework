@@ -73,3 +73,6 @@ Visual Studio. If you see anywhere I have missed something please let me know.
 
 - Quickest way to get going with Kindergarten is to grab the `Test Template.cs` file from the `Tests\Assorted Tests Archive`, copy it to the base `Tests` folder and rename the commented fields. At that point when you 
 build the project you should see that test appear in the NUNIT Test Explorer. 
+
+### Currently supported methods you can use in your tests
+- 'First Method': 
