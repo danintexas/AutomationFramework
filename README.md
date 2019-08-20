@@ -61,7 +61,7 @@ Personal Email: daniel.gail@gmail.com
   - `VIN Store`: This file is special and used by the GenerateVIN method. If you call this method you need to ensure this file is there. 
 - `Support Folder`: This folder contains all side files needed for the framework. 
   - `Image Bank`: Storage folder used for images used for multiple tests.
-  ```
+  ```json
   {
   // Information needed for reports - This stays no matter the project
   "ReportInformation": {
