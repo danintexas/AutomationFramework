@@ -80,5 +80,6 @@ build the project you should see that test appear in the NUNIT Test Explorer.
    ```
      ClickElement(XPath, "//button[@type='Login']")
    ```
-    The above will use a XPath locator with the second parameter being the XPath locator. One tip I would suggest is instead of hardcoding your locators is to have a seperate JSON file with your locators and then use the 
-	`JSONCALL` method to call that locator. This way you do not have to modify your tests.
+    The above will use a XPath locator with the second parameter being the XPath locator. 
+
+   - One tip I would suggest is instead of hardcoding your locators is to have a seperate JSON file with your locators and then use the 	`JSONCALL` method to call that locator. This way you do not have to modify your tests.
