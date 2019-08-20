@@ -2,7 +2,7 @@
 
 ## A simple to use and maintain automation framework for web testing
 
-This automation framework is build from the ground up as an simple to use and maintain solution. Pages and all locators are kept in the appsettings.json file that can be changed per environment or application
+This automation framework is build from the ground up as an simple to use and maintain solution. 
 
 All you need is Visual Studio 17 or 19 along with installing .NET Core 2.2!
 
