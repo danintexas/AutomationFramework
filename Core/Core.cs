@@ -216,27 +216,30 @@
         /// </summary>
         /// <param name="query">Single Table entry SQL query to run against the database</param>
         /// <param name="expectedResult">The exact result expected</param>
-        protected void DatabaseCheck(string query, string expectedResult)
+        protected string DatabaseCheck(string query)
         {
             var runDBTests = JsonCall("FrameworkConfiguration:DatabaseTestSteps").ToLower();
 
             if (runDBTests != "no")
             {
+                
                 string connectionString = "Server=" + JsonCall("DatabaseServerInformation:Server") +
                     ";Database=" + JsonCall("DatabaseServerInformation:Database") + 
                     ";User Id=" + JsonCall("DatabaseServerInformation:Account") + 
                     ";Password=" + JsonCall("DatabaseServerInformation:Password");
+                var resultOfQuery = "";
 
-                bool result = AdditionalFunctions.QueryDatabase(query, expectedResult, connectionString);
+                resultOfQuery = AdditionalFunctions.QueryDatabase(query, connectionString);
 
-                if (result)
+                if (resultOfQuery != "")
                 {
-                    Logger(Pass, "Checked the database with the following query: <br />'" + query + "' <br />The expected value returned was: <br />'" + expectedResult + "'");
+                    Logger(Pass, "Checked the database with the following query: <br />'" + query + "' <br />The returned value was: <br />'" + resultOfQuery + "'");
+                    return resultOfQuery;
                 }
                 else
                 {
-                    Logger(Fail, "Checked the database with the following query: <br />'" + query + "' <br />The expected value returned was not: <br />'" + expectedResult + "'");
-                    Assert.Fail("Checked the database with the following query: <br />'" + query + "' <br />The expected value returned was not: <br />'" + expectedResult + "'");
+                    Logger(Fail, "Checked the database with the following query: <br />'" + query + "' <br />No result was returned");
+                    Assert.Fail("Checked the database with the following query: <br />'" + query + "' <br />No result was returned");
                 }
             }
 
@@ -244,7 +247,10 @@
             {
                 Logger(Info, "Database test step skipped per the setting = 'FrameworkConfiguration:DatabaseTestSteps' set to: <br />'" + runDBTests +
                 "'<br />and not being set to 'yes'");
+                return "Database Test Step Skipped";
             }
+
+            return "Complete";
         }
 
         /// <summary>

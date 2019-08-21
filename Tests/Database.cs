@@ -4,18 +4,14 @@ using System;
 namespace AutomationFramework.Tests.Development_Tests
 {
     [Category("Dev Tests")]
-    partial class RandomVin : Core
+    partial class CheckDataBaseTestExample : Core
     {
-        [TestCase(TestName = "Random VIN")]
+        [TestCase(TestName = "Check Database")]
         [Order(99)]
 
         public void Test()
         {
-            for (int i = 1; i < 10; i++)
-            {
-                GenerateAVIN();
-            }
+            Console.WriteLine(DatabaseCheck("select Vin from ClsListing where ListingId = 318"));
         }
-        
     }
 }

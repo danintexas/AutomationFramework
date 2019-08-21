@@ -11,33 +11,10 @@ namespace AutomationFramework.Tests.Development_Tests
 
         public void Test()
         {
-            GenerateAVIN(Motorcycle);
-            Console.WriteLine(vinUnderTest);
-            Console.WriteLine(yearUnderTest);
-            Console.WriteLine(makeUnderTest);
-            Console.WriteLine(modelUnderTest);
-            Console.WriteLine("========================");
-            trimUnderTest = "";
-            GenerateAVIN(Car);
-            Console.WriteLine(vinUnderTest);
-            Console.WriteLine(yearUnderTest);
-            Console.WriteLine(makeUnderTest);
-            Console.WriteLine(modelUnderTest);
-            Console.WriteLine("========================");
-            trimUnderTest = "";
-            GenerateAVIN(Truck);
-            Console.WriteLine(vinUnderTest);
-            Console.WriteLine(yearUnderTest);
-            Console.WriteLine(makeUnderTest);
-            Console.WriteLine(modelUnderTest);
-            Console.WriteLine("========================");
-            trimUnderTest = "";
-            GenerateAVIN(Offroad);
-            Console.WriteLine(vinUnderTest);
-            Console.WriteLine(yearUnderTest);
-            Console.WriteLine(makeUnderTest);
-            Console.WriteLine(modelUnderTest);
-            Console.WriteLine("========================");
+            for (int i = 1; i < 10; i++)
+            {
+                GenerateAVIN();
+            }
         }
         
     }

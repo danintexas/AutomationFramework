@@ -175,9 +175,8 @@ class AdditionalFunctions
     /// <param name="expected">Expected results from the query</param>
     /// <param name="connectionString">Database connection information</param>
     /// <returns></returns>
-    public static bool QueryDatabase(string query, string expected, string connectionString)
+    public static string QueryDatabase(string query, string connectionString)
     {
-        bool returnStatus = false;
         string results = "";
 
         using (SqlConnection connection =
@@ -199,7 +198,7 @@ class AdditionalFunctions
                 }
                 else
                 {
-                    Console.WriteLine("No rows found.");
+                    Console.WriteLine("No result found.");
                 }
                 
                 reader.Close();
@@ -207,15 +206,11 @@ class AdditionalFunctions
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                results = "Something happened with the SQL connection. Check credentials. Exception: " + Environment.NewLine + ex;
             }
         }
 
-        if (results == expected)
-        {
-            returnStatus = true;
-        }
-
-        return returnStatus; 
+        return results; 
     }
 
     /// <summary>

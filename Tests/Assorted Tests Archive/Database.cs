@@ -1,4 +1,6 @@
 ﻿using NUnit.Framework;
+using System;
+
 namespace AutomationFramework.Tests.Development_Tests
 {
     [Category("Dev Tests")]
@@ -9,7 +11,7 @@ namespace AutomationFramework.Tests.Development_Tests
 
         public void Test()
         {
-            DatabaseCheck("select Vin from ClsListing where ListingId = 318", "1HD1BXB106Y053007");
+            Console.WriteLine(DatabaseCheck("select Vin from ClsListing where ListingId = 318"));
         }
     }
 }
