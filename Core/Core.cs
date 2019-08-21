@@ -447,6 +447,24 @@
         }
 
         /// <summary>
+        /// LocatorParse is used to take a locator string and parse out the type of locator and the locator and return both.
+        /// </summary>
+        /// <param name="rawLocator">String value of the locator formatted the following: 'xpath=this is the locator'</param>
+        /// <returns></returns>
+        public (string, string) LocatorParse(string rawLocator = "")
+        {
+            string cleanedLocator = "", type = "";
+
+            if (rawLocator.Contains('='))
+            {
+                type = ((rawLocator.Substring(0, rawLocator.LastIndexOf('='))).Trim()).ToLower();
+                cleanedLocator = rawLocator.Substring(rawLocator.LastIndexOf('=') + 1);
+            }
+
+            return (cleanedLocator, type);
+        }
+
+        /// <summary>
         /// Method that will rename the core log folder if it exists for archival purposes
         /// </summary>
         public static void LogCleaner()
@@ -744,7 +762,7 @@
         /// </summary>
         /// <param name="type">Supported: XPath</param>
         /// <param name="element">Locator path to the item to wait for</param>
-        protected void WaitForElement(string type, string element, int time)
+        protected void WaitForElement(string type, string element, int time = 0)
         {
             var wait = new WebDriverWait(_driver, new TimeSpan(0, 0, time));
             try
