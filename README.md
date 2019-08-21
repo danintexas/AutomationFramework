@@ -85,11 +85,11 @@ build the project you should see that test appear in the NUNIT Test Explorer.
 
    - One tip I would suggest is instead of hardcoding your locators is to have a separate JSON file with your locators and then use the `JSONCALL` method to call that locator. This way you do not have to modify your tests.
 - `DatabaseCheck`: This will query the database for a single value using a SQL command and ensures it is a specific value.
-  - This method has two parameters that need to be passed. The SQL query and the expected value. Example: 
+  - This method has a single parameter, the SQL query,  that needs to be passed. Example: 
   ```
-     DatabaseCheck("select UserId from ClsListing where ListingId = 111", "61807");
+     DatabaseCheck("select UserId from ClsListing where ListingId = 111");
   ```
-  - Again, a tip I would provide is combine the above with JSONCALL - don't hard code your tests.
+  - Again, a tip I would provide is combine the above with JSONCALL - don't hard code your tests. This can also be used in conjunction with other functions. 
 - `GenerateAVIN`: This is a custom-made module for RumbleOn. This will look at the VIN Store.json file in the Json Repo and randomly pull a VIN out of that file. 
   - This method has an option where you can specify `Motorcycle` - `Car` - `Truck` - `Offroad`. If no option is passed the method will randomly choose one of the four. 
   The information pulled will populate the following variables which you can combine with `DatabaseCheck`, `ShouldBe`, or `ShouldNotBe` methods. 
