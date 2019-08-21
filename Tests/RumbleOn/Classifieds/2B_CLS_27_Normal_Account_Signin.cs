@@ -12,18 +12,18 @@
             MaximizeBrowser();
             Logger(Info, "Normal Account Login Test");
             SetUrl = JsonCall("RumbleOnClassifieds:Url:Homepage");
-            ClickElement(XPath, JsonCall("RumbleOnClassifieds:Header:LoginButton"));
+            ClickElement(JsonCall("RumbleOnClassifieds:Header:LoginButton"));
             ShouldBe(SetUrl, JsonCall("RumbleOnClassifieds:Url:LoginPage"));
-            WaitForElement(XPath, JsonCall("RumbleOnClassifieds:Loginpage:Email"));
+            WaitForElement(JsonCall("RumbleOnClassifieds:Loginpage:Email"));
             ScreenShot("After clicking Login on Homepage");
 
-            ClickElement(XPath, JsonCall("RumbleOnClassifieds:Loginpage:Email"));
-            SendKeys(XPath, JsonCall("RumbleOnClassifieds:Loginpage:Email"), JsonCall("RumbleOnClassifieds:Account:User"));
-            SendKeys(XPath, JsonCall("RumbleOnClassifieds:Loginpage:Password"), JsonCall("RumbleOnClassifieds:Account:Password"));
+            ClickElement(JsonCall("RumbleOnClassifieds:Loginpage:Email"));
+            SendKeys(JsonCall("RumbleOnClassifieds:Loginpage:Email"), JsonCall("RumbleOnClassifieds:Account:User"));
+            SendKeys(JsonCall("RumbleOnClassifieds:Loginpage:Password"), JsonCall("RumbleOnClassifieds:Account:Password"));
             ScreenShot("Filled in email and password");
 
-            ClickElement(XPath, JsonCall("RumbleOnClassifieds:Loginpage:LoginButton"));
-            WaitForElement(XPath, JsonCall("RumbleOnClassifieds:Header:MyGarage"));
+            ClickElement(JsonCall("RumbleOnClassifieds:Loginpage:LoginButton"));
+            WaitForElement(JsonCall("RumbleOnClassifieds:Header:MyGarage"));
             ScreenShot("Homepage being logged in");
         }
     }

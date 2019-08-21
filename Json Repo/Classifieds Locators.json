@@ -6,10 +6,10 @@
       "AboutSub": "(//a[contains(text(),'About')])[2]",
       "FAQ": "//a[contains(text(),'Frequently Asked Questions')]",
       "ListMyVehicle": "//a[contains(text(),'List my vehicle')]",
-      "LoginButton": "//a[contains(text(),'Log In')]",
+      "LoginButton": "xpath=//a[contains(text(),'Log In')]",
       "LogOut": "//p[contains(text(),'Log Out')]",
       "MainButton": "//a[@class='active']//img",
-      "MyGarage": "//a[contains(text(),'My Garage')]",
+      "MyGarage": "xpath=//a[contains(text(),'My Garage')]",
       "OptionalServices": "(//a[contains(text(),'Optional Services')])[2]",
       "Signup": "//a[contains(text(),'Sign Up')]",
       "UserIcon": "//i[@class='anticon anticon-user']",
@@ -83,9 +83,9 @@
     },
     "Loginpage": {
       "Title": "RumbleOn Classifieds | Sign In",
-      "Email": "//input[@id='email']",
-      "Password": "//input[@id='password']",
-      "LoginButton": "//button[@class='ant-btn _2Vkk2TyDmy8kd63i5Od425 ant-btn-primary']"
+      "Email": "xpath=//input[@id='email']",
+      "Password": "xpath=//input[@id='password']",
+      "LoginButton": "xpath=//button[@class='ant-btn _2Vkk2TyDmy8kd63i5Od425 ant-btn-primary']"
     },
     "MyGarage": {
       "DeleteButton": ".p8uIOpAdXgH406ve820OC path",

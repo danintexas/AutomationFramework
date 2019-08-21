@@ -459,8 +459,8 @@
 
             if (rawLocator.Contains('='))
             {
-                type = ((rawLocator.Substring(0, rawLocator.LastIndexOf('='))).Trim()).ToLower();
-                cleanedLocator = rawLocator.Substring(rawLocator.LastIndexOf('=') + 1);
+                type = ((rawLocator.Substring(0, rawLocator.IndexOf('='))).Trim()).ToLower();
+                cleanedLocator = rawLocator.Substring(rawLocator.IndexOf('=') + 1);
             }
 
             return (cleanedLocator, type);
@@ -767,7 +767,7 @@
         /// </summary>
         /// <param name="type">Supported: XPath</param>
         /// <param name="element">Locator path to the item to wait for</param>
-        protected void WaitForElement(string rawLocator, int time = 0)
+        protected void WaitForElement(string rawLocator, int time = 30)
         {
             var wait = new WebDriverWait(_driver, new TimeSpan(0, 0, time));
             var type = LocatorParse(rawLocator);
