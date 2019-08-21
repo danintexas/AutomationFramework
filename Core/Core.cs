@@ -157,38 +157,38 @@
         /// </summary>
         /// <param name="type">Supported: XPath - CSS</param>
         /// <param name="element">Locator path to the item to click</param>
-        protected void ClickElement(string type, string element)
+        protected void ClickElement(string rawLocator)
         {
+            var type = LocatorParse(rawLocator);
+
             try
             {
-                switch (type)
+                switch (type.Item2)
                 {
                     case XPath:
-                        _driver.FindElement(By.XPath(element)).Click();
+                        _driver.FindElement(By.XPath(type.Item1)).Click();
                         break;
                     case CSS:
-                        _driver.FindElement(By.CssSelector(element)).Click();
+                        _driver.FindElement(By.CssSelector(type.Item1)).Click();
                         break;
                     case ID:
-                        _driver.FindElement(By.Id(element)).Click();
+                        _driver.FindElement(By.Id(type.Item1)).Click();
                         break;
                     default:
-                        Logger(Fail, "Unsupported element type passed to ClickElement. Please report to framework owner. <br />Used " + type + " to click on element: <br />" + element);
+                        Logger(Fail, "Unsupported element type passed to ClickElement. Please report to framework owner. <br />Used " + type.Item2 + " to click on element: <br />" + type.Item1);
                         Assert.Fail($@"Unsupported element type passed to ClickElement. Please report to framework owner." + Environment.NewLine + 
-                            "Used " + type + " to click on element: " + element);
+                            "Used " + type.Item2 + " to click on element: " + type.Item1);
                         Environment.Exit(1);
                         break;
                 }
-
-                // Logger(Info, "Used " + type + " to click on element: " + element);
             }
 
             catch (Exception ex_)
             {
                 Logger(Fail, $@"Something happened with ClickElement method. Please report to framework owner. <br />Used " 
-                    + type + " to click on element: <br />" + element + "<br />" + ex_);
+                    + type.Item2 + " to click on element: <br />" + type.Item1 + "<br />" + ex_);
                 Assert.Fail($@"Something happened with ClickElement method. Please report to framework owner." +
-                    Environment.NewLine + "Used " + type + " to click on element: " + element + Environment.NewLine + ex_);
+                    Environment.NewLine + "Used " + type.Item2 + " to click on element: " + type.Item1 + Environment.NewLine + ex_);
                 Environment.Exit(1);
             }
         }
@@ -399,24 +399,26 @@
         /// <param name="type">Supported: XPath - CSS</param>
         /// <param name="element">Locator path to the item to click</param>
         /// <returns></returns>
-        protected string GetFieldValue(string type, string element)
+        protected string GetFieldValue(string rawLocator)
         {
-            string value = null;
+            var type = LocatorParse(rawLocator);
+            string returnValue = null;
+
             try
             {
-                switch (type)
+                switch (type.Item2)
                 {
                     case XPath:
-                        value = _driver.FindElement(By.XPath(element)).GetAttribute("value");
+                        returnValue = _driver.FindElement(By.XPath(type.Item1)).GetAttribute("value");
                         break;
                     case CSS:
-                        value = _driver.FindElement(By.CssSelector(element)).GetAttribute("value");
+                        returnValue = _driver.FindElement(By.CssSelector(type.Item1)).GetAttribute("value");
                         break;
                     default:
-                        Logger(Fail, "Unsupported element type passed to GetFieldValue. Please report to framework owner. <br />Used " + type + 
-                            " to try and retrieve info in : <br />" + element);
+                        Logger(Fail, "Unsupported element type passed to GetFieldValue. Please report to framework owner. <br />Used " + type.Item2 + 
+                            " to try and retrieve info in : <br />" + type.Item1);
                         Assert.Fail($@"Unsupported element type passed to GetFieldValue. Please report to framework owner. " + Environment.NewLine + 
-                            "Used " + type + " to try and retrieve info in : " + element);
+                            "Used " + type.Item2 + " to try and retrieve info in : " + type.Item1);
                         Environment.Exit(1);
                         break;
                 }
@@ -425,13 +427,13 @@
             catch (Exception ex_)
             {
                 Logger(Fail, $@"Something happened with GetFieldValue method. Please report to framework owner. <br />Used " 
-                    + type + " to try and retrieve info in :<br />" + element + "<br />" + ex_);
+                    + type.Item2 + " to try and retrieve info in :<br />" + type.Item1 + "<br />" + ex_);
                 Assert.Fail($@"Something happened with GetFieldValue method. Please report to framework owner." +
-                   Environment.NewLine + "Used " + type + " to try and retrieve info in : " + element + Environment.NewLine + ex_);
+                   Environment.NewLine + "Used " + type.Item2 + " to try and retrieve info in : " + type.Item1 + Environment.NewLine + ex_);
                 Environment.Exit(1);
             }
 
-            return value;
+            return returnValue;
         }
 
         /// <summary>
@@ -626,30 +628,33 @@
         /// <param name="type">Supported: XPath</param>
         /// <param name="element">Locator path to the item to click</param>
         /// <param name="text">Text to send to the element</param>
-        protected void SendKeys(string type, string element, string text)
+        protected void SendKeys(string rawLocator, string text)
         {
+
+            var type = LocatorParse(rawLocator);
+
             IWebElement textbox;
             try
             {
-                switch (type)
+                switch (type.Item2)
                 {
                     case XPath:
-                        textbox = _driver.FindElement(By.XPath(element));
+                        textbox = _driver.FindElement(By.XPath(type.Item1));
                         textbox.SendKeys(text);
                         break;
                     case CSS:
-                        textbox = _driver.FindElement(By.CssSelector(element));
+                        textbox = _driver.FindElement(By.CssSelector(type.Item1));
                         textbox.SendKeys(text);
                         break;
                     case ID:
-                        textbox = _driver.FindElement(By.Id(element));
+                        textbox = _driver.FindElement(By.Id(type.Item1));
                         textbox.SendKeys(text);
                         break;
                     default:
                         Logger(Fail, $@"Something happened with SendKeys method. Please report to framework owner." +
-                            "<br />Used " + type + " to send: <br />'" + text + "' to element: <br />" + element);
+                            "<br />Used " + type.Item2 + " to send: <br />'" + text + "' to element: <br />" + type.Item1);
                         Assert.Fail($@"Something happened with SendKeys method. Please report to framework owner." + Environment.NewLine +
-                            "Used " + type + " to send: '" + text + "' to element: " + element);
+                            "Used " + type.Item2 + " to send: '" + text + "' to element: " + type.Item1);
                         Environment.Exit(1);
                         break;
                 }
@@ -658,9 +663,9 @@
             catch (Exception ex_)
             {
                 Logger(Fail, $@"Something happened with SendKeys method. Please report to framework owner." +
-                   "<br />Used " + type + " to send: <br />'" + text + "' to element: <br />" + element + "<br />" + ex_);
+                   "<br />Used " + type.Item2 + " to send: <br />'" + text + "' to element: <br />" + type.Item1 + "<br />" + ex_);
                 Assert.Fail($@"Something happened with SendKeys method. Please report to framework owner." +
-                   Environment.NewLine + "Used " + type + " to send: '" + text + "' to element: " + element + Environment.NewLine + ex_);
+                   Environment.NewLine + "Used " + type.Item2 + " to send: '" + text + "' to element: " + type.Item1 + Environment.NewLine + ex_);
                 Environment.Exit(1);
             }
         }
@@ -762,27 +767,29 @@
         /// </summary>
         /// <param name="type">Supported: XPath</param>
         /// <param name="element">Locator path to the item to wait for</param>
-        protected void WaitForElement(string type, string element, int time = 0)
+        protected void WaitForElement(string rawLocator, int time = 0)
         {
             var wait = new WebDriverWait(_driver, new TimeSpan(0, 0, time));
+            var type = LocatorParse(rawLocator);
+
             try
             {
-                switch (type)
+                switch (type.Item2)
                 {
                     case XPath:
-                        wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(element)));
+                        wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(type.Item1)));
                         break;
                     case CSS:
-                        wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector(element)));
+                        wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector(type.Item1)));
                         break;
                     case ID:
-                        wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(element)));
+                        wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(type.Item1)));
                         break;
                     default:
                         Logger(Fail, $@"Unsupported element type passed to WaitForElement. Please report to framework owner." + 
-                            "<br />Used " + type + " to wait on element: <br />" + element);
+                            "<br />Used " + type.Item2 + " to wait on element: <br />" + type.Item1);
                         Assert.Fail($@"Unsupported element type passed to WaitForElement. Please report to framework owner." + Environment.NewLine +
-                            "Used " + type + " to wait on element: " + element);
+                            "Used " + type.Item2 + " to wait on element: " + type.Item1);
                         Environment.Exit(1);
                         break;
                 }
@@ -791,9 +798,9 @@
             catch (Exception ex_)
             {
                 Logger(Fail, $@"Something happened with WaitForElement method. Please report to framework owner." +
-                    "<br />Used " + type + " to wait on element: <br />" + element + "<br />" + ex_);
+                    "<br />Used " + type.Item2 + " to wait on element: <br />" + type.Item1 + "<br />" + ex_);
                 Assert.Fail($@"Something happened with WaitForElement method. Please report to framework owner." +
-                    Environment.NewLine + "Used " + type + " to wait on element: " + element + Environment.NewLine + ex_);
+                    Environment.NewLine + "Used " + type.Item2 + " to wait on element: " + type.Item1 + Environment.NewLine + ex_);
                 Environment.Exit(1);
             }
         }
