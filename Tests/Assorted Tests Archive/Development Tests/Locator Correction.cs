@@ -10,9 +10,9 @@
         [Order(1)] 
         public void DevTest() 
         {
-            var thing = LocatorParse(JsonCall("FrameworkConfiguration:TestThing"));
-            var thing2 = LocatorParse(JsonCall("FrameworkConfiguration:TestThing2"));
-            var thing3 = LocatorParse(JsonCall("FrameworkConfiguration:TestThing3"));
+            var thing = LocatorCleaner(JsonCall("FrameworkConfiguration:TestThing"));
+            var thing2 = LocatorCleaner(JsonCall("FrameworkConfiguration:TestThing2"));
+            var thing3 = LocatorCleaner(JsonCall("FrameworkConfiguration:TestThing3"));
 
             Console.WriteLine("Thing1 Locator: '" + thing.Item1 + "' Thing1 Type: '" + thing.Item2 + "'");
             Console.WriteLine("Thing2 Locator: '" + thing2.Item1 + "' Thing1 Type: '" + thing2.Item2 + "'");
