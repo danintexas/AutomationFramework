@@ -1,0 +1,7 @@
+{
+  "RumbleOnClassifieds": {
+    "DatabaseQueries": {
+      "CheckVINIfAlreadyListed": "select count(ListingStatusId) from clslisting where vin ='{vinUnderTest}' and (ListingStatusId = 2 OR ListingStatusId = 9 OR ListingStatusId = 8)"
+    }
+  }
+}
