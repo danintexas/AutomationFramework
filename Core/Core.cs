@@ -55,13 +55,21 @@
                 }
             }
 
-            foreach (var filename in Directory.GetFiles(Directory.GetCurrentDirectory() + @"\Json Repo\Json Override", "*.json"))
+            foreach (var filename in Directory.GetFiles(Directory.GetCurrentDirectory() + @"\Json Repo\VIN Store", "*.json"))
             {
                 if (!filename.StartsWith("appsettings"))
                 {
                     configBuilder.AddJsonFile(filename, true, true);
                 }
             }
+
+            foreach (var filename in Directory.GetFiles(Directory.GetCurrentDirectory() + @"\Json Repo\Json Override", "*.json"))
+            {
+                if (!filename.StartsWith("appsettings"))
+                {
+                    configBuilder.AddJsonFile(filename, true, true);
+                }
+            }            
 
             configBuilder.AddJsonFile(_homeDirectory + "\\appsettings.local.json", true, true);
 
@@ -262,6 +270,15 @@
         /// <returns></returns>
         protected void GenerateAVIN(string vinSelection = "random")
         {
+
+            /* The below will check the DB if that VIN can not be listed
+            do
+            {
+                
+            } while (Int32.Parse(DatabaseCheck(
+                $"select count(ListingStatusId) from clslisting where vin ='{vinUnderTest}' and (ListingStatusId = 2 OR ListingStatusId = 9 OR ListingStatusId = 8)")) > 0);
+            */
+
             int motorcyleCounter = 0, truckCounter = 0, carCounter = 0, offroadCounter = 0, randomType = 0;
             int randomVINEnding = (new Random()).Next(100, 1000);
 

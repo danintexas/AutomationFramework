@@ -1,0 +1,24 @@
+{
+  "VINStore": {
+    "Motorcycles": [
+      {
+        "Vin": "VTTGM51A082101123",
+        "Year": 2008,
+        "Make": "Suzuki",
+        "Model": "GS500FK8"
+      },
+      {
+        "Vin": "JKAVN2C1X9A030123",
+        "Year": 2009,
+        "Make": "Kawasaki",
+        "Model": "VN900C9FA Vulcan Custom"
+      },
+      {        
+        "Vin": "1HD1JRV11DB436100",
+        "Year": 2013,
+        "Make": "Harley-Davidson",
+        "Model": "FLS Softail Slim"
+      }
+    ]
+  }
+}

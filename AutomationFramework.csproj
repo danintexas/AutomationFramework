@@ -94,6 +94,9 @@
     <None Update="Json Repo\*.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Json Repo\VIN Store\*.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Json Repo\Json Override\*.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
