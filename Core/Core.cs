@@ -24,7 +24,7 @@
         // Selenium & Json variables
         protected IWebDriver _driver;
         protected IConfiguration _config;       
-        public const string XPath = "xpath", CSS = "css", ID = "ID"; // Const Keywords for Selenium Locators
+        public const string XPath = "xpath", CSS = "css", ID = "id"; // Const Keywords for Selenium Locators
 
         // Reporting variables
         protected ExtentReports _extent;
