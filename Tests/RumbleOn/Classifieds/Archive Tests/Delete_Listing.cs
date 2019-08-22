@@ -1,4 +1,4 @@
-﻿namespace AutomationFramework.Tests.Classifieds
+﻿namespace AutomationFramework.Tests.Classifieds.Smoke
 {
     using NUnit.Framework;
     partial class SmokeTest : Core

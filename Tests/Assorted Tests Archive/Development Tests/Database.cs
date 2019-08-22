@@ -12,6 +12,9 @@ namespace AutomationFramework.Tests.Development_Tests
         public void Test()
         {
             Console.WriteLine(DatabaseCheck("select Vin from ClsListing where ListingId = 318"));
+
+            GenerateAVIN();
+            Console.WriteLine(DatabaseCheck("RumbleOnClassifieds:DatabaseQueries:CheckVINIfAlreadyListed"));
         }
     }
 }
