@@ -22,6 +22,7 @@
             WaitForElement(JsonCall("RumbleOnClassifieds:ListingFlow:VinEntry"));
             ShouldBe(SetUrl, JsonCall("RumbleOnClassifieds:Url:ListingPage"));
             GenerateAVIN(Motorcycle);
+            //SendKeys(JsonCall("RumbleOnClassifieds:ListingFlow:VinEntry"), JsonCall("RumbleOnClassifieds:Account:VIN"));
             SendKeys(JsonCall("RumbleOnClassifieds:ListingFlow:VinEntry"), vinUnderTest);
             Wait(1);
             ScreenShot("Vin Entered");
