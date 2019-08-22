@@ -13,9 +13,9 @@
       "LastName": "Test Account",
       "Password": "Rumbleon12",
       "PhoneNumber": "8326121753",
-      "SelectStateTX": "//li[contains(.,'TX')]",
+      "SelectStateTX": "xpath=//li[contains(.,'TX')]",
       "StreetAddress": "1929 Capulin Rd",
-      "StateDropdown": ".ant-select-selection__rendered",
+      "StateDropdown": "css=.ant-select-selection__rendered",
       "ZipCode": "76131"
     }
   }
