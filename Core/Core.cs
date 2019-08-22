@@ -159,7 +159,7 @@
         /// <param name="element">Locator path to the item to click</param>
         protected void ClickElement(string rawLocator)
         {
-            var type = LocatorParse(rawLocator);
+            var type = LocatorCleaner(rawLocator);
 
             try
             {
@@ -401,7 +401,7 @@
         /// <returns></returns>
         protected string GetFieldValue(string rawLocator)
         {
-            var type = LocatorParse(rawLocator);
+            var type = LocatorCleaner(rawLocator);
             string returnValue = null;
 
             try
@@ -449,11 +449,11 @@
         }
 
         /// <summary>
-        /// LocatorParse is used to take a locator string and parse out the type of locator and the locator and return both.
+        /// LocatorCleaner is used to take a locator string and parse out the type of locator and the locator and return both.
         /// </summary>
         /// <param name="rawLocator">String value of the locator formatted the following: 'xpath=this is the locator'</param>
         /// <returns></returns>
-        public (string, string) LocatorParse(string rawLocator = "")
+        public (string, string) LocatorCleaner(string rawLocator = "")
         {
             string cleanedLocator = "", type = "";
 
@@ -631,7 +631,7 @@
         protected void SendKeys(string rawLocator, string text)
         {
 
-            var type = LocatorParse(rawLocator);
+            var type = LocatorCleaner(rawLocator);
 
             IWebElement textbox;
             try
@@ -770,7 +770,7 @@
         protected void WaitForElement(string rawLocator, int time = 30)
         {
             var wait = new WebDriverWait(_driver, new TimeSpan(0, 0, time));
-            var type = LocatorParse(rawLocator);
+            var type = LocatorCleaner(rawLocator);
 
             try
             {
