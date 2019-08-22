@@ -40,7 +40,7 @@ Personal Email: daniel.gail@gmail.com
 
 ## Planned To-Do List:
 - Upgrade to Core 3.0 to resolve picture upload support (ETA: Mid Sept 2019)
-- Upload Logs to Slack Channel & AWS S3 bucket
+- Upload Logs to Slack Channel & AWS S3 bucket as well as Slack notifications for pass/fail
 - Xamarin integration to run mobile app testing on most devices
 - Included in CI/CD process. (ETA: End Nov 2019)
 - Concurrent testing through ASYNC/Selenium Grid and allow concurrent browser testing

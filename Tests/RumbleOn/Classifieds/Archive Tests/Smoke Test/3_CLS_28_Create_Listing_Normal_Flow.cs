@@ -1,6 +1,7 @@
 ﻿namespace AutomationFramework.Tests.Classifieds.Smoke
 {
     using NUnit.Framework;
+    using System;
 
     [Category("Classifieds Smoketest")]
     partial class SmokeTest : Core
@@ -21,6 +22,7 @@
             Logger(Info, "VIN entry page Test");
             WaitForElement(JsonCall("RumbleOnClassifieds:ListingFlow:VinEntry"));
             ShouldBe(SetUrl, JsonCall("RumbleOnClassifieds:Url:ListingPage"));
+
             GenerateAVIN(Motorcycle);
             SendKeys(JsonCall("RumbleOnClassifieds:ListingFlow:VinEntry"), vinUnderTest);
             Wait(1);

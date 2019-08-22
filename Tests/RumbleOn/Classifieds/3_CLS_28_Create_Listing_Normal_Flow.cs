@@ -23,7 +23,11 @@
             WaitForElement(JsonCall("RumbleOnClassifieds:ListingFlow:VinEntry"));
             ShouldBe(SetUrl, JsonCall("RumbleOnClassifieds:Url:ListingPage"));
 
-            GenerateAVIN(Motorcycle);
+            do 
+            {
+                GenerateAVIN(Motorcycle);
+            } while (Int32.Parse(DatabaseCheck($"select count(ListingStatusId) from clslisting where vin = '{vinUnderTest}' and(ListingStatusId = 2 OR ListingStatusId = 9 OR ListingStatusId = 8)")) > 0);
+
             SendKeys(JsonCall("RumbleOnClassifieds:ListingFlow:VinEntry"), vinUnderTest);
             Wait(1);
             ScreenShot("Vin Entered");

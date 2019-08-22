@@ -1,68 +1,34 @@
 {
   "VINStore": {
+    "Template": [
+      {
+        "Vin": "", "Year": 0, "Make": "", "Model": ""
+      }
+    ],
     "Cars": [
       {
-        "Vin": "1G1PB5SH5F7172123868",
-        "Year": 2015,
-        "Make": "Chevrolet",
-        "Model": "Cruze",
-        "Trim": "LS"
+        "Vin": "1G1PB5SH5F7172123868", "Year": 2015, "Make": "Chevrolet", "Model": "Cruze", "Trim": "LS"
       },   
       {
-        "Vin": "1HGCV1F15JA045761",
-        "Year": 2018,
-        "Make": "Honda",
-        "Model": "Accord",
-        "Trim": "LX"
+        "Vin": "1HGCV1F15JA045761", "Year": 2018, "Make": "Honda", "Model": "Accord", "Trim": "LX"
       },    
       {
-        "Vin": "2C3CDZBT6GH353818",
-        "Year": 2016,
-        "Make": "Dodge",
-        "Model": "Challenger",
-        "Trim": "R/T"
+        "Vin": "2C3CDZBT6GH353818", "Year": 2016, "Make": "Dodge", "Model": "Challenger", "Trim": "R/T"
       },
       {
-        "Vin": "2G1FB1E32F9308145",
-        "Year": 2015,
-        "Make": "Chevrolet",
-        "Model": "Camaro",
-        "Trim": "LS"
+        "Vin": "2G1FB1E32F9308145", "Year": 2015, "Make": "Chevrolet", "Model": "Camaro", "Trim": "LS"
       },
       {
-        "Vin": "2G1FB1E32F9308145",
-        "Year": 2015,
-        "Make": "Chevrolet",
-        "Model": "Camaro",
-        "Trim": "LS"
+        "Vin": "1G1FG1R79H0134649", "Year": 2017, "Make": "Chevrolet", "Model": "Camaro", "Trim": "2SS"
       },
       {
-        "Vin": "1G1FG1R79H0134649",
-        "Year": 2017,
-        "Make": "Chevrolet",
-        "Model": "Camaro",
-        "Trim": "2SS"
+        "Vin": "1C4BJWEGXFL646457", "Year": 2015, "Make": "Jeep", "Model": "Wrangler", "Trim": "Unlimited Sahara"
       },
       {
-        "Vin": "1C4BJWEGXFL646457",
-        "Year": 2015,
-        "Make": "Jeep",
-        "Model": "Wrangler",
-        "Trim": "Unlimited Sahara"
+        "Vin": "5GAKVCKD4FJ295247", "Year": 2015, "Make": "Buick", "Model": "Enclave", "Trim": "Premium"
       },
       {
-        "Vin": "5GAKVCKD4FJ295247",
-        "Year": 2015,
-        "Make": "Buick",
-        "Model": "Enclave",
-        "Trim": "Premium"
-      },
-      {
-        "Vin": "1C3CCCAG3FN731460",
-        "Year": 2015,
-        "Make": "Chrysler",
-        "Model": "200",
-        "Trim": "Limited"
+        "Vin": "1C3CCCAG3FN731460", "Year": 2015, "Make": "Chrysler", "Model": "200", "Trim": "Limited"
       }
     ]
   }

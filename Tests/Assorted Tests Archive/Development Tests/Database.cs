@@ -11,10 +11,10 @@ namespace AutomationFramework.Tests.Development_Tests
 
         public void Test()
         {
-            Console.WriteLine(DatabaseCheck("select Vin from ClsListing where ListingId = 318"));
-
             GenerateAVIN();
-            Console.WriteLine(DatabaseCheck("RumbleOnClassifieds:DatabaseQueries:CheckVINIfAlreadyListed"));
+            //Console.WriteLine(DatabaseCheck("RumbleOnClassifieds:DatabaseQueries:CheckVINIfAlreadyListed"));
+            Console.WriteLine(JsonCall("RumbleOnClassifieds:DatabaseQueries:CheckVINIfAlreadyListed"));
+            Console.WriteLine($"select count(ListingStatusId) from clslisting where vin = '{vinUnderTest}' and(ListingStatusId = 2 OR ListingStatusId = 9 OR ListingStatusId = 8)");
         }
     }
 }
