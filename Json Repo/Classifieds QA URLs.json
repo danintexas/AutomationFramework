@@ -1,5 +1,4 @@
 {
-  // RumbleOn Classifieds specific URL information for QA environment
   "RumbleOnClassifieds": {
     "URL": {
       "HomePage": "https://qa.rumbleonclassifieds.com/",

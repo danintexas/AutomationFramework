@@ -1,5 +1,4 @@
 {
-  // RumbleOn Classifieds specific URL information for PPROD environment
   "RumbleOnClassifieds": {
     "URL": {
       "HomePage": "https://pprod.rumbleonclassifieds.com/",

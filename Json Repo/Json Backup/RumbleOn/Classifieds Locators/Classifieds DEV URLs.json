@@ -1,5 +1,4 @@
 {
-  // RumbleOn Classifieds specific URL information for DEV environment
   "RumbleOnClassifieds": {
     "URL": {
       "HomePage": "https://dev.rumbleonclassifieds.com/",

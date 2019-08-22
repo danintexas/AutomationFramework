@@ -1,6 +1,4 @@
-// Blank Template. Below all needs to be completed. Put into the AutomationFramework/Json folder or the Json override folder
 {
-  // RumbleOn Classifieds specific Account and testing information
   "RumbleOnClassifieds": {
     "Account": {
       "User": "User Email Goes Here",
