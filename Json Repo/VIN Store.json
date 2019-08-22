@@ -7,16 +7,14 @@
         "Make": "Chevrolet",
         "Model": "Cruze",
         "Trim": "LS"
-      },
-   
+      },   
       {
         "Vin": "1HGCV1F15JA045761",
         "Year": 2018,
         "Make": "Honda",
         "Model": "Accord",
         "Trim": "LX"
-      },
-    
+      },    
       {
         "Vin": "2C3CDZBT6GH353818",
         "Year": 2016,
@@ -24,7 +22,7 @@
         "Model": "Challenger",
         "Trim": "R/T"
       },
-    {
+      {
         "Vin": "2G1FB1E32F9308145",
         "Year": 2015,
         "Make": "Chevrolet",
@@ -79,6 +77,12 @@
         "Year": 2009,
         "Make": "Kawasaki",
         "Model": "VN900C9FA Vulcan Custom"
+      },
+      {        
+        "Vin": "1HD1JRV11DB436100",
+        "Year": 2013,
+        "Make": "Harley-Davidson",
+        "Model": "FLS Softail Slim"
       }
     ],
     "Offroad": [
