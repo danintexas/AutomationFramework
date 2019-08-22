@@ -40,12 +40,12 @@ Personal Email: daniel.gail@gmail.com
 
 ## Planned To-Do List:
 - Upgrade to Core 3.0 to resolve picture upload support (ETA: Mid Sept 2019)
+- Upload Logs to Slack Channel & AWS S3 bucket
 - Xamarin integration to run mobile app testing on most devices
+- Included in CI/CD process. (ETA: End Nov 2019)
+- Concurrent testing through ASYNC/Selenium Grid and allow concurrent browser testing
 - Built in API endpoint testing. 
 - Built in API stress testing.
-- Included in CI/CD process. (ETA: End Nov 2019)
-- Upload Logs to Slack Channel & AWS S3 bucket
-- Concurrent testing through ASYNC/Selenium Grid and allow concurrent browser testing
 
 ## Folder Structure 
 - `Framework Root`
@@ -60,7 +60,11 @@ Personal Email: daniel.gail@gmail.com
 - `Json Repo`: If the core folder is the heart of the framework this is the brains. Houses all needed input and locators for the framework to utilize. Please note ANY .JSON files dropped in this folder will be scanned on build time. 
   - `Json Backup Folder`: This folder is ignored during project build time and test execution. Simple folder to store backups of JSON files you do not want to use. This folder is not used or looked at by the framework.
   - `Json Override Folder`: Any JSON files put into this folder will override any other JSON files in the base repo folder. Useful if you want to use an override for a specific JSON entry.
-  - `VIN Store`: This file is special and used by the GenerateVIN method. If you call this method, you need to ensure this file is there. 
+  - `VIN Store`: This folder is special and used by the GenerateVIN method. If you call this method, you need to ensure this folder is in place with the following files that house all the appropriate VINs:
+    - `Cars.json`
+    - `Trucks.json`
+    - `Motorcycles.json`
+    - `Offroad.json`
 
 - `Support Folder`: This folder contains all side files needed for the framework. 
   - `Image Bank Folder`: Storage folder used for images used by the framework.
