@@ -7,6 +7,7 @@
     {
         [TestCase(TestName = "Test Name")] // Change the Test Name to something appropriate
         [Order(1)] // You can have multiple TestCases. Use this entry to run them in a specific order.
+        [Repeat(1)] // How many times to repeat this test
         public void TestMethod() // Method can also be renamed to something more descriptive
         {
             UseBrowser(JsonCall("FrameworkConfiguration:Browser")); // Looks at the 'FrameworkConfiguration:Browser' setting in the appsettings.json for what browser to use
