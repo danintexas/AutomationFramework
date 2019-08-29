@@ -14,11 +14,13 @@
             MaximizeBrowser();
             Logger(Info, "Starting valadiation test of Classifieds Pages");
             SetUrl = JsonCall("RumbleOnClassifieds:Url:Homepage");
-            Wait(1);
+            Logger(Info, "Going to: " + SetUrl);
+            Wait(5);
             ScreenShot("Classifieds Homepage");
             ShouldBe(SetUrl, JsonCall("RumbleOnClassifieds:Url:Homepage"));
             ShouldBe(Title, JsonCall("RumbleOnClassifieds:Homepage:Title"));
             SetUrl = JsonCall("RumbleOnClassifieds:Url:ViewListings");
+            Logger(Info, "Going to: " + SetUrl);
             Wait(1);
             ScreenShot("Classifieds ViewListings Page");
             ShouldBe(SetUrl, JsonCall("RumbleOnClassifieds:Url:ViewListings"));
