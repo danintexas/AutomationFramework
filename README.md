@@ -33,6 +33,10 @@ Personal Email: daniel.gail@gmail.com
 - Firefox
 - Edge
 
+## Supports the following browsers in headless mode:
+- Chrome
+- Firefox
+
 ## Known Issues:
 - SendKeys is kind of 'hacked' with .NET Core 2.2. A red X dialog comes up the first time it is called in a test. This can be closed
 	and the method will work fine going forward. Believe this is because to get this to work I am calling a few .NET 4.6 Framework 
@@ -42,7 +46,6 @@ Personal Email: daniel.gail@gmail.com
 - Upgrade to Core 3.0 to resolve picture upload support (ETA: Mid Sept 2019)
 - Upload Logs to Slack Channel & AWS S3 bucket as well as Slack notifications for pass/fail
 - Xamarin integration to run mobile app testing on most devices
-- Included in CI/CD process. (ETA: End Nov 2019)
 - Concurrent testing through ASYNC/Selenium Grid and allow concurrent browser testing
 - Built in API endpoint testing. 
 - Built in API stress testing.

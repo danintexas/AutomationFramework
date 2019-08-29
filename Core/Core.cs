@@ -761,11 +761,22 @@
                     option.AddArgument("--headless");
                     _driver = new ChromeDriver($"{_homeDirectory}\\Support", option);
                     break;
-
                 case "firefox":
                     _driver = new FirefoxDriver($"{_homeDirectory}\\Support");
                     break;
-
+                case "firefoxHeadless":
+                    FirefoxOptions optionFirefox = new FirefoxOptions();
+                    optionFirefox.AddArgument("--headless");
+                    optionFirefox.AddArgument("--window-size=1920,1080");
+                    optionFirefox.AddArgument("--disable-gpu");
+                    optionFirefox.AddArgument("--disable-extensions");
+                    optionFirefox.AddArgument("--proxy-server='direct://'");
+                    optionFirefox.AddArgument("--proxy-bypass-list=*");
+                    optionFirefox.AddArgument("--start-maximized");
+                    optionFirefox.AddArgument("--headless");
+                    optionFirefox.AddArguments("--headless");
+                    _driver = new FirefoxDriver($"{_homeDirectory}\\Support", optionFirefox);
+                    break;
                 case "edge":
                     _driver = new EdgeDriver($"{_homeDirectory}\\Support");
                     break;
