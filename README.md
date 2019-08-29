@@ -205,4 +205,6 @@ This will fail or pass the current test if the string is not found. It is recomm
 
 - `LocatorCleaner`: Method is used to take a locator string and parse out the type of locator and the locator and return both using a tuple.
 
+- `MessageSlack`: Method that requires a text string that will send that message to a hard coded Slack channel if the FrameworkConfiguration:SlackNotifications setting in the appsettings.json is set to `yes`
+
 - `QuitBrowsers`: Quits all Selenium controlled browser processes. 

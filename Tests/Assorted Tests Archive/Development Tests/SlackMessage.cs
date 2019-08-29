@@ -10,7 +10,9 @@
         [Repeat(1)]
         public void SlackMessage() 
         {
-            Logger(Info, "Starting Slack Message Test"); 
+            Logger(Info, "Starting Slack Message Test");
+            Wait(1);
+            ShouldBe("a", "b");
         }
     }
 }

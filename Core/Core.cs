@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Reflection;
     using System.Threading;
+    using System.Threading.Tasks;
     using AventStack.ExtentReports;
     using AventStack.ExtentReports.Reporter;
     using Microsoft.Extensions.Configuration;
@@ -120,6 +121,28 @@
         [OneTimeTearDown]
         protected void OneTimeTearDown()
         {
+            var status = TestContext.CurrentContext.Result.Outcome.Status;
+            DateTime dt = DateTime.Now;
+
+            if (JsonCall("FrameworkConfiguration:SlackNotifications") == "yes")
+            {
+                if (status == TestStatus.Passed)
+                {
+                    Logger(Info, "Sending a Passing notification to Slack");
+                    MessageSlack("Classifieds Automation Test with the name of: '" + TestContext.CurrentContext.Test.Name + "' has passed at " + dt + " system time.");
+                }
+                else if (status == TestStatus.Failed)
+                {
+                    Logger(Info, "Sending a Failing notification to Slack");
+                    MessageSlack("Classifieds Automation Test with the name of: '" + TestContext.CurrentContext.Test.Name + "' has failed at " + dt + " system time.");
+                }
+            }
+
+            else
+            {
+                Logger(Info, "Slack notifications was bypassed per Framework configuration settings in the appsettings.json file");
+            }
+
             CloseQuitBrowsers();
             _extent.Flush();
         }
@@ -539,6 +562,11 @@
         protected void MaximizeBrowser()
         {
             _driver.Manage().Window.Maximize();
+        }
+
+        protected void MessageSlack(string message)
+        {
+            Task.WaitAll(AdditionalFunctions.IntegrateWithSlackAsync(message));
         }
 
         /// <summary>

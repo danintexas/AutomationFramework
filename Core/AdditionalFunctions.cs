@@ -1,11 +1,15 @@
 ﻿using AutomationFramework.Tests;
+using Newtonsoft.Json;
 using OpenPop.Mime;
 using OpenPop.Pop3;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
+using System.Net.Http;
 using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 
 class AdditionalFunctions
 {
@@ -252,5 +256,39 @@ class AdditionalFunctions
         // 3.0 should support this. Once this is migrated to 3.0 then all the .Net 4.6 assemblies can be removed from the project's Dependencies
         System.Windows.Forms.SendKeys.SendWait($"{homeDirectory}\\Support\\Image Bank\\" + trueFilename);
         System.Windows.Forms.SendKeys.SendWait("{ENTER}");
+    }
+
+    public static async Task IntegrateWithSlackAsync(string message = "")
+    {
+        var webhookUrl = new Uri("https://hooks.slack.com/services/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"); // This is unique for RumbleOn clsautomation-status channel
+        var slackClient = new SlackClient(webhookUrl);
+        var response = await slackClient.SendMessageAsync(message);
+        var isValid = response.IsSuccessStatusCode ? "valid" : "invalid";
+        Console.WriteLine($"Received {isValid} response.");
+    }
+    public class SlackClient
+    {
+        private readonly Uri _webhookUrl;
+        private readonly HttpClient _httpClient = new HttpClient();
+
+        public SlackClient(Uri webhookUrl)
+        {
+            _webhookUrl = webhookUrl;
+        }
+
+        public async Task<HttpResponseMessage> SendMessageAsync(string message, string channel = null, string username = null)
+        {
+            var payload = new
+            {
+                text = message,
+                channel,
+                username,
+            };
+            var serializedPayload = JsonConvert.SerializeObject(payload);
+            var response = await _httpClient.PostAsync(_webhookUrl,
+                new StringContent(serializedPayload, Encoding.UTF8, "application/json"));
+
+            return response;
+        }
     }
 }
