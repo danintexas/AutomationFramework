@@ -21,6 +21,7 @@
     <Compile Remove="Tests\Archive Tests\**" />
     <Compile Remove="Tests\Assorted Tests Archive\**" />
     <Compile Remove="Tests\RumbleOn\Classifieds\Archive Tests\**" />
+    <Compile Remove="Tests\RumbleOn\Classifieds V3\Archive Tests\**" />
     <Compile Remove="Tests\RumbleOn\Classifieds\Backup Tests\**" />
     <Compile Remove="Tests\RumbleOn\Classifieds\Ignored Tests\**" />
     <EmbeddedResource Remove="Json Repo\Backup\**" />

@@ -15,7 +15,7 @@
             Logger(Info, "Starting valadiation test of Classifieds Pages");
             SetUrl = JsonCall("RumbleOnClassifieds:Url:Homepage");
             Logger(Info, "Going to: " + SetUrl);
-            Wait(5);
+            Wait(3);
             ScreenShot("Classifieds Homepage");
             ShouldBe(SetUrl, JsonCall("RumbleOnClassifieds:Url:Homepage"));
             ShouldBe(Title, JsonCall("RumbleOnClassifieds:Homepage:Title"));
