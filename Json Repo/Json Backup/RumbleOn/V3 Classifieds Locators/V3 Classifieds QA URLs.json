@@ -1,0 +1,23 @@
+{
+  "RumbleOnClassifieds": {
+    "URL": {
+      "HomePage": "https://v3qa.rumbleonclassifieds.com/",
+      "AdditionalInfo": "",
+      "AdditionalQuestions": "",
+      "ConfirmEmail": "",
+      "CongratulationsPage": "",
+      "CreateAnAccountPage": "",
+      "EditReview": "",
+      "KeyFeatures": "",
+      "LandingPage": "",
+      "ListingPage": "",
+      "RateYourVehicle": "",
+      "SetPrice": "",
+      "ShowOffYourRide": "",
+      "ViewListings": "https://v3qa.rumbleonclassifieds.com/buy",
+      "VinFound": "",
+      "YourListingPreview": "",
+      "LoginPage": ""
+    }
+  }
+}
