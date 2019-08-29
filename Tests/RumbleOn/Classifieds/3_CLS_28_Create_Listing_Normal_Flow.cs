@@ -8,7 +8,7 @@
     {
         [TestCase(TestName = "CLS-28 Create Listing Normal Flow")]
         [Order(4)]
-        [Repeat(12)]
+        //[Repeat(12)]
         public void NormalListingflow()
         {
             // First page of listing flow
@@ -24,11 +24,18 @@
             WaitForElement(JsonCall("RumbleOnClassifieds:ListingFlow:VinEntry"));
             ShouldBe(SetUrl, JsonCall("RumbleOnClassifieds:Url:ListingPage"));
 
-            do // This ensures that the VIN picked is listable
+            if (JsonCall("FrameworkConfiguration:DatabaseTestSteps") == "yes")
+            {
+                do 
+                {
+                    GenerateAVIN(Motorcycle);
+                } while (Int32.Parse(DatabaseCheck($"select count(ListingStatusId) from clslisting where vin = '{vinUnderTest}' " +
+                          "and(ListingStatusId = 2 OR ListingStatusId = 3 OR ListingStatusId = 8 OR ListingStatusId = 9  OR ListingStatusId = 11  OR ListingStatusId = 12)")) > 0);
+            }
+            else
             {
                 GenerateAVIN(Motorcycle);
-            } while (Int32.Parse(DatabaseCheck($"select count(ListingStatusId) from clslisting where vin = '{vinUnderTest}' " +
-                        "and(ListingStatusId = 2 OR ListingStatusId = 3 OR ListingStatusId = 8 OR ListingStatusId = 9  OR ListingStatusId = 11  OR ListingStatusId = 12)")) > 0);
+            }
 
             SendKeys(JsonCall("RumbleOnClassifieds:ListingFlow:VinEntry"), vinUnderTest);
             Wait(1);
@@ -86,8 +93,8 @@
             // Below is proof of concept. This generates an error dialog with SendKeys. 
             // It will be corrected with Net Core 3.0 which supports SendKeys
             //////////////////////////////////////////////////////////////////////////////////////
-            /*
-            ClickElement(JsonCall("RumbleOnClassifieds:ListingFlow:RightSidePic"));
+            
+            /*ClickElement(JsonCall("RumbleOnClassifieds:ListingFlow:RightSidePic"));
             Wait(5);
             AdditionalFunctions.PhotoSelection(0);
             ClickElement(JsonCall("RumbleOnClassifieds:ListingFlow:LeftSidePic"));

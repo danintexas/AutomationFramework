@@ -749,6 +749,18 @@
                 case "chrome":
                     _driver = new ChromeDriver($"{_homeDirectory}\\Support");
                     break;
+                case "chromeHeadless":
+                    ChromeOptions option = new ChromeOptions();
+                    option.AddArgument("--headless");
+                    option.AddArgument("--window-size=1920,1080");
+                    option.AddArgument("--disable-gpu");
+                    option.AddArgument("--disable-extensions");
+                    option.AddArgument("--proxy-server='direct://'");
+                    option.AddArgument("--proxy-bypass-list=*");
+                    option.AddArgument("--start-maximized");
+                    option.AddArgument("--headless");
+                    _driver = new ChromeDriver($"{_homeDirectory}\\Support", option);
+                    break;
 
                 case "firefox":
                     _driver = new FirefoxDriver($"{_homeDirectory}\\Support");
