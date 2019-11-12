@@ -37,11 +37,6 @@ Personal Email: daniel.gail@gmail.com
 - Chrome
 - Firefox
 
-## Known Issues:
-- SendKeys is kind of 'hacked' with .NET Core 2.2. A red X dialog comes up the first time it is called in a test. This can be closed
-	and the method will work fine going forward. Believe this is because to get this to work I am calling a few .NET 4.6 Framework 
-	files that technically is not supported in .NET Core 2.2. This will be resolved with .NET Core 3.0 due to be released mid Sept. 
-
 ## Planned To-Do List:
 - Upgrade to Core 3.0 to resolve picture upload support (ETA: Mid Sept 2019)
 - Upload Logs to Slack Channel & AWS S3 bucket as well as Slack notifications for pass/fail
