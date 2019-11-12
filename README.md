@@ -1,4 +1,4 @@
-# Kindergarten
+# .NET Automation Famework
 
 ## A simple to use and maintain automation framework for web testing
 
@@ -9,7 +9,7 @@ All you need is Visual Studio 19 to write tests along with installing .NET Core 
 If you want to just run a test just install .NET Core 2.2 and run through command line use the following in the solution folder:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`dotnet test`
 
-## From its initial design this Kindergarten was designed to do two things:
+## From its initial design this .NET Framework was designed to do two things:
 1. Help bring manual Q/A engineers up into the Automation world quickly while not needing full development skills and knowledge allowing them to ease into an automation role. 
 2. Allow nearly anyone to quickly develop Web Automation tests without the Framework getting in the way.
 
@@ -17,7 +17,6 @@ Any comments, suggestions or complaints please reach out to me with them. I am l
 This is a passion project and something I will be working on for the foreseeable future.
 
 Daniel Gail<br />
-Work Email: danielg@rumbleon.com<br />
 Personal Email: daniel.gail@gmail.com
 
 ## Tech Used:
@@ -58,11 +57,6 @@ Personal Email: daniel.gail@gmail.com
 - `Json Repo`: If the core folder is the heart of the framework this is the brains. Houses all needed input and locators for the framework to utilize. Please note ANY .JSON files dropped in this folder will be scanned on build time. 
   - `Json Backup Folder`: This folder is ignored during project build time and test execution. Simple folder to store backups of JSON files you do not want to use. This folder is not used or looked at by the framework.
   - `Json Override Folder`: Any JSON files put into this folder will override any other JSON files in the base repo folder. Useful if you want to use an override for a specific JSON entry.
-  - `VIN Store`: This folder is special and used by the GenerateVIN method. If you call this method, you need to ensure this folder is in place with the following files that house all the appropriate VINs:
-    - `Cars.json`
-    - `Trucks.json`
-    - `Motorcycles.json`
-    - `Offroad.json`
 
 - `Support Folder`: This folder contains all side files needed for the framework. 
   - `Image Bank Folder`: Storage folder used for images used by the framework.
@@ -72,15 +66,14 @@ Personal Email: daniel.gail@gmail.com
 
 - `Tests Folder`: This is where all the magic happens. The automation tests! Any .cs files in this folder will be included in the NUNIT Test Explorer.
    - `Assorted Tests Archive`: This is where I store my development tests. This folder is ignored during project build time. Tests in this folder do not appear in the NUNIT Test Explorer.
-   - `RumbleOn`: All tests related to RumbleOn
 
 - `c:\Automation Logs`: This is where the Extent reports, screenshots, and all ancillary files are stored for your test runs. This folder will be created when you run a test from this framework the first time on a system. There are better places to put this and it will probably change down the road but for now this made sense. Right now it will archive all test runs so while you are developing any tests you will want to empty this folder out until I get to purging older test reports.
 
 ## Using the Framework
-First off I will not go into great detail about the code of Kindergarten past just saying I have tried my hardest to name all variables and methods to where you should understand what is going on under the hood. 
+First off I will not go into great detail about the code of .NET Framework past just saying I have tried my hardest to name all variables and methods to where you should understand what is going on under the hood. 
 Any where I feel needs a comment I have done so in the code. All methods that can be called from a test have filled out and up to date XML with it. You should be able to see what a method does and expects through Visual Studio. If you see any where I have missed something please let me know. 
 
-- Quickest way to get going with Kindergarten is to grab the `Test Template.cs` file from the `\Tests\Assorted Tests Archive`, copy it to the base `Tests` folder and rename the commented fields. At that point when you build the project you should see that test appear in the NUNIT Test Explorer. 
+- Quickest way to get going with .NET Framework is to grab the `Test Template.cs` file from the `\Tests\Assorted Tests Archive`, copy it to the base `Tests` folder and rename the commented fields. At that point when you build the project you should see that test appear in the NUNIT Test Explorer. 
 
 ### Currently supported methods you can use in your tests
 - `ClickElement`: This method is used to have Selenium click on any element in a website like a form field or button. 
@@ -98,15 +91,6 @@ Any where I feel needs a comment I have done so in the code. All methods that ca
      DatabaseCheck("select UserId from ClsListing where ListingId = 111");
   ```
   - Again, a tip I would provide is combine the above with the JSONCALL method. Don't hard code your tests. This can also be used in conjunction with other functions. 
-
-- `GenerateAVIN`: This is a custom-made module for RumbleOn. This will look at the `VIN Store.json` file in the Json Repo and randomly pull a VIN out of that file. 
-  - This method has an option where you can specify `Motorcycle` - `Car` - `Truck` - `Offroad`. If no option is passed the method will randomly choose one of the four. 
-  The information pulled will populate the following variables which you can combine with `DatabaseCheck`, `ShouldBe`, or `ShouldNotBe` methods. 
-    - `vinUnderTest`
-    - `yearUnderTest`
-    - `makeUnderTest`
-    - `modelUnderTest`
-    - `trimUnderTest`
 
 - `GetAllEmailsFromAnEmailAccount`: Simple wrapper method to call the 'FetchAllMessages' method which pulls all emails from an email account using POP3.<br />To use this you need to ensure that your `appsettings.local.JSON` file has all the `EmaiInformation` filled out. 
   - This method has one optional parameter you can pass `true` to. If you do this the method will pull all the email down from that account and delete the emails as well. Useful to ensure the account is left clean after your testing. `Be careful with this setting as it is not reversible.`
@@ -173,7 +157,7 @@ This will fail or pass the current test if the string is not found. It is recomm
 
 - `ShouldNotBe`: Method is the same as `ShouldBe` but ensures the values are not the same.
 
-- `StripEndingUrl`: Custom method for RumbleOn that strips all characters after the last `/` in a string. This is was made to strip the ending of a URL for RumbleOn Classifieds project.
+- `StripEndingUrl`: Method that strips all characters after the last `/` in a string. 
 
 - `UseBrowser`: Method that tells Selenium what browser to run. Currently supports: `chrome` - `firefox` - `edge`
   - Your first test will `ALWAYS` start with this. 
