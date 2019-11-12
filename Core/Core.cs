@@ -37,11 +37,7 @@
         // Variables needed for account testing
         public string accountEmailUnderTest = "", accountPasswordUnderTest = "", accountFirstNameUnderTest = "", accountLastNameUnderTest = "",
             accountPhoneUnderTest = "", accountStreetAddressUnderTest = "", accountZipCodeUnderTest = "";
-        // Variables needed for VIN testing
-        public const string Motorcycle = "motorcycle", Car = "car", Truck = "truck", Offroad = "offroad", Random = "random"; 
-        public string vinUnderTest = "", makeUnderTest = "", modelUnderTest = "", trimUnderTest = "";
-        public int yearUnderTest = 0;
-
+        
         protected Core()
         {
             _homeDirectory = Path.GetDirectoryName(Assembly.GetAssembly(typeof(Core)).Location);
@@ -129,12 +125,12 @@
                 if (status == TestStatus.Passed)
                 {
                     Logger(Info, "Sending a Passing notification to Slack");
-                    MessageSlack("Classifieds Automation Test with the name of: '" + TestContext.CurrentContext.Test.Name + "' has passed at " + dt + " system time.");
+                    MessageSlack("Test with the name of: '" + TestContext.CurrentContext.Test.Name + "' has passed at " + dt + " system time.");
                 }
                 else if (status == TestStatus.Failed)
                 {
                     Logger(Info, "Sending a Failing notification to Slack");
-                    MessageSlack("Classifieds Automation Test with the name of: '" + TestContext.CurrentContext.Test.Name + "' has failed at " + dt + " system time.");
+                    MessageSlack("Test with the name of: '" + TestContext.CurrentContext.Test.Name + "' has failed at " + dt + " system time.");
                 }
             }
 
@@ -282,130 +278,6 @@
             }
 
             return "Complete";
-        }
-
-        /// <summary>
-        /// The GenerateAVIN method reads the VIN Store.json file for VIN known good VINs and will randomly select one. 
-        /// This will assign the VIN - Year - Make - Model to the global variables
-        /// </summary>
-        /// <param name="vinSelection">If not given this method will randomly pick a vehicle type. Other wise you can use the following:
-        /// Motorcycle : Car : Truck : Offroad : Random</param>
-        /// <returns></returns>
-        protected void GenerateAVIN(string vinSelection = "random")
-        {
-
-            /* The below will check the DB if that VIN can not be listed
-            do
-            {
-                
-            } while (Int32.Parse(DatabaseCheck(
-                $"select count(ListingStatusId) from clslisting where vin ='{vinUnderTest}' and (ListingStatusId = 2 OR ListingStatusId = 9 OR ListingStatusId = 8)")) > 0);
-            */
-
-            int motorcyleCounter = 0, truckCounter = 0, carCounter = 0, offroadCounter = 0, randomType = 0;
-            int randomVINEnding = (new Random()).Next(100, 1000);
-
-            // Below counts the number of valid VIN templates in the VIN Stor.json file
-            for (int x = 0; x < 100; x++)
-            {
-                if ($"{_config["VINStore:Motorcycles:" + x + ":Vin"]}" != "")
-                {
-                    motorcyleCounter++;
-                }
-                if ($"{_config["VINStore:Cars:" + x + ":Vin"]}" != "")
-                {
-                    carCounter++;
-                }
-                if ($"{_config["VINStore:Trucks:" + x + ":Vin"]}" != "")
-                {
-                    truckCounter++;
-                }
-                if ($"{_config["VINStore:Offroad:" + x + ":Vin"]}" != "")
-                {
-                    offroadCounter++;
-                }
-            }
-
-            if (vinSelection == "random")
-            {
-                randomType = (new Random()).Next(1, 5);
-                switch (randomType)
-                {
-                    case 1:
-                        vinSelection = "motorcycle";
-                        break;
-                    case 2:
-                        vinSelection = "car";
-                        break;
-                    case 3:
-                        vinSelection = "truck";
-                        break;
-                    case 4:
-                        vinSelection = "offroad";
-                        break;
-                }
-            }
-
-            if ((vinSelection == "motorcycle" && motorcyleCounter < 1) ||
-                (vinSelection == "car" && carCounter < 1) ||
-                (vinSelection == "truck" && truckCounter < 1) ||
-                (vinSelection == "offroad" && offroadCounter < 1))
-            {
-                Console.WriteLine("No valid VIN found in the 'VIN Store.json' file for: " + vinSelection);
-                Logger(Fail, "No valid VIN found in the 'VIN Store.json' file for: <br />" + vinSelection);
-                throw new Exception("No valid VIN found in the 'VIN Store.json' file for: " + vinSelection);
-            }
-            
-            switch (vinSelection)
-            {
-                case "motorcycle":
-                    int randomMotorcycleVin = (new Random()).Next(0, motorcyleCounter);
-                    vinUnderTest = $"{_config["VINStore:Motorcycles:" + randomMotorcycleVin + ":Vin"]}";
-                    yearUnderTest = Int32.Parse($"{_config["VINStore:Motorcycles:" + randomMotorcycleVin + ":Year"]}");
-                    makeUnderTest = $"{_config["VINStore:Motorcycles:" + randomMotorcycleVin + ":Make"]}";
-                    modelUnderTest = $"{_config["VINStore:Motorcycles:" + randomMotorcycleVin + ":Model"]}";
-                    break;
-                case "car":
-                    int randomCarVin = (new Random()).Next(0, carCounter);
-                    vinUnderTest = $"{_config["VINStore:Cars:" + randomCarVin + ":Vin"]}";
-                    yearUnderTest = Int32.Parse($"{_config["VINStore:Cars:" + randomCarVin + ":Year"]}");
-                    makeUnderTest = $"{_config["VINStore:Cars:" + randomCarVin + ":Make"]}";
-                    modelUnderTest = $"{_config["VINStore:Cars:" + randomCarVin + ":Model"]}";
-                    trimUnderTest = $"{_config["VINStore:Cars:" + randomCarVin + ":Trim"]}";
-                    break;
-                case "truck":
-                    int randomTruckVin = (new Random()).Next(0, truckCounter);
-                    vinUnderTest = $"{_config["VINStore:Trucks:" + randomTruckVin + ":Vin"]}";
-                    yearUnderTest = Int32.Parse($"{_config["VINStore:Trucks:" + randomTruckVin + ":Year"]}");
-                    makeUnderTest = $"{_config["VINStore:Trucks:" + randomTruckVin + ":Make"]}";
-                    modelUnderTest = $"{_config["VINStore:Trucks:" + randomTruckVin + ":Model"]}";
-                    trimUnderTest = $"{_config["VINStore:Trucks:" + randomTruckVin + ":Trim"]}";
-                    break;
-                case "offroad":
-                    int randomOffroadVin = (new Random()).Next(0, offroadCounter);
-                    vinUnderTest = $"{_config["VINStore:Offroad:" + randomOffroadVin + ":Vin"]}";
-                    yearUnderTest = Int32.Parse($"{_config["VINStore:Offroad:" + randomOffroadVin + ":Year"]}");
-                    makeUnderTest = $"{_config["VINStore:Offroad:" + randomOffroadVin + ":Make"]}";
-                    modelUnderTest = $"{_config["VINStore:Offroad:" + randomOffroadVin + ":Model"]}";
-                    break;
-            }
-
-            // Log testing information to Automation Logs
-            if (trimUnderTest != "")
-            {
-                Logger(Info, "Using the following " + (vinSelection.First().ToString().ToUpper() + vinSelection.Substring(1)) + " for testing: <br />VIN: " + vinUnderTest +
-                "<br />Year: " + yearUnderTest +
-                "<br />Make: " + makeUnderTest +
-                "<br />Model: " + modelUnderTest +
-                "<br />Trim: " + trimUnderTest);
-            }
-            else
-            {
-                Logger(Info, "Using the following " + (vinSelection.First().ToString().ToUpper() + vinSelection.Substring(1)) + " for testing: <br />VIN: " + vinUnderTest +
-                "<br />Year: " + yearUnderTest +
-                "<br />Make: " + makeUnderTest +
-                "<br />Model: " + modelUnderTest);
-            }
         }
 
         /// <summary>
