@@ -33,7 +33,6 @@
         Status logstatus;
         public const string Info = "info", Pass = "pass", Fail = "fail"; // Const Keywords for Logger
 
-        // ****RumbleOn Specific variables****
         // Variables needed for account testing
         public string accountEmailUnderTest = "", accountPasswordUnderTest = "", accountFirstNameUnderTest = "", accountLastNameUnderTest = "",
             accountPhoneUnderTest = "", accountStreetAddressUnderTest = "", accountZipCodeUnderTest = "";
