@@ -37,7 +37,7 @@ Personal Email: daniel.gail@gmail.com
 - Firefox
 
 ## Planned To-Do List:
-- Upgrade to Core 3.0 to resolve picture upload support (ETA: Mid Sept 2019)
+- Upgrade to Core 3.0
 - Upload Logs to Slack Channel & AWS S3 bucket as well as Slack notifications for pass/fail
 - Xamarin integration to run mobile app testing on most devices
 - Concurrent testing through ASYNC/Selenium Grid and allow concurrent browser testing
